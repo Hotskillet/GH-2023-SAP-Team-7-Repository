@@ -9,6 +9,7 @@ public class DragAndDrop : MonoBehaviour{
     private Vector2 currentMousePosition;
     private Vector2 diffMousePosition;
 
+    public Transform trackerTarget;
 
     // Start is called before the first frame update
     void Start() {
@@ -24,6 +25,9 @@ public class DragAndDrop : MonoBehaviour{
     //whebevr mouse drags this, bring it to it?
     void OnMouseDrag() {
 
+        /*
+        commenting the following because testing out new tracker
+
         //get the mouse pos as coords
         currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -33,6 +37,11 @@ public class DragAndDrop : MonoBehaviour{
 
         //add the difference (while cancelling out the z)
         Vector3 addThis = new Vector3(diffMousePosition.x, diffMousePosition.y, 0.0f);
+
+        */
+
+        Vector3 addThis = trackerTarget.position;
+
         transform.position += (addThis);
 
         //cycle the mouse positions 

@@ -9,27 +9,22 @@ public class snapperCrude : MonoBehaviour
     //if it detects any, it runs a coordinate check
     //coordinates as in the coord id's of the other motherships
 
-    private bool activeness = false;
 
-    private Collider2D[] listOfCollisions;
-
+    //SETTING UP BLANK LIST OF COLLISIONS I HAVE NO IDEA WHAT IMD OING
+    List<Collider2D> colliders = new List<Collider2D>();
+    private Collider2D col;
+    private ContactFilter2D filter = new ContactFilter2D().NoFilter();
     //when the mouse goes down then its active
     void OnMouseDown() {
-        activeness = true;
+
+        col = gameObject.GetComponent<BoxCollider2D>();
     }
     
     void OnMouseUp() {
-
-        //if the thing is active then we snap
-        //might need to check later about the activeness check thing being redundant
-        //because onMouseUp might be all we need 
-        //i think it is
-        //better safe than sorry
-
-        if (activeness) {
-            activeness = false;
-            //new int OverlapCollider(ContactFilter2D NoFilter(), listOfCollisions);
-        }
+        //HOW DO I GET THE COLLISIONS
+        //IM 
+        int throwThisNumberAway = Physics2D.OverlapCollider(col, filter, colliders);
+        print(colliders);
     }
 
     // Start is called before the first frame update
