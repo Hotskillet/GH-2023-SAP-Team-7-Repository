@@ -259,8 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9090b6b590515545aaca8bd6f01642f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 2
-  height: 2
+  width: 10
+  height: 10
   topLeftCornerPosition: {x: 0, y: 0, z: 0}
   dist: 1.5
   database: {fileID: 11400000, guid: 4003489a5ef48e046b9ed564326eb20b, type: 2}
