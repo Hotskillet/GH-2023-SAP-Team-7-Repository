@@ -15,6 +15,7 @@ public class PieceGenerator : MonoBehaviour
     public int width;
     public int height;
     public Vector3 topLeftCornerPosition;
+    public float dist;
 
     public PieceDatabase database;
 
@@ -36,6 +37,8 @@ public class PieceGenerator : MonoBehaviour
         middlePieces = new List<PieceTemplate>();
 
         SortPieces();
+        ChoosePieces();
+        //GeneratePieces();
     }
 
     // checks if a piece template is a corner piece (top-left corner ONLY)
@@ -111,6 +114,7 @@ public class PieceGenerator : MonoBehaviour
         6) save results in matrix
     */
     void ChoosePieces(){
+        bool stop = false;
         int rndIndex;
         for (int j = 0; j < height; j++){ // loop through columns
             for (int i = 0; i < width; i++){ // loop through rows
@@ -119,7 +123,7 @@ public class PieceGenerator : MonoBehaviour
                     // choose a corner piece from temporary list of corner pieces
                     rndIndex = rnd.Next(0, cornerPieces.Count+1);
                     // save as top-left corner piece
-                    gridPieces[0,0] = cornerPieces[rndIndex];
+                    gridPieces[i,j] = cornerPieces[rndIndex];
                 }
                 //FIXME: middle
                 else if ((0 < i) && (i < width-1) && (0 < j) &&(j < height-1)){
@@ -129,6 +133,11 @@ public class PieceGenerator : MonoBehaviour
                     int[] middleReqs = {topID, -1, -1, leftID};
                     // find compatible middle pieces
                     List<PieceTemplate> temp = FindCompatible(middlePieces, middleReqs);
+                    if (temp.Count == 0){
+                        Debug.Log("NULL at: [" + i + ", " + j + "]");
+                        stop = true;
+                        break;
+                    }
                     // randomly pick one
                     rndIndex = rnd.Next(0, temp.Count+1);
                     gridPieces[i,j] = temp[rndIndex];
@@ -136,20 +145,125 @@ public class PieceGenerator : MonoBehaviour
                 //FIXME: middle-left
                 else if ((i == 0) && (0 < j) && (j < height-1)){
                     // determine connection requirements
-                    int topID = -1 * (gridPieces[i, j-1].sideID[2] - 1); // inverts ID (0->1, 1->0)
-                    int[] sideReqs = {topID, -1, -1, -1};
+                    int topID = -1 * (gridPieces[i, j-1].sideID[1] - 1); // inverts ID (0->1, 1->0)
+                    int[] sideReqs = {-1, topID, -1, -1};
                     // find compatible side pieces
                     List<PieceTemplate> temp = FindCompatible(sidePieces, sideReqs);
+                    if (temp.Count == 0){
+                        Debug.Log("NULL at: [" + i + ", " + j + "]");
+                        stop = true;
+                        break;
+                    }
                     // randomly pick one
                     rndIndex = rnd.Next(0, temp.Count+1);
                     gridPieces[i,j] = temp[rndIndex];
                 }
                 //FIXME: middle-right
+                else if ((i == width-1) && (0 < j) && (j < height-1)){
+                    // determine connection requirements
+                    int topID = -1 * (gridPieces[i, j-1].sideID[2] - 1); // inverts ID (0->1, 1->0)
+                    int leftID = -1 * (gridPieces[i-1, j].sideID[3] - 1); // inverts ID (0->1, 1->0)
+                    int[] sideReqs = {-1, -1, topID, leftID};
+                    // find compatible side pieces
+                    List<PieceTemplate> temp = FindCompatible(sidePieces, sideReqs);
+                    if (temp.Count == 0){
+                        Debug.Log("NULL at: [" + i + ", " + j + "]");
+                        stop = true;
+                        break;
+                    }
+                    // randomly pick one
+                    rndIndex = rnd.Next(0, temp.Count+1);
+                    gridPieces[i,j] = temp[rndIndex];
+                }
                 //FIXME: top-middle
+                else if ((0 < i) && (i < width-1) && (j == 0)){
+                    // determine connection requirements
+                    int leftID = -1 * (gridPieces[i-1, j].sideID[1] - 1); // inverts ID (0->1, 1->0)
+                    int[] sideReqs = {-1, -1, -1, leftID};
+                    // find compatible side pieces
+                    List<PieceTemplate> temp = FindCompatible(sidePieces, sideReqs);
+                    if (temp.Count == 0){
+                        Debug.Log("NULL at: [" + i + ", " + j + "]");
+                        stop = true;
+                        break;
+                    }
+                    // randomly pick one
+                    rndIndex = rnd.Next(0, temp.Count+1);
+                    gridPieces[i,j] = temp[rndIndex];
+                }
                 //FIXME: bottom-middle
+                else if ((0 < i) && (i < width-1) && (j == height-1)){
+                    // determine connection requirements
+                    int topID = -1 * (gridPieces[i, j-1].sideID[2] - 1); // inverts ID (0->1, 1->0)
+                    int leftID = -1 * (gridPieces[i-1, j].sideID[1] - 1); // inverts ID (0->1, 1->0)
+                    int[] sideReqs = {-1, leftID, topID, -1};
+                    // find compatible side pieces
+                    List<PieceTemplate> temp = FindCompatible(sidePieces, sideReqs);
+                    if (temp.Count == 0){
+                        Debug.Log("NULL at: [" + i + ", " + j + "]");
+                        stop = true;
+                        break;
+                    }
+                    // randomly pick one
+                    rndIndex = rnd.Next(0, temp.Count+1);
+                    gridPieces[i,j] = temp[rndIndex];
+                }
                 //FIXME: top-right
+                else if ((i == width-1) && (j == 0)){
+                    // determine connection requirements
+                    int leftID = -1 * (gridPieces[i-1, j].sideID[2] - 1); // inverts ID (0->1, 1->0)
+                    int[] cornerReqs = {-1, -1, leftID, -1};
+                    // find compatible corner pieces
+                    List<PieceTemplate> temp = FindCompatible(cornerPieces, cornerReqs);
+                    if (temp.Count == 0){
+                        Debug.Log("NULL at: [" + i + ", " + j + "]");
+                        stop = true;
+                        break;
+                    }
+                    // randomly pick one
+                    rndIndex = rnd.Next(0, temp.Count+1);
+                    gridPieces[i,j] = temp[rndIndex];
+                }
                 //FIXME: bottom-left
+                else if ((i == 0) && (j == height-1)){
+                    // determine connection requirements
+                    int topID = -1 * (gridPieces[i, j-1].sideID[1] - 1); // inverts ID (0->1, 1->0)
+                    int[] cornerReqs = {-1, topID, -1, -1};
+                    // find compatible corner pieces
+                    List<PieceTemplate> temp = FindCompatible(cornerPieces, cornerReqs);
+                    if (temp.Count == 0){
+                        Debug.Log("NULL at: [" + i + ", " + j + "]");
+                        stop = true;
+                        break;
+                    }
+                    // randomly pick one
+                    rndIndex = rnd.Next(0, temp.Count+1);
+                    gridPieces[i,j] = temp[rndIndex];
+                }
                 //FIXME: bottom-right
+                else if ((i == width-1) && (j == height-1)){
+                    // determine connection requirements
+                    int topID = -1 * (gridPieces[i, j-1].sideID[2] - 1); // inverts ID (0->1, 1->0)
+                    int leftID = -1 * (gridPieces[i-1, j].sideID[1] - 1); // inverts ID (0->1, 1->0)
+                    int[] cornerReqs = {topID, -1, -1, leftID};
+                    // find compatible corner pieces
+                    List<PieceTemplate> temp = FindCompatible(cornerPieces, cornerReqs);
+                    if (temp.Count == 0){
+                        Debug.Log("NULL at: [" + i + ", " + j + "]");
+                        stop = true;
+                        break;
+                    }
+                    // randomly pick one
+                    rndIndex = rnd.Next(0, temp.Count+1);
+                    gridPieces[i,j] = temp[rndIndex];
+                }
+                //FIXME: else null
+                else{
+                    Debug.Log("NULL at: [" + i + ", " + j + "]");
+                }
+            }
+            if (stop){
+                break;
             }
         }
         return;
@@ -158,6 +272,80 @@ public class PieceGenerator : MonoBehaviour
     void GeneratePieces(){
         //FIXME: instantiate prefab of corner piece
         //Instantiate(temp[rndIndex].piecePrefab, topLeftCornerPosition, Quaternion.identity);
+        for (int j = 0; j < height; j++){
+            for (int i = 0; i < width; i++){
+                // top-left (the first piece)
+                if ((i == j) && (i == 0)){
+                    Instantiate(gridPieces[i, j].piecePrefab, topLeftCornerPosition, Quaternion.identity);
+                }
+                //FIXME: middle
+                else if ((0 < i) && (i < width-1) && (0 < j) &&(j < height-1)){
+                    Vector3 newPos = new Vector3(topLeftCornerPosition.x + (i * dist),
+                                                    topLeftCornerPosition.y + (j * dist),
+                                                    topLeftCornerPosition.z);
+                    Instantiate(gridPieces[i, j].piecePrefab, newPos, Quaternion.identity);
+                }
+                //FIXME: middle-left
+                else if ((i == 0) && (0 < j) && (j < height-1)){
+                    Vector3 newPos = new Vector3(topLeftCornerPosition.x + (i * dist),
+                                                    topLeftCornerPosition.y + (j * dist),
+                                                    topLeftCornerPosition.z);
+                    Quaternion newRot = new Quaternion(0, 0, 90, 0);
+                    Instantiate(gridPieces[i, j].piecePrefab, newPos, newRot);
+                }
+                //FIXME: middle-right
+                else if ((i == width-1) && (0 < j) && (j < height-1)){
+                    Vector3 newPos = new Vector3(topLeftCornerPosition.x + (i * dist),
+                                                    topLeftCornerPosition.y + (j * dist),
+                                                    topLeftCornerPosition.z);
+                    Quaternion newRot = new Quaternion(0, 0, -90, 0);
+                    Instantiate(gridPieces[i, j].piecePrefab, newPos, newRot);
+                }
+                //FIXME: top-middle
+                else if ((0 < i) && (i < width-1) && (j == 0)){
+                    Vector3 newPos = new Vector3(topLeftCornerPosition.x + (i * dist),
+                                                    topLeftCornerPosition.y + (j * dist),
+                                                    topLeftCornerPosition.z);
+                    Instantiate(gridPieces[i, j].piecePrefab, newPos, Quaternion.identity);
+                }
+                //FIXME: bottom-middle
+                else if ((0 < i) && (i < width-1) && (j == height-1)){
+                    Vector3 newPos = new Vector3(topLeftCornerPosition.x + (i * dist),
+                                                    topLeftCornerPosition.y + (j * dist),
+                                                    topLeftCornerPosition.z);
+                    Quaternion newRot = new Quaternion(0, 0, 180, 0);
+                    Instantiate(gridPieces[i, j].piecePrefab, newPos, newRot);
+                }
+                //FIXME: top-right
+                else if ((i == width-1) && (j == 0)){
+                    Vector3 newPos = new Vector3(topLeftCornerPosition.x + (i * dist),
+                                                    topLeftCornerPosition.y + (j * dist),
+                                                    topLeftCornerPosition.z);
+                    Quaternion newRot = new Quaternion(0, 0, -90, 0);
+                    Instantiate(gridPieces[i, j].piecePrefab, newPos, newRot);
+                }
+                //FIXME: bottom-left
+                else if ((i == 0) && (j == height-1)){
+                    Vector3 newPos = new Vector3(topLeftCornerPosition.x + (i * dist),
+                                                    topLeftCornerPosition.y + (j * dist),
+                                                    topLeftCornerPosition.z);
+                    Quaternion newRot = new Quaternion(0, 0, 90, 0);
+                    Instantiate(gridPieces[i, j].piecePrefab, newPos, newRot);
+                }
+                //FIXME: bottom-right
+                else if ((i == width-1) && (j == height-1)){
+                    Vector3 newPos = new Vector3(topLeftCornerPosition.x + (i * dist),
+                                                    topLeftCornerPosition.y + (j * dist),
+                                                    topLeftCornerPosition.z);
+                    Quaternion newRot = new Quaternion(0, 0, 180, 0);
+                    Instantiate(gridPieces[i, j].piecePrefab, newPos, newRot);
+                }
+                //FIXME: else null
+                else{
+                    Debug.Log("NULL at: [" + i + ", " + j + "]");
+                }
+            }
+        }
     }
 
     /* FIXME
