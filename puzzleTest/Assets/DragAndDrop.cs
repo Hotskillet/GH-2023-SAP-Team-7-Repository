@@ -13,25 +13,29 @@ public class DragAndDrop : MonoBehaviour{
     // Start is called before the first frame update
     void Start() {
         //start off last mouse position so that it isnt empty
-        lastMousePosition = Input.mousePosition;
+        lastMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     // Update is called once per frame
-    
+    void Update() {
 
+    }    
+
+    //whebevr mouse drags this, bring it to it?
     void OnMouseDrag() {
-        print("YEAH");
-        
-        /*
-        currentMousePosition = Input.mousePosition;
+
+        //get the mouse pos as coords
+        currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        //get the difference
         diffMousePosition = currentMousePosition - lastMousePosition;
-    
         
-        Vector3 addThis = new Vector3(diffMousePosition.x, diffMousePosition.y, 0);
-        print(addThis);
-        transform.position += addThis;
-        
+
+        //add the difference (while cancelling out the z)
+        Vector3 addThis = new Vector3(diffMousePosition.x, diffMousePosition.y, 0.0f);
+        transform.position += (addThis);
+
+        //cycle the mouse positions 
         lastMousePosition = currentMousePosition;
-        */
     }
 }
