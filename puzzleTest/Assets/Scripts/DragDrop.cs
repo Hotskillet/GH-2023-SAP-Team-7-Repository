@@ -52,7 +52,8 @@ public class DragDrop : MonoBehaviour
         }else if (held){
             justReleased = true;
             held = false;
-            //FIXME: add snap raise here, then set justRealeased to false
+            //FIXME: add Snap-Raise here, then set justRealeased to false
+            //FIXME: above is not right ^
         }
     }
 
