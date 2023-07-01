@@ -5,11 +5,24 @@ using UnityEngine;
 public class Snapper : MonoBehaviour
 {
 
+    //when the mopuse is dropped, we check if the hitbox is active
+    //if it is, check for other hitboxes
+    //check the criteria:
+    //correct sides
+    //correct side id's (add id's together)
+    //then mark this hitbox as HITTING 
+    //then we send out signals to all the sibling goobers for confirmation
+    //once we receive all the confirmation, then snap.
+    //what do we mean by confirmation?
+    //if any of the others are ALSO hits and are closer, then cancel.
+    //so if this goober receives 3 confirmations back, then snap.
+    //otherwise, dont snap.
+
     // Start is called before the first frame update
     void Start()
     {
         //this adds a listener to listen for foundmatch
-        EvtSystem.EventDispatcher.AddListener<foundMatch>(receiveThing);
+        EvtSystem.EventDispatcher.AddListener<hit>(receiveHit);
     }
 
     // Update is called once per frame
@@ -20,16 +33,21 @@ public class Snapper : MonoBehaviour
         //then it sounds out evnt with the type foundmatch 
         //anything listening for foundmatch class stuff will receive
 
-        foundMatch evnt = new foundMatch();
+        hit evnt = new hit();
         evnt.distanceThing = 10.0f;
 
         EvtSystem.EventDispatcher.Raise(evnt);
     }
 
-    void receiveThing(foundMatch evntPackageThing) {
+
+    //this function is for receviing hit signals from other goobers
+    void receiveHit(hit evntPackageThing) {
 
         print(evntPackageThing.distanceThing);
 
     }
+
+
+
 
 }

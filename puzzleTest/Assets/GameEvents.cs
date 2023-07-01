@@ -10,7 +10,7 @@ public class ExampleTrigger : EvtSystem.Event
     public float data2;
 }
 
-public class foundMatch : EvtSystem.Event
+public class hit : EvtSystem.Event
 {
     public float distanceThing;
 }
