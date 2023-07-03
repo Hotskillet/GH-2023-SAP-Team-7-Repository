@@ -289,16 +289,14 @@ public class PieceGenerator : MonoBehaviour
                     Vector3 newPos = new Vector3(topLeftCornerPosition.x + (i * dist),
                                                     topLeftCornerPosition.y - (j * dist),
                                                     topLeftCornerPosition.z);
-                    GameObject go = Instantiate(gridPieces[i, j].piecePrefab, newPos, Quaternion.identity);
-                    go.transform.rotation = new Quaternion(0, 0, 0, 0);
+                    GameObject go = Instantiate(gridPieces[i, j].piecePrefab, newPos, Quaternion.Euler(0, 0, 90));
                 }
                 //FIXME: middle-right
                 else if ((i == width-1) && (0 < j) && (j < height-1)){
                     Vector3 newPos = new Vector3(topLeftCornerPosition.x + (i * dist),
                                                     topLeftCornerPosition.y - (j * dist),
                                                     topLeftCornerPosition.z);
-                    GameObject go = Instantiate(gridPieces[i, j].piecePrefab, newPos, Quaternion.identity);
-                    go.transform.rotation = new Quaternion(0, 0, 0, 0);
+                    GameObject go = Instantiate(gridPieces[i, j].piecePrefab, newPos, Quaternion.Euler(0, 0, 270));
                 }
                 //FIXME: top-middle
                 else if ((0 < i) && (i < width-1) && (j == 0)){
@@ -312,31 +310,28 @@ public class PieceGenerator : MonoBehaviour
                     Vector3 newPos = new Vector3(topLeftCornerPosition.x + (i * dist),
                                                     topLeftCornerPosition.y - (j * dist),
                                                     topLeftCornerPosition.z);
-                    GameObject go = Instantiate(gridPieces[i, j].piecePrefab, newPos, Quaternion.identity);
-                    go.transform.rotation = new Quaternion(0, 0, 0, 0);
+                    GameObject go = Instantiate(gridPieces[i, j].piecePrefab, newPos, Quaternion.Euler(0, 0, 180));
                 }
                 //FIXME: top-right
                 else if ((i == width-1) && (j == 0)){
                     Vector3 newPos = new Vector3(topLeftCornerPosition.x + (i * dist),
                                                     topLeftCornerPosition.y - (j * dist),
                                                     topLeftCornerPosition.z);
-                    GameObject go = Instantiate(gridPieces[i, j].piecePrefab, newPos, new Quaternion(0, 0, -180, 0));
+                    GameObject go = Instantiate(gridPieces[i, j].piecePrefab, newPos, Quaternion.Euler(0, 0, -90));
                 }
                 //FIXME: bottom-left
                 else if ((i == 0) && (j == height-1)){
                     Vector3 newPos = new Vector3(topLeftCornerPosition.x + (i * dist),
                                                     topLeftCornerPosition.y - (j * dist),
                                                     topLeftCornerPosition.z);
-                    GameObject go = Instantiate(gridPieces[i, j].piecePrefab, newPos, Quaternion.identity);
-                    go.transform.rotation = new Quaternion(0, 0, 0, 0);
+                    GameObject go = Instantiate(gridPieces[i, j].piecePrefab, newPos, Quaternion.Euler(0, 0, 90));
                 }
                 //FIXME: bottom-right
                 else if ((i == width-1) && (j == height-1)){
                     Vector3 newPos = new Vector3(topLeftCornerPosition.x + (i * dist),
                                                     topLeftCornerPosition.y - (j * dist),
                                                     topLeftCornerPosition.z);
-                    GameObject go = Instantiate(gridPieces[i, j].piecePrefab, newPos, Quaternion.identity);
-                    go.transform.rotation = new Quaternion(0, 0, 0, 0);
+                    GameObject go = Instantiate(gridPieces[i, j].piecePrefab, newPos, Quaternion.Euler(0, 0, 180));
                 }
                 //FIXME: else null
                 else{
