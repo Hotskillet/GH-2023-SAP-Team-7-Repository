@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe40588a7362ac48beb6e82f22fb22c, type: 3}
+  m_Name: Middle1010
+  m_EditorClassIdentifier: 
+  piecePrefab: {fileID: 2171916052804491435, guid: faf71dd42922c9c41a0a960df8541688, type: 3}
+  sideID: 01000000000000000100000000000000
