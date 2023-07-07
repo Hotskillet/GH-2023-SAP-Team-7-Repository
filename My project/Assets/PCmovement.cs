@@ -28,7 +28,14 @@ public class PCmovement : MonoBehaviour
             {
             movDir = transform.right;
             }
-
+        else if (Input.GetKey(KeyCode.W))
+        {
+            movDir = transform.up; 
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            movDir = -transform.up;
+        }
         gameObject.transform.Translate(speed * movDir * Time.deltaTime);
             
 
