@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Middle0111
   m_EditorClassIdentifier: 
   piecePrefab: {fileID: 5248372443801795421, guid: 705fcf77f6d30b642981824e73b2f743, type: 3}
+  spriteMask: {fileID: -622672682, guid: be553e1b0e8726e4194640d4eb39e6a3, type: 3}
   sideID: 00000000010000000100000001000000

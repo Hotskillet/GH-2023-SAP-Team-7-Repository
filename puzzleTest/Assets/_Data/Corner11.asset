@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Corner11
   m_EditorClassIdentifier: 
   piecePrefab: {fileID: 3921901089582873246, guid: 8078e6ed54eaf7d47b7f9a03b93e5c29, type: 3}
+  spriteMask: {fileID: 142046912, guid: be553e1b0e8726e4194640d4eb39e6a3, type: 3}
   sideID: 02000000010000000100000002000000
