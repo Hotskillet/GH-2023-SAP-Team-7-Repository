@@ -37,8 +37,8 @@ public class PCmovement : MonoBehaviour
             movDir = -transform.up;
         }
         gameObject.transform.Translate(speed * movDir * Time.deltaTime);
-            
 
+        
         }
 }
 
