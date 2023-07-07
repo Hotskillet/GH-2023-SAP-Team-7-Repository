@@ -14,6 +14,12 @@ public class snapperCrude : MonoBehaviour
     List<Collider2D> colliders = new List<Collider2D>();
     private Collider2D col;
     private ContactFilter2D filter = new ContactFilter2D().NoFilter();
+
+
+    //relative grid coords
+    public int gridX;
+    public int gridY;
+
     //when the mouse goes down then its active
     void OnMouseDown() {
 
@@ -24,7 +30,6 @@ public class snapperCrude : MonoBehaviour
         //HOW DO I GET THE COLLISIONS
         //IM 
         int throwThisNumberAway = Physics2D.OverlapCollider(col, filter, colliders);
-        print(colliders);
     }
 
     // Start is called before the first frame update
