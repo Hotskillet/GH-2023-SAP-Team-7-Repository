@@ -13,12 +13,21 @@ public class movement2D : MonoBehaviour
 
     public float speed = 5.0f;    
 
+    public GameObject gangy;
+
+    private SpriteRenderer spriteRenderer;
+    private Animator spriteAnimator;
+
+    public Sprite walkUpSprite;
+    public Sprite walkDownSprite;
+
+
 
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+        spriteRenderer = gangy.GetComponent<SpriteRenderer>();
+        spriteAnimator = gangy.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -45,6 +54,18 @@ public class movement2D : MonoBehaviour
             movementVector += right;
         }
         
+        //getting the to be difference in x and y
+        //to decide the sprite animation
+        float diffX = movementVector.x;
+        float diffY = movementVector.y;
+
+        Vector2 diffVector = new Vector2(diffX, diffY);
+
+
+        //update values for the animator
+        spriteAnimator.SetFloat("Vertical", diffY);
+        spriteAnimator.SetFloat("Speed", diffVector.sqrMagnitude);
+
         //update the transform position
         transform.position += (movementVector * Time.deltaTime * speed);
         
