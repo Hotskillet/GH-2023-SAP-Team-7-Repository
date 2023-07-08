@@ -12,6 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe40588a7362ac48beb6e82f22fb22c, type: 3}
   m_Name: Corner11
   m_EditorClassIdentifier: 
-  piecePrefab: {fileID: 3921901089582873246, guid: 8078e6ed54eaf7d47b7f9a03b93e5c29, type: 3}
   spriteMask: {fileID: 142046912, guid: be553e1b0e8726e4194640d4eb39e6a3, type: 3}
   sideID: 02000000010000000100000002000000
+  connecitonPositionA:
+    relX: -3
+    relY: 0
+  connecitonPositionB:
+    relX: 2
+    relY: 0
+  connecitonPositionC:
+    relX: 0
+    relY: -2
+  connecitonPositionD:
+    relX: -3
+    relY: 0

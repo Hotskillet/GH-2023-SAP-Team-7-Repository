@@ -12,6 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe40588a7362ac48beb6e82f22fb22c, type: 3}
   m_Name: Middle1001
   m_EditorClassIdentifier: 
-  piecePrefab: {fileID: 623069589420119478, guid: bb763762a0ee0da4f88b23e8d89f2b20, type: 3}
   spriteMask: {fileID: 1179212181, guid: be553e1b0e8726e4194640d4eb39e6a3, type: 3}
   sideID: 01000000000000000000000001000000
+  connecitonPositionA:
+    relX: 0
+    relY: 2
+  connecitonPositionB:
+    relX: 1
+    relY: 0
+  connecitonPositionC:
+    relX: 0
+    relY: -1
+  connecitonPositionD:
+    relX: -2
+    relY: 0

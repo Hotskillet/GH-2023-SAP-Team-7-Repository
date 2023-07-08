@@ -12,6 +12,7 @@ using UnityEngine.UI;
 public class PieceGenerator : Singleton<PieceGenerator>
 {
     public GameObject piecePrefab;
+    public GameObject connectionPrefab;
     public int width;
     public int height;
     public Transform topLeftCornerPosition;
@@ -108,6 +109,86 @@ public class PieceGenerator : Singleton<PieceGenerator>
         return compatible;
     }
 
+
+    //FIXME: rotates position of connections
+    ConPos RotateConPos(ConPos pos, float shifts){
+        // skip -3
+        if (pos.relX == -3){
+            return pos;
+        }
+
+        ConPos newConPos;
+        int r = (int) Mathf.Sqrt(Mathf.Pow((float) pos.relX, 2.0f) + Mathf.Pow((float) pos.relY, 2.0f));
+        
+        int theta; // degrees
+        if ((pos.relX == 1) || (pos.relX == 2)){
+            theta = 0;
+        }else if((pos.relY == 1) || (pos.relY == 2)){
+            theta = 90;
+        }else if((pos.relX == -1) || (pos.relX == -2)){
+            theta = 180;
+        }else{
+            theta = 270;
+        }
+
+        int direction = (int) ((theta / 90) + shifts) % 4;
+        switch(direction){
+            case 1:
+                newConPos.relX = 0;
+                newConPos.relY = r;
+                break;
+            case 2:
+                newConPos.relX = -r;
+                newConPos.relY = 0;
+                break;
+            case 3:
+                newConPos.relX = 0;
+                newConPos.relY = -r;
+                break;
+            default: //0
+                newConPos.relX = r;
+                newConPos.relY = 0;
+                break;
+        }
+
+        return newConPos;
+    }
+
+    // instantiate connections and set as child object to piece
+    void CreateConnections(ConPos[] poses, Vector3 newPosition, GameObject go){
+        Vector3 posCon;
+        GameObject connection;
+        if (poses[0].relX != -3){
+            posCon = new Vector3(newPosition.x + (poses[0].relX * 0.2f),
+                                newPosition.y + (poses[0].relY * 0.2f),
+                                0.0f);
+            connection = Instantiate(connectionPrefab, posCon, Quaternion.identity);
+            connection.transform.parent = go.transform;
+        }
+        if (poses[1].relX != -3){
+            posCon = new Vector3(newPosition.x + (poses[1].relX * 0.2f),
+                                newPosition.y + (poses[1].relY * 0.2f),
+                                0.0f);
+            connection = Instantiate(connectionPrefab, posCon, Quaternion.identity);
+            connection.transform.parent = go.transform;
+        }
+        if (poses[2].relX != -3){
+            posCon = new Vector3(newPosition.x + (poses[2].relX * 0.2f),
+                                newPosition.y + (poses[2].relY * 0.2f),
+                                0.0f);
+            connection = Instantiate(connectionPrefab, posCon, Quaternion.identity);
+            connection.transform.parent = go.transform;
+        }
+        if (poses[3].relX != -3){
+            posCon = new Vector3(newPosition.x + (poses[3].relX * 0.2f),
+                                newPosition.y + (poses[3].relY * 0.2f),
+                                0.0f);
+            connection = Instantiate(connectionPrefab, posCon, Quaternion.identity);
+            connection.transform.parent = go.transform;
+        }
+    }
+
+    // instantiates pieces with proper connections
     GameObject CreatePiece(PieceTemplate temp, int[] pos, int rot){
         Vector3 newPosition = new Vector3(topLeftCornerPosition.position.x + (pos[0] * dist),
                                                     topLeftCornerPosition.position.y - (pos[1] * dist),
@@ -116,33 +197,64 @@ public class PieceGenerator : Singleton<PieceGenerator>
         GameObject go = Instantiate(piecePrefab, newPosition, newRotation);
         // rotate side id if needed
         int[] newSideID;
+        ConPos newConPosA; ConPos newConPosB; ConPos newConPosC; ConPos newConPosD;
+        ConPos[] newConPoses;
         switch (rot){
             case 90: // left-shift by 1
                 newSideID = new int[4] {temp.sideID[1], temp.sideID[2], temp.sideID[3], temp.sideID[0]};
+                // add connection colliders
+                //FIXME: rotate connection positions
+                newConPosA = RotateConPos(temp.connecitonPositionA, 1);
+                newConPosB = RotateConPos(temp.connecitonPositionB, 1);
+                newConPosC = RotateConPos(temp.connecitonPositionC, 1);
+                newConPosD = RotateConPos(temp.connecitonPositionD, 1);
+                newConPoses = new ConPos[4] {newConPosA, newConPosB, newConPosC, newConPosD};
+                CreateConnections(newConPoses, newPosition, go);
                 break;
             case 180: // left-shift by 2
                 newSideID = new int[4] {temp.sideID[2], temp.sideID[3], temp.sideID[0], temp.sideID[1]};
+                // add connection colliders
+                newConPosA = RotateConPos(temp.connecitonPositionA, 2);
+                newConPosB = RotateConPos(temp.connecitonPositionB, 2);
+                newConPosC = RotateConPos(temp.connecitonPositionC, 2);
+                newConPosD = RotateConPos(temp.connecitonPositionD, 2);
+                newConPoses = new ConPos[4] {newConPosA, newConPosB, newConPosC, newConPosD};
+                CreateConnections(newConPoses, newPosition, go);
                 break;
             case 270: // left-shift by 3
                 newSideID = new int[4] {temp.sideID[3], temp.sideID[0], temp.sideID[1], temp.sideID[2]};
+                // add connection colliders
+                newConPosA = RotateConPos(temp.connecitonPositionA, 3);
+                newConPosB = RotateConPos(temp.connecitonPositionB, 3);
+                newConPosC = RotateConPos(temp.connecitonPositionC, 3);
+                newConPosD = RotateConPos(temp.connecitonPositionD, 3);
+                newConPoses = new ConPos[4] {newConPosA, newConPosB, newConPosC, newConPosD};
+                CreateConnections(newConPoses, newPosition, go);
                 break;
-            default:
+            default: // left-shift by 0
                 newSideID = temp.sideID;
+                // add connection colliders
+                newConPosA = RotateConPos(temp.connecitonPositionA, 0);
+                newConPosB = RotateConPos(temp.connecitonPositionB, 0);
+                newConPosC = RotateConPos(temp.connecitonPositionC, 0);
+                newConPosD = RotateConPos(temp.connecitonPositionD, 0);
+                newConPoses = new ConPos[4] {newConPosA, newConPosB, newConPosC, newConPosD};
+                CreateConnections(newConPoses, newPosition, go);
                 break;
         }
         // save sideID FIXME: not being updated
         go.GetComponent<Piece>().sideID = newSideID;
-        Debug.Log("newSideID:" + newSideID[0] + newSideID[1] + newSideID[2] + newSideID[3]);
         // save coordinates
         go.GetComponent<Piece>().coordinates = pos;
-        // save sprite mask
+        //FIXME: save sprite mask
         //go.GetComponent<SpriteMask>().sprite = temp.spriteMask;
         go.GetComponent<SpriteRenderer>().sprite = temp.spriteMask;
+        
 
         return go;
     }
 
-    /* FIXME
+    /*
     generate grid of pieces (using width and height variables) by:
         1) Randomly selecting a top-left corner to start with
         2) Checking which kind of pieces can connect to this corner piece,
@@ -275,7 +387,6 @@ public class PieceGenerator : Singleton<PieceGenerator>
                     // determine connection requirements
                     int leftID = invertSideType(gridPieces[i-1, j].GetComponent<Piece>().sideID[1]);
                     int[] sideReqs = {-1, -1, leftID, -1};
-                    Debug.Log("sideReqs: " + sideReqs[0] + sideReqs[1] + sideReqs[2] + sideReqs[3]);
                     // find compatible corner pieces
                     List<PieceTemplate> temp = FindCompatible(cornerPieces, sideReqs);
                     if (temp.Count == 0){
@@ -296,7 +407,6 @@ public class PieceGenerator : Singleton<PieceGenerator>
                     // determine connection requirements
                     int topID = invertSideType(gridPieces[i, j-1].GetComponent<Piece>().sideID[2]);
                     int[] sideReqs = {-1, topID, -1, -1};
-                    Debug.Log("SideID: " + sideReqs[0] + sideReqs[1] + sideReqs[2] + sideReqs[3]);
                     // find compatible corner pieces
                     List<PieceTemplate> temp = FindCompatible(cornerPieces, sideReqs);
                     if (temp.Count == 0){
@@ -318,7 +428,6 @@ public class PieceGenerator : Singleton<PieceGenerator>
                     int topID = invertSideType(gridPieces[i, j-1].GetComponent<Piece>().sideID[2]);
                     int leftID = invertSideType(gridPieces[i-1, j].GetComponent<Piece>().sideID[1]);
                     int[] sideReqs = {-1, leftID, topID, -1};
-                    Debug.Log("SideID: " + sideReqs[0] + sideReqs[1] + sideReqs[2] + sideReqs[3]);
                     // find compatible corner pieces
                     List<PieceTemplate> temp = FindCompatible(cornerPieces, sideReqs);
                     if (temp.Count == 0){
