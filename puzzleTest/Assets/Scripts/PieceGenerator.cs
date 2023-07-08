@@ -9,13 +9,12 @@ using UnityEngine.UI;
 */
 
 
-//FIXME: make a singleton
-public class PieceGenerator : MonoBehaviour
+public class PieceGenerator : Singleton<PieceGenerator>
 {
     public GameObject piecePrefab;
     public int width;
     public int height;
-    public Vector3 topLeftCornerPosition;
+    public Transform topLeftCornerPosition;
     public float dist;
 
     public PieceDatabase database;
@@ -30,7 +29,6 @@ public class PieceGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        topLeftCornerPosition = new Vector3();
         rnd = new System.Random();
         gridPieces = new GameObject[width,height];
         cornerPieces = new List<PieceTemplate>();
@@ -95,7 +93,7 @@ public class PieceGenerator : MonoBehaviour
                     continue;
                 }
                 // check if mismatch
-                if (req[i] != template.sideID[i]){
+                if (template.sideID[i] != req[i]){
                     skipTemplate = true;
                     break;
                 }
@@ -110,22 +108,40 @@ public class PieceGenerator : MonoBehaviour
         return compatible;
     }
 
-
     GameObject CreatePiece(PieceTemplate temp, int[] pos, int rot){
-        Vector3 newPosition = new Vector3(topLeftCornerPosition.x + (pos[0] * dist),
-                                                    topLeftCornerPosition.y - (pos[1] * dist),
-                                                    topLeftCornerPosition.z);
+        Vector3 newPosition = new Vector3(topLeftCornerPosition.position.x + (pos[0] * dist),
+                                                    topLeftCornerPosition.position.y - (pos[1] * dist),
+                                                    topLeftCornerPosition.position.z);
         Quaternion newRotation = Quaternion.Euler(0, 0, rot);
         GameObject go = Instantiate(piecePrefab, newPosition, newRotation);
-        // save sideID
-        go.GetComponent<Piece>().sideID = temp.sideID;
+        // rotate side id if needed
+        int[] newSideID;
+        switch (rot){
+            case 90: // left-shift by 1
+                newSideID = new int[4] {temp.sideID[1], temp.sideID[2], temp.sideID[3], temp.sideID[0]};
+                break;
+            case 180: // left-shift by 2
+                newSideID = new int[4] {temp.sideID[2], temp.sideID[3], temp.sideID[0], temp.sideID[1]};
+                break;
+            case 270: // left-shift by 3
+                newSideID = new int[4] {temp.sideID[3], temp.sideID[0], temp.sideID[1], temp.sideID[2]};
+                break;
+            default:
+                newSideID = temp.sideID;
+                break;
+        }
+        // save sideID FIXME: not being updated
+        go.GetComponent<Piece>().sideID = newSideID;
+        Debug.Log("newSideID:" + newSideID[0] + newSideID[1] + newSideID[2] + newSideID[3]);
         // save coordinates
         go.GetComponent<Piece>().coordinates = pos;
         // save sprite mask
-        go.GetComponent<SpriteMask>(); //.Sprite = temp.spriteMask;
+        //go.GetComponent<SpriteMask>().sprite = temp.spriteMask;
+        go.GetComponent<SpriteRenderer>().sprite = temp.spriteMask;
 
         return go;
     }
+
     /* FIXME
     generate grid of pieces (using width and height variables) by:
         1) Randomly selecting a top-left corner to start with
@@ -151,7 +167,7 @@ public class PieceGenerator : MonoBehaviour
                     int[] pos = {i, j};
                     gridPieces[i,j] = CreatePiece(tempTemplate, pos, 0);
                 }
-                //FIXME: middle
+                // middle
                 else if ((0 < i) && (i < width-1) && (0 < j) &&(j < height-1)){
                     // determine connection requirements
                     int topID = invertSideType(gridPieces[i, j-1].GetComponent<Piece>().sideID[2]);
@@ -167,12 +183,12 @@ public class PieceGenerator : MonoBehaviour
                     // randomly pick one
                     rndIndex = rnd.Next(0, temp.Count);
                     // create piece
-                    PieceTemplate tempTemplate = middlePieces[rndIndex];
+                    PieceTemplate tempTemplate = temp[rndIndex];
                     // save piece
                     int[] pos = {i, j};
                     gridPieces[i,j] = CreatePiece(tempTemplate, pos, 0);
                 }
-                //FIXME: middle-left
+                // middle-left
                 else if ((i == 0) && (0 < j) && (j < height-1)){
                     // determine connection requirements
                     int topID = invertSideType(gridPieces[i, j-1].GetComponent<Piece>().sideID[2]);
@@ -187,7 +203,7 @@ public class PieceGenerator : MonoBehaviour
                     // randomly pick one
                     rndIndex = rnd.Next(0, temp.Count);
                     // create piece
-                    PieceTemplate tempTemplate = sidePieces[rndIndex];
+                    PieceTemplate tempTemplate = temp[rndIndex];
                     // save piece
                     int[] pos = {i, j};
                     gridPieces[i,j] = CreatePiece(tempTemplate, pos, 90);
@@ -198,8 +214,6 @@ public class PieceGenerator : MonoBehaviour
                     int topID = invertSideType(gridPieces[i, j-1].GetComponent<Piece>().sideID[2]);
                     int leftID = invertSideType(gridPieces[i-1, j].GetComponent<Piece>().sideID[1]);
                     int[] sideReqs = {-1, -1, leftID, topID};
-                    // test view
-                    Debug.Log("Side Reqs: " + sideReqs[0] + sideReqs[1] + sideReqs[2] + sideReqs[3]);
                     // find compatible side pieces
                     List<PieceTemplate> temp = FindCompatible(sidePieces, sideReqs);
                     if (temp.Count == 0){
@@ -210,7 +224,7 @@ public class PieceGenerator : MonoBehaviour
                     // randomly pick one
                     rndIndex = rnd.Next(0, temp.Count);
                     // create piece
-                    PieceTemplate tempTemplate = sidePieces[rndIndex];
+                    PieceTemplate tempTemplate = temp[rndIndex];
                     // save piece
                     int[] pos = {i, j};
                     gridPieces[i,j] = CreatePiece(tempTemplate, pos, 270);
@@ -230,7 +244,7 @@ public class PieceGenerator : MonoBehaviour
                     // randomly pick one
                     rndIndex = rnd.Next(0, temp.Count);
                     // create piece
-                    PieceTemplate tempTemplate = sidePieces[rndIndex];
+                    PieceTemplate tempTemplate = temp[rndIndex];
                     // save piece
                     int[] pos = {i, j};
                     gridPieces[i,j] = CreatePiece(tempTemplate, pos, 0);
@@ -251,7 +265,7 @@ public class PieceGenerator : MonoBehaviour
                     // randomly pick one
                     rndIndex = rnd.Next(0, temp.Count);
                     // create piece
-                    PieceTemplate tempTemplate = sidePieces[rndIndex];
+                    PieceTemplate tempTemplate = temp[rndIndex];
                     // save piece
                     int[] pos = {i, j};
                     gridPieces[i,j] = CreatePiece(tempTemplate, pos, 180);
@@ -261,6 +275,7 @@ public class PieceGenerator : MonoBehaviour
                     // determine connection requirements
                     int leftID = invertSideType(gridPieces[i-1, j].GetComponent<Piece>().sideID[1]);
                     int[] sideReqs = {-1, -1, leftID, -1};
+                    Debug.Log("sideReqs: " + sideReqs[0] + sideReqs[1] + sideReqs[2] + sideReqs[3]);
                     // find compatible corner pieces
                     List<PieceTemplate> temp = FindCompatible(cornerPieces, sideReqs);
                     if (temp.Count == 0){
@@ -271,7 +286,7 @@ public class PieceGenerator : MonoBehaviour
                     // randomly pick one
                     rndIndex = rnd.Next(0, temp.Count);
                     // create piece
-                    PieceTemplate tempTemplate = cornerPieces[rndIndex];
+                    PieceTemplate tempTemplate = temp[rndIndex];
                     // save piece
                     int[] pos = {i, j};
                     gridPieces[i,j] = CreatePiece(tempTemplate, pos, 270);
@@ -279,8 +294,9 @@ public class PieceGenerator : MonoBehaviour
                 //FIXME: bottom-left
                 else if ((i == 0) && (j == height-1)){
                     // determine connection requirements
-                    int topID = invertSideType(gridPieces[i, j-1].GetComponent<Piece>().sideID[1]);
+                    int topID = invertSideType(gridPieces[i, j-1].GetComponent<Piece>().sideID[2]);
                     int[] sideReqs = {-1, topID, -1, -1};
+                    Debug.Log("SideID: " + sideReqs[0] + sideReqs[1] + sideReqs[2] + sideReqs[3]);
                     // find compatible corner pieces
                     List<PieceTemplate> temp = FindCompatible(cornerPieces, sideReqs);
                     if (temp.Count == 0){
@@ -291,7 +307,7 @@ public class PieceGenerator : MonoBehaviour
                     // randomly pick one
                     rndIndex = rnd.Next(0, temp.Count);
                     // create piece
-                    PieceTemplate tempTemplate = cornerPieces[rndIndex];
+                    PieceTemplate tempTemplate = temp[rndIndex];
                     // save piece
                     int[] pos = {i, j};
                     gridPieces[i,j] = CreatePiece(tempTemplate, pos, 90);
@@ -302,6 +318,7 @@ public class PieceGenerator : MonoBehaviour
                     int topID = invertSideType(gridPieces[i, j-1].GetComponent<Piece>().sideID[2]);
                     int leftID = invertSideType(gridPieces[i-1, j].GetComponent<Piece>().sideID[1]);
                     int[] sideReqs = {-1, leftID, topID, -1};
+                    Debug.Log("SideID: " + sideReqs[0] + sideReqs[1] + sideReqs[2] + sideReqs[3]);
                     // find compatible corner pieces
                     List<PieceTemplate> temp = FindCompatible(cornerPieces, sideReqs);
                     if (temp.Count == 0){
@@ -312,12 +329,12 @@ public class PieceGenerator : MonoBehaviour
                     // randomly pick one
                     rndIndex = rnd.Next(0, temp.Count);
                     // create piece
-                    PieceTemplate tempTemplate = cornerPieces[rndIndex];
+                    PieceTemplate tempTemplate = temp[rndIndex];
                     // save piece
                     int[] pos = {i, j};
                     gridPieces[i,j] = CreatePiece(tempTemplate, pos, 180);
                 }
-                //FIXME: else null
+                // else null
                 else{
                     Debug.Log("NULL at: [" + i + ", " + j + "]");
                 }
@@ -328,6 +345,4 @@ public class PieceGenerator : MonoBehaviour
         }
         return;
     }
-
-
 }
