@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,7 +38,7 @@ public class PieceGenerator : Singleton<PieceGenerator>
         middlePieces = new List<PieceTemplate>();
 
         SortPieces();
-        GeneratePieces();
+        //GeneratePieces();
     }
 
     // checks if a piece template is a corner piece (top-left corner ONLY)
@@ -109,12 +110,11 @@ public class PieceGenerator : Singleton<PieceGenerator>
         return compatible;
     }
 
-
-    //FIXME: rotates position of connections
-    ConPos RotateConPos(ConPos pos, float shifts){
+    // rotates position of connections
+    Tuple<ConPos,int> RotateConPos(ConPos pos, float shifts){
         // skip -3
         if (pos.relX == -3){
-            return pos;
+            return new Tuple<ConPos, int>(pos,0);
         }
 
         ConPos newConPos;
@@ -151,11 +151,33 @@ public class PieceGenerator : Singleton<PieceGenerator>
                 break;
         }
 
-        return newConPos;
+        return new Tuple<ConPos, int>(newConPos, direction);
+    }
+
+    //
+    Vector3 CalcConnectionDistance(int dir){
+        float dist = 0.7f;
+        Vector3 spawnPos = new Vector3(0,0,0);
+        switch (dir){
+            case 1:
+                spawnPos.y += dist;
+                break;
+            case 2:
+                spawnPos.x -= dist;
+                break;
+            case 3:
+                spawnPos.y -= dist;
+                break;
+            default:
+                spawnPos.x += dist;
+                break;
+        }
+
+        return spawnPos;
     }
 
     // instantiate connections and set as child object to piece
-    void CreateConnections(ConPos[] poses, Vector3 newPosition, GameObject go){
+    void CreateConnections(ConPos[] poses, Vector3 newPosition, GameObject go, int[] dirs){
         Vector3 posCon;
         GameObject connection;
         if (poses[0].relX != -3){
@@ -163,6 +185,7 @@ public class PieceGenerator : Singleton<PieceGenerator>
                                 newPosition.y + (poses[0].relY * 0.2f),
                                 0.0f);
             connection = Instantiate(connectionPrefab, posCon, Quaternion.identity);
+            connection.GetComponent<Snap>().connectionDist = CalcConnectionDistance(dirs[0]);
             connection.transform.parent = go.transform;
         }
         if (poses[1].relX != -3){
@@ -170,6 +193,7 @@ public class PieceGenerator : Singleton<PieceGenerator>
                                 newPosition.y + (poses[1].relY * 0.2f),
                                 0.0f);
             connection = Instantiate(connectionPrefab, posCon, Quaternion.identity);
+            connection.GetComponent<Snap>().connectionDist = CalcConnectionDistance(dirs[1]);
             connection.transform.parent = go.transform;
         }
         if (poses[2].relX != -3){
@@ -177,6 +201,7 @@ public class PieceGenerator : Singleton<PieceGenerator>
                                 newPosition.y + (poses[2].relY * 0.2f),
                                 0.0f);
             connection = Instantiate(connectionPrefab, posCon, Quaternion.identity);
+            connection.GetComponent<Snap>().connectionDist = CalcConnectionDistance(dirs[2]);
             connection.transform.parent = go.transform;
         }
         if (poses[3].relX != -3){
@@ -184,6 +209,7 @@ public class PieceGenerator : Singleton<PieceGenerator>
                                 newPosition.y + (poses[3].relY * 0.2f),
                                 0.0f);
             connection = Instantiate(connectionPrefab, posCon, Quaternion.identity);
+            connection.GetComponent<Snap>().connectionDist = CalcConnectionDistance(dirs[3]);
             connection.transform.parent = go.transform;
         }
     }
@@ -197,49 +223,54 @@ public class PieceGenerator : Singleton<PieceGenerator>
         GameObject go = Instantiate(piecePrefab, newPosition, newRotation);
         // rotate side id if needed
         int[] newSideID;
-        ConPos newConPosA; ConPos newConPosB; ConPos newConPosC; ConPos newConPosD;
+        Tuple<ConPos, int>[] data = new Tuple<ConPos, int>[4];
         ConPos[] newConPoses;
+        int[] dirs;
         switch (rot){
             case 90: // left-shift by 1
                 newSideID = new int[4] {temp.sideID[1], temp.sideID[2], temp.sideID[3], temp.sideID[0]};
                 // add connection colliders
                 //FIXME: rotate connection positions
-                newConPosA = RotateConPos(temp.connecitonPositionA, 1);
-                newConPosB = RotateConPos(temp.connecitonPositionB, 1);
-                newConPosC = RotateConPos(temp.connecitonPositionC, 1);
-                newConPosD = RotateConPos(temp.connecitonPositionD, 1);
-                newConPoses = new ConPos[4] {newConPosA, newConPosB, newConPosC, newConPosD};
-                CreateConnections(newConPoses, newPosition, go);
+                data[0] = RotateConPos(temp.connecitonPositionA, 1);
+                data[1] = RotateConPos(temp.connecitonPositionB, 1);
+                data[2] = RotateConPos(temp.connecitonPositionC, 1);
+                data[3] = RotateConPos(temp.connecitonPositionD, 1);
+                newConPoses = new ConPos[4] {data[0].Item1, data[1].Item1, data[2].Item1, data[3].Item1};
+                dirs = new int[4] {data[0].Item2, data[1].Item2, data[2].Item2, data[3].Item2};
+                CreateConnections(newConPoses, newPosition, go, dirs);
                 break;
             case 180: // left-shift by 2
                 newSideID = new int[4] {temp.sideID[2], temp.sideID[3], temp.sideID[0], temp.sideID[1]};
                 // add connection colliders
-                newConPosA = RotateConPos(temp.connecitonPositionA, 2);
-                newConPosB = RotateConPos(temp.connecitonPositionB, 2);
-                newConPosC = RotateConPos(temp.connecitonPositionC, 2);
-                newConPosD = RotateConPos(temp.connecitonPositionD, 2);
-                newConPoses = new ConPos[4] {newConPosA, newConPosB, newConPosC, newConPosD};
-                CreateConnections(newConPoses, newPosition, go);
+                data[0] = RotateConPos(temp.connecitonPositionA, 2);
+                data[1] = RotateConPos(temp.connecitonPositionB, 2);
+                data[2] = RotateConPos(temp.connecitonPositionC, 2);
+                data[3] = RotateConPos(temp.connecitonPositionD, 2);
+                newConPoses = new ConPos[4] {data[0].Item1, data[1].Item1, data[2].Item1, data[3].Item1};
+                dirs = new int[4] {data[0].Item2, data[1].Item2, data[2].Item2, data[3].Item2};
+                CreateConnections(newConPoses, newPosition, go, dirs);
                 break;
             case 270: // left-shift by 3
                 newSideID = new int[4] {temp.sideID[3], temp.sideID[0], temp.sideID[1], temp.sideID[2]};
                 // add connection colliders
-                newConPosA = RotateConPos(temp.connecitonPositionA, 3);
-                newConPosB = RotateConPos(temp.connecitonPositionB, 3);
-                newConPosC = RotateConPos(temp.connecitonPositionC, 3);
-                newConPosD = RotateConPos(temp.connecitonPositionD, 3);
-                newConPoses = new ConPos[4] {newConPosA, newConPosB, newConPosC, newConPosD};
-                CreateConnections(newConPoses, newPosition, go);
+                data[0] = RotateConPos(temp.connecitonPositionA, 3);
+                data[1] = RotateConPos(temp.connecitonPositionB, 3);
+                data[2] = RotateConPos(temp.connecitonPositionC, 3);
+                data[3] = RotateConPos(temp.connecitonPositionD, 3);
+                newConPoses = new ConPos[4] {data[0].Item1, data[1].Item1, data[2].Item1, data[3].Item1};
+                dirs = new int[4] {data[0].Item2, data[1].Item2, data[2].Item2, data[3].Item2};
+                CreateConnections(newConPoses, newPosition, go, dirs);
                 break;
             default: // left-shift by 0
                 newSideID = temp.sideID;
                 // add connection colliders
-                newConPosA = RotateConPos(temp.connecitonPositionA, 0);
-                newConPosB = RotateConPos(temp.connecitonPositionB, 0);
-                newConPosC = RotateConPos(temp.connecitonPositionC, 0);
-                newConPosD = RotateConPos(temp.connecitonPositionD, 0);
-                newConPoses = new ConPos[4] {newConPosA, newConPosB, newConPosC, newConPosD};
-                CreateConnections(newConPoses, newPosition, go);
+                data[0] = RotateConPos(temp.connecitonPositionA, 0);
+                data[1] = RotateConPos(temp.connecitonPositionB, 0);
+                data[2] = RotateConPos(temp.connecitonPositionC, 0);
+                data[3] = RotateConPos(temp.connecitonPositionD, 0);
+                newConPoses = new ConPos[4] {data[0].Item1, data[1].Item1, data[2].Item1, data[3].Item1};
+                dirs = new int[4] {data[0].Item2, data[1].Item2, data[2].Item2, data[3].Item2};
+                CreateConnections(newConPoses, newPosition, go, dirs);
                 break;
         }
         // save sideID FIXME: not being updated

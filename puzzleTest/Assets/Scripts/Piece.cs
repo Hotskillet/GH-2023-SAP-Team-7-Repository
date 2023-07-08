@@ -6,17 +6,4 @@ public class Piece : MonoBehaviour
 {
     public int[] coordinates;
     public int[] sideID;
-
-    //FIXME: add queue for collider signals
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

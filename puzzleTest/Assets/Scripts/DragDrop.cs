@@ -16,9 +16,9 @@ public class DragDrop : MonoBehaviour
     private Vector3 mousePosition;
     private Camera cam;
 
-    private int state;
+    public int state;
     private bool held;
-    private bool justReleased;
+    public bool justReleased;
     private bool inside;
 
     // Start is called before the first frame update
@@ -30,7 +30,7 @@ public class DragDrop : MonoBehaviour
         cam = Camera.main;
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0.0f;
-        transform.position = mousePosition;
+        //transform.position = mousePosition;
         
         originalScale = transform.localScale;
     }
@@ -64,10 +64,6 @@ public class DragDrop : MonoBehaviour
     }
 
     void Update() {
-        if (justReleased){
-            Debug.Log("Just released.");
-        }
-
         /* 
         Update State
             Allows object to follow mouse even if mouse moves outside of it (as long as left-click

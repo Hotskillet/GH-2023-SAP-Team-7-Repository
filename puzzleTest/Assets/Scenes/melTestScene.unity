@@ -292,8 +292,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   piecePrefab: {fileID: 8801302422248595525, guid: b6cb04e8c2b52ac4a8703a910209000c, type: 3}
   connectionPrefab: {fileID: 6269467294869250478, guid: 3c789d25f76a8b24e96c75e01d44adf8, type: 3}
-  width: 3
-  height: 3
+  width: 2
+  height: 2
   topLeftCornerPosition: {fileID: 244624533}
   dist: 1.5
   database: {fileID: 11400000, guid: 4003489a5ef48e046b9ed564326eb20b, type: 2}
