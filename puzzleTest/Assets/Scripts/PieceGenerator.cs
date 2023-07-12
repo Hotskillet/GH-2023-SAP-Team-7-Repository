@@ -38,7 +38,7 @@ public class PieceGenerator : Singleton<PieceGenerator>
         middlePieces = new List<PieceTemplate>();
 
         SortPieces();
-        //GeneratePieces();
+        GeneratePieces();
     }
 
     // checks if a piece template is a corner piece (top-left corner ONLY)
