@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d35065050c1df4a4a9849d9bd005d9c5, type: 3}
-  m_Name: itemDatabase
+  m_Script: {fileID: 11500000, guid: f1caeac3b9429e042b2e664237e57ff0, type: 3}
+  m_Name: doorExample
   m_EditorClassIdentifier: 
-  database:
-  - {fileID: 11400000, guid: 1d40ad7f323cdc445a4a54e08e66477c, type: 2}
-  - {fileID: 11400000, guid: 67d5ed167da4a864dbb2bdc509f6e4fa, type: 2}
+  itemName: doorExample
+  sprite: {fileID: 2109718511, guid: be553e1b0e8726e4194640d4eb39e6a3, type: 3}
+  comment: this is an example of a door
+  canInteractWith:
+  - keyExample

@@ -12,8 +12,14 @@ public class ItemManager : Singleton<ItemManager>
         
     }
 
+    // search for and return item
     public ItemData GetData(string itemName){
-        return database.TryGetValue(itemName, out item);
+        foreach (ItemData item in database.database){
+            if (item.name.Equals(itemName)){
+                return item;
+            }
+        }
+        return null;
     }
 
     // Update is called once per frame

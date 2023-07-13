@@ -9,7 +9,6 @@ public class Pickup : Item
     {
     }
 
-    //FIXME
     public override void interact(){
         // Step 1: Add name of item to inventory
         Inventory.Instance.AddItem(gameObject.name);
@@ -20,7 +19,6 @@ public class Pickup : Item
         return;
     }
 
-    //FIXME
     public override void use()
     {
         /* Steps:
@@ -30,11 +28,8 @@ public class Pickup : Item
         return;
     }
 
-    // FIXME: delete when testing is done
+    // FIXME: remove since Player will be calling these functions
     private void OnCollisionEnter2D(Collision2D other) {
-        use();
-    }
-    private void OnCollisionExit2D(Collision2D other) {
         interact();
     }
 

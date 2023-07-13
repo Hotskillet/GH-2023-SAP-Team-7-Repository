@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1caeac3b9429e042b2e664237e57ff0, type: 3}
   m_Name: exampleItem
   m_EditorClassIdentifier: 
+  itemName: Example1
   sprite: {fileID: 0}
   comment: this is an example
-  canInteractWith:
-  - nothing
+  canInteractWith: []

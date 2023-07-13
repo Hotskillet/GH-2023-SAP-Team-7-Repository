@@ -16,6 +16,10 @@ public class Inventory : Singleton<Inventory>
     // initialize object
     void Start(){
         order = new string[capacity];
+        // initilize as list of empty strings
+        for (int i = 0; i < capacity; i++){
+            order[i] = "";
+        }
     }
 
 
