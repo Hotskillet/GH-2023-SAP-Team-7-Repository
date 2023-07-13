@@ -23,11 +23,3 @@ public class inventoryClassDefiner : MonoBehaviour {
         
     }
 }
-
-//making a class becuase im like 50% sure thats the way we handle this
-
-public class Inventory {
-    public Inventory(string[] contents, float lockItem) {
-        
-    }
-}
