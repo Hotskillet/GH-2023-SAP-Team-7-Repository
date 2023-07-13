@@ -9,7 +9,7 @@ public class playerInventoryManager : MonoBehaviour {
     //this is the array used to store the items in the player's inventory
     public string[] playerInventoryContents = new string[] {};
 
-    
+    private GameObject target;
 
     //we will need the following things:
     //detect an interaction
@@ -19,6 +19,21 @@ public class playerInventoryManager : MonoBehaviour {
     //then update the gui
     
 
+    //this function will use a circle collider to fetch the nearest collision
+    //using a layer filter thing will let me pick out only things from 'interactable' layer
+    //so picking out only interactables will be pretty easy
+    //NOTE TO SELF: THE ABOVE TWO LINES HAVE NOT BEEN IMPLEMENTED
+    public Collider2D detectInteractables() {
+        Vector2 thisPosition = new Vector2(transform.position.x, transform.position.y);
+
+        //use overlap circle
+        //this position is the pos of the transform
+        //second arg is the range
+        Collider2D result = Physics2D.OverlapCircle(thisPosition, 50.0f);
+        return result;
+    }
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +42,20 @@ public class playerInventoryManager : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+
+        //when user presses the interact key
+        //not sure what its gonna be yet
+        if (Input.GetKeyDown("f")) {
+
+            //we get a sample
+            //
+            Collider2D sample = detectInteractables();
+
+
+            if (sample != null) {
+                target = sample.gameObject;
+            }
+        }
     }
 }
