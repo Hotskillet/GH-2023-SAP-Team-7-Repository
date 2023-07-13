@@ -7,19 +7,12 @@ public class Unlockable : Item
 {
     public bool locked;
     // an item contained in this object will be a child
-    private GameObject treasure;
+    public GameObject treasurePrefab;
 
     // Start is called before the first frame update
     void Start()
     {
         locked = true;
-
-        try { // hide treasure by diabling it (if there is one)
-            treasure = gameObject.transform.GetChild(0).gameObject;
-            treasure.SetActive(false);
-        }catch (Exception e) {
-            treasure = null;
-        }
     }
 
     public override void interact(){
@@ -50,11 +43,11 @@ public class Unlockable : Item
                 locked = false;
                 Debug.Log(possibleMatch + " opened " + gameObject.name);
                 // Step 3: Enable treasure
-                if (treasure != null){
-                    treasure.SetActive(true);
+                if (treasurePrefab != null){
+                    Instantiate(treasurePrefab, gameObject.transform.position, Quaternion.identity);
                 }
                 // Steap 4: Disable this object
-                //gameObject.SetActive(false);
+                gameObject.SetActive(false);
                 return;
             }
         }
@@ -62,6 +55,7 @@ public class Unlockable : Item
         return;
     }
 
+    /*
     // FIXME: remove since Player will be calling these functions
     private void OnCollisionEnter2D(Collision2D other) {
         interact();
@@ -70,6 +64,7 @@ public class Unlockable : Item
     private void OnCollisionExit2D(Collision2D other) {
         use();
     }
+    */
 
     // Update is called once per frame
     void Update()

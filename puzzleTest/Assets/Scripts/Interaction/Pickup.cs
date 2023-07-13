@@ -28,10 +28,12 @@ public class Pickup : Item
         return;
     }
 
+    /*
     // FIXME: remove since Player will be calling these functions
     private void OnCollisionEnter2D(Collision2D other) {
         interact();
     }
+    */
 
     // Update is called once per frame
     void Update()
