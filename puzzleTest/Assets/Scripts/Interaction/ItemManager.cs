@@ -12,6 +12,8 @@ public class ItemManager : Singleton<ItemManager>
         
     }
 
+
+    // MEL I HAVE NO IDEA HOW THIS WORKS
     // search for and return item
     public ItemData GetData(string itemName){
         foreach (ItemData item in database.database){

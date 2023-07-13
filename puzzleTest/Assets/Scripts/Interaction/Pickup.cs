@@ -5,15 +5,17 @@ using UnityEngine;
 public class Pickup : Item
 {
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
     }
 
-    public override void interact(){
+    public override void interact() {
+
         // Step 1: Add name of item to inventory
         Inventory.Instance.AddItem(gameObject.name);
+
         //FIXME Step 2: Tell UI to add sprite to inventory bar
         Debug.Log(gameObject.name + " has been picked up.");
+
         // Step 3: Delete object from world
         Destroy(gameObject, 0.5f);
         return;
