@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerInventoryManager : MonoBehaviour {
+public class playerInteracter : MonoBehaviour {
     public int invCapacity = 2;
 
     //create empty string array

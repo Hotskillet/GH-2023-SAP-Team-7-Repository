@@ -14,6 +14,9 @@ public class Inventory : Singleton<Inventory>
 
 
     // initialize object
+    // for bao to understand:
+    // we make an 'empty' string array (array of strings that are "")
+    // with size = capacity
     void Start(){
         order = new string[capacity];
         // initilize as list of empty strings

@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// mel can you explain what this line says?
 public class Unlockable : Item
 {
     public bool locked;
@@ -15,6 +17,8 @@ public class Unlockable : Item
         locked = true;
     }
 
+
+    // bao finds this fascinating
     public override void interact(){
         /* Steps:
             1. Do nothing, this is only for items that can be picked up
