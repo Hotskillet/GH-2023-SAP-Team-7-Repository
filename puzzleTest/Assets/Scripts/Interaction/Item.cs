@@ -7,7 +7,4 @@ public abstract class Item : MonoBehaviour
 {
     //FIXME
     public abstract void interact();
-
-    //FIXME
-    public abstract void use();
 }
