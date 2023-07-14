@@ -10,7 +10,7 @@ public class Inventory : Singleton<Inventory>
     public int capacity;
 
     // list of items (in order)
-    private string[] order;
+    public string[] order;
 
 
     // initialize object

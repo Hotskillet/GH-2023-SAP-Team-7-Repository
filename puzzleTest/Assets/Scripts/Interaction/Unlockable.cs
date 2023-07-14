@@ -42,6 +42,8 @@ public class Unlockable : Item
                 // Step 2: Update state
                 locked = false;
                 Debug.Log(possibleMatch + " opened " + gameObject.name);
+                //FIXME: remove item from inventory?
+                Inventory.Instance.RemoveItem(possibleMatch);
                 // Step 3: Enable treasure
                 if (treasurePrefab != null){
                     Instantiate(treasurePrefab, gameObject.transform.position, Quaternion.identity);
