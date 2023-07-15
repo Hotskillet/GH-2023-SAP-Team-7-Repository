@@ -10,8 +10,8 @@ public class mouseUpdater : MonoBehaviour
     private Vector3 currentMousePosition;
     private Vector3 lastMousePosition;
     
-    //multiplies only the z value to 0
-    //because then its only x and y
+    // multiplies only the z value to 0
+    // because then its only x and y
     Vector3 takeOutZ(Vector3 thang) {
         return Vector3.Scale(thang, new Vector3(1, 1, 0));
     }
