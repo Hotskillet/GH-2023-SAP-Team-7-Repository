@@ -14,6 +14,9 @@ public class Pickup : Item
         Inventory.Instance.AddItem(gameObject.name);
 
         //FIXME Step 2: Tell UI to add sprite to inventory bar
+
+
+        // PLEASE FOR THE LOVE OF GOD THIS NEEEEEEEEEEEDS TO BE IN THE GAME 
         Debug.Log(gameObject.name + " has been picked up.");
 
         // Step 3: Delete object from world

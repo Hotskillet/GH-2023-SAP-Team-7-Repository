@@ -6,8 +6,10 @@ public class Door : Item
 {
     // doors store the layout (which room to swap to) and the coordinates 
     // or swap to a different scene
-    
-    public override void interact() {
+    // please do this
+    // actually i just remembered what rebecca said
+    // USE ROOM PREFABS (WITH ITEMS )PLEASEEEEEEEE
+    public override void interact() { 
         
     }
 
