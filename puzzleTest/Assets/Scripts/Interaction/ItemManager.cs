@@ -17,6 +17,8 @@ public class ItemManager : Singleton<ItemManager>
     // search for and return item
     public ItemData GetData(string itemName){
         foreach (ItemData item in database.database){
+
+            // WHAT????????
             if (item.name.Equals(itemName)){
                 return item;
             }
