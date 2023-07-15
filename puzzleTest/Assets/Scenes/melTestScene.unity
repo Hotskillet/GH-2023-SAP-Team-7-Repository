@@ -228,6 +228,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a13406b6131a044e9526725dae244db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slot1: {fileID: 1492992567}
+  slot2: {fileID: 588485791}
 --- !u!4 &563369768
 Transform:
   m_ObjectHideFlags: 0
