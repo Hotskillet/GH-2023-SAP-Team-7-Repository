@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6628759475215615479}
   - component: {fileID: 6942341806717903285}
   - component: {fileID: 5257077408145578935}
-  - component: {fileID: 2682984595733133635}
   m_Layer: 0
   m_Name: Draggable2
   m_TagString: Untagged
@@ -148,30 +147,3 @@ MonoBehaviour:
   hoverFactor: {x: 1.5, y: 1.5, z: 0}
   state: 0
   justReleased: 0
---- !u!50 &2682984595733133635
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7667773321665061920}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
