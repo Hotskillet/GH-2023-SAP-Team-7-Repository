@@ -17,17 +17,14 @@ public class Unlockable : Item
         locked = true;
     }
 
-
-    // bao finds this fascinating
-    public override void interact(){
-        /* Steps:
-            1. Do nothing, this is only for items that can be picked up
-        */
-        Debug.Log("no.");
-        return;
+    private void unlock(){
+        SpriteRenderer thisSprite = gameObject.GetComponent<SpriteRenderer>();
+        Color currCol = thisSprite.color;
+        // decrease opacity by 50%
+        thisSprite.color = new Color(currCol.r, currCol.g, currCol.b, currCol.a * 0.1f);
     }
 
-    public override void use()
+    public override void interact()
     {
         /* Steps:
             1. Check if Player's inventory has item that matches an item in this item's list
@@ -53,7 +50,8 @@ public class Unlockable : Item
                     Instantiate(treasurePrefab, gameObject.transform.position, Quaternion.identity);
                 }
                 // Steap 4: Disable this object
-                gameObject.SetActive(false);
+                //gameObject.SetActive(false);
+                unlock();
                 return;
             }
         }
@@ -63,12 +61,8 @@ public class Unlockable : Item
 
     /*
     // FIXME: remove since Player will be calling these functions
-    private void OnCollisionEnter2D(Collision2D other) {
-        interact();
-    }
-    // FIXME: remove since Player will be calling these functions
     private void OnCollisionExit2D(Collision2D other) {
-        use();
+        interact();
     }
     */
 

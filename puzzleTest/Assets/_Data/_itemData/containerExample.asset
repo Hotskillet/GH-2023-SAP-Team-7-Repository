@@ -16,4 +16,4 @@ MonoBehaviour:
   comment: an example of a container
   sprite: {fileID: 0}
   canInteractWith:
-  - keyExample
+  - keyExample2
