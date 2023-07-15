@@ -22,6 +22,15 @@ public class Unlockable : Item
         Color currCol = thisSprite.color;
         // decrease opacity by 50%
         thisSprite.color = new Color(currCol.r, currCol.g, currCol.b, currCol.a * 0.1f);
+        // disable collider
+        Collider2D hitbox = gameObject.GetComponent<Collider2D>();
+        hitbox.enabled = false;
+        // show treasure
+        if (treasurePrefab != null){
+            GameObject go = Instantiate(treasurePrefab, gameObject.transform.position, Quaternion.identity);
+            //FIXME: find a way not to hard code this
+            go.name = "keyExample";
+        }
     }
 
     public override void interact()
@@ -46,9 +55,6 @@ public class Unlockable : Item
                 //FIXME: remove item from inventory?
                 Inventory.Instance.RemoveItem(possibleMatch);
                 // Step 3: Enable treasure
-                if (treasurePrefab != null){
-                    Instantiate(treasurePrefab, gameObject.transform.position, Quaternion.identity);
-                }
                 // Steap 4: Disable this object
                 //gameObject.SetActive(false);
                 unlock();
