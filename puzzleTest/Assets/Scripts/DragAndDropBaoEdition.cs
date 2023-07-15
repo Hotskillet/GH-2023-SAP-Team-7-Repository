@@ -2,56 +2,91 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragAndDrop : MonoBehaviour {
+public class DragAndDropBaoEdition : MonoBehaviour {
     
 
+    // factors for the ui size hover increase 
+    // beep boop
 
+    // this is so that editors can change the values easily withouit having to read
+    // i hate reading 
+    public float hoverScaleX = 1.0f;
+    public float hoverScaleY = 1.0f;
 
+    private  Vector3 hoverScaler;
+
+    // this is for the thing to return to in size
+    private Vector3 initialScale;
 
     //define mouse position stuff so that we can drag and drop
     private Vector2 lastMousePosition;
-    private Vector2 currentMousePosition;
-    private Vector2 diffMousePosition;
+    public Vector2 currentMousePosition;
+    public Vector2 diffMousePosition;
 
 
-    //we're using another gameObject to track the mouse position 
-    //therefore making it really simple to track mouse delta
-    public Transform trackerTarget;
 
+
+    // multiplies only the z value to 0
+    // because then its only x and y
+    Vector3 takeOutZ(Vector3 thang) {
+        return Vector3.Scale(thang, new Vector3(1, 1, 0));
+    }
+
+    
     // Start is called before the first frame update
     void Start() {
-        //start off last mouse position so that it isnt empty
-        lastMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // set the scale vectors here to avoid errors
+        hoverScaler = new Vector3(hoverScaleX, hoverScaleY, 0.0f);
+
+        // makes it so that the mouse updating doesnt freak out
+        lastMousePosition = takeOutZ(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
+        // set the scale here for idk
+        initialScale = transform.localScale;
     }
+
+    
 
     // Update is called once per frame
     void Update() {
 
-    }    
+        // constantly update the mouseDiff
+        updateMousePosition();
 
-    //whebevr mouse drags this, bring it to it?
-    void OnMouseDrag() {
+    }
 
-        /*
-        commenting the following because testing out new tracker
 
-        //get the mouse pos as coords
-        currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    // the purpisoe of jouse over is that the mouse hovering makes the object larger
+    // thats it
 
-        //get the difference
+    
+    void OnMouseOver() {
+
+        Debug.Log("Ping!");
+        transform.localScale = Vector3.Scale(initialScale, hoverScaler);
+    }
+    
+
+    // make it reutrn to original size
+    void OnMouseExit() {
+        transform.localScale = initialScale;
+    }
+
+    // gives the mouse diff
+    void updateMousePosition() {
+
+        currentMousePosition = takeOutZ(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         diffMousePosition = currentMousePosition - lastMousePosition;
-        
-
-        //add the difference (while cancelling out the z)
-        Vector3 addThis = new Vector3(diffMousePosition.x, diffMousePosition.y, 0.0f);
-
-        */
+        lastMousePosition = currentMousePosition;
+    }
 
 
-        //basically, i set the mouse delta to be the tracker targets position
-        //so now addThis is just the mouse delta
-        //probably less responsive in terms of mouse stuff but definitely more painfree
-        Vector3 addThis = trackerTarget.position;
+    // whebevr mouse drags this, bring it to it?
+    void OnMouseDrag() {
+        Debug.Log("Ping!");
+
+        Vector3 addThis = diffMousePosition;
 
         transform.position += (addThis);
 
