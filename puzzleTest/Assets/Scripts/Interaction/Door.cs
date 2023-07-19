@@ -21,6 +21,8 @@ public class Door : Unlockable
     private void unlock(){
         // call Unlockable.interact()
         base.interact();
+        // go to next room
+        SceneLoader.Instance.LoadRoom(nextRoom);
     }    
 
     // FIXME: remove since Player will be calling these functions
