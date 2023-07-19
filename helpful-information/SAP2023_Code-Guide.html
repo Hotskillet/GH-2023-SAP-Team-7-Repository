@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="guidestyle.css">
+        <title>Code Guide</title>
+    </head>
+
+    <body>
+        <!-- title of the guide -->
+        <div>
+            <img src="" alt="o7 Logo">
+            <h1>Team o7 Code Guide</h1>
+        </div>
+
+        <div>
+            <p><a href="https://github.com/Hotskillet/GH-2023-SAP-Team-7-Repository">The GitHub</a> </p>
+        </div>
+
+        <!-- information for the Programmer -->
+        <div>
+            <h2>Programming</h2>
+
+            <div class="subsection">
+                <p>
+                    Most <code class="prgm">Debug.Log()</code> statements left in scripts are
+                    placeholders. They're there as a reminder that this message/information 
+                    should be shown on screen.
+                </p>
+            </div>
+
+            <details class="subsection">
+                <summary>Inventory</summary>
+                <div class="subsection">
+                    <p>
+                        Attach this script to the Player. It's a singleton, so there can only be one.
+                    </p>
+                    <p>
+                        Properties of <code class="prgm">Inventory</code>:
+                        <ul>
+                            <li><code class="prgm">capacity</code> (int): the maximum amount of items that can 
+                            be held in the inventory.</li>
+                            <li><code class="prgm">order</code> (list of string): a list of the names of the items
+                            in the inventory, in order. </li>
+                        </ul>
+                    </p>
+                    <br>
+                    <p>
+                        To use functions from <code class="prgm">Inventory</code>, type: 
+                        <code class="prgm">Inventory.Instance._function_</code>
+                    </p>
+                    <p>
+                        Example:
+                        <ul>
+                            <li><code class="prgm">Inventory.Instance.isFull();</code></li>
+                        </ul>
+                    </p>
+                    <br>
+                    <p>Relevant functions:</p>
+                    <div class="subsection">
+                        <code class="prgm">public void AddItem(string something)</code>
+                        <p>
+                            This function is called by <code class="prgm">Pickup</code>. It takes the name of an 
+                            item and adds it into an empty slot. If there are no empty slots, nothing happens.
+                        </p>
+
+                        <code class="prgm">public void RemoveItem(string something)</code>
+                        <p>
+                            This function is called by <code class="prgm">Unlockable</code> after 
+                            <code class="prgm">something</code> has been used successfully. It takes the name of 
+                            and item and removes it from the inventory.
+                        </p>
+
+                        <code class="prgm">public bool isFull()</code>
+                        <p>
+                            This function might be useful if you want to check if the inventory is full. 
+                            There's also <code class="prgm">isEmpty()</code> if you want to check if the 
+                            inventory is empty.
+                        </p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="subsection">
+                <summary>Pickup</summary>
+                <div class="subsection">
+                    <p>
+                        This is a type of <code class="prgm">Item</code>.
+                    </p>
+                    <br>
+                    <p>Relevant functions:</p>
+                    <div class="subsection">
+                        <code class="prgm">public void interact()</code>
+                        <p>
+                            This function should be called when the Player is within range and 
+                            presses the "interact button". It adds the item to the Player's inventory, 
+                            signals to the UI to put the sprite on screen <span class="notice">(WIP)</span>, 
+                            then deletes itself.
+                        </p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="subsection">
+                <summary>Unlockable</summary>
+                <div class="subsection">
+                    <p>
+                        This is a type of <code class="prgm">Item</code>.
+                    </p>
+                    <br>
+                    <p>Relevant functions:</p>
+                    <div class="subsection">
+                        <code class="prgm">public void interact()</code>
+                        <p>
+                            This function should be called when the Player is within range and 
+                            presses the "interact button". It checks if the Player's inventory 
+                            has its "key," then updates accordingly.
+                        </p>
+                        <p>
+                            If the Player has the correct "key," the item should open 
+                            (<code class="prgm">Unlockable.locked = false;</code> )
+                        </p>
+                        <p>
+                            Otherwise, nothing will happen.
+                        </p>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Fill in below later -->
+            <details class="subsection">
+                <summary>DragAndDrop</summary>
+                <div class="subsection">
+                    <p>
+                        brief description here.
+                    </p>
+                    <br>
+                    <p>Relevant functions:</p>
+                    <div class="subsection">
+                        <code class="prgm">fxn()</code>
+                        <p>
+                            desciption here.
+                        </p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="subsection">
+                <summary>movement2D</summary>
+                <div class="subsection">
+                    <p>
+                        brief description here.
+                    </p>
+                    <br>
+                    <p>Relevant functions:</p>
+                    <div class="subsection">
+                        <code class="prgm">fxn()</code>
+                        <p>
+                            desciption here.
+                        </p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="subsection">
+                <summary>PieceGenerator</summary>
+                <div class="subsection">
+                    <p>
+                        brief description here.
+                    </p>
+                    <br>
+                    <p>Relevant functions:</p>
+                    <div class="subsection">
+                        <code class="prgm">fxn()</code>
+                        <p>
+                            desciption here.
+                        </p>
+                    </div>
+                </div>
+            </details>
+            <!-- Fill in above later -->
+        </div>
+
+        <!-- information for the Game Designer -->
+        <div>
+            <h2>Game Design</h2>
+
+            <details class="subsection">
+                <summary>Creating Items</summary>
+                <div class="subsection">
+                    <p>You can create items using the <code class="prgm">ItemData</code> 
+                        scriptable object. These scriptable objects should 
+                        be saved in <code class="path">Assets > _Data > _itemData</code>.
+                    </p>
+
+                    <p>Properties of an <code class="prgm">ItemData</code>:
+                        <ul>
+                            <li><code class="prgm">itype</code> (ItemType): the type of item. Possible options are:</li>
+                                <ul>
+                                    <li>MISC: the most basic item.</li>
+                                    <li>KEY: an item that unlocks another item.</li>
+                                    <li>DOOR: an item another item can unlock.</li>
+                                    <li>CONTAINER: an variante of a door, except it holds another item.</li>
+                                </ul>
+                            <li><code class="prgm">sprite</code> (Image): the sprite for the item</li>
+                            <li><code class="prgm">comment</code> (string): What the PC will say when they interact with the item.</li>
+                            <li><code class="prgm">canInteractWith</code> (list of strings): The list of names of items that can 
+                                interact with this item.</li>
+                                <ul>
+                                    <li class="notice">NOTE: This property should only be used for static items 
+                                        that the player doesn't pick up.</li>
+                                </ul>
+                        </ul>
+                    </p>
+                    <p>
+                        Make sure to add the new <code class="prgm">ItemData</code> to the <code class="prgm">ItemDatabase</code> 
+                        (found in the same directory).
+                    </p>
+                    <p>
+                        Next, create the actual game object. There are already basic prefabs for each type of item in 
+                        <code class="path">Assets > Prefabs</code>.
+                    </p>
+                    <p>
+                        For the item scripts, <code class="prgm">Pickup</code> doesn't need any data, but 
+                        <code class="prgm">Unlockable</code> does. To make an <code class="prgm">Unlockable</code> a "container," 
+                        specify a game object for <code class="prgm">Unlockable.treasure</code>.
+                    </p>
+                </div>
+            </details>
+        </div>
+
+        <br>
+
+        <!-- Information for Narrative Designer -->
+        <div>
+            <h2>Narrative Design</h2>
+
+            <details class="subsection">
+                <summary>Item Comments</summary>
+                <div class="subsection">
+                    <p>
+                        To add dialogue that the PC will say when interacting with an item, look for 
+                        that item's <code class="prgm">ItemData</code> in 
+                        <code class="path">Assets > _Data > _itemData</code>. Add the dialogue to the 
+                        <code class="prgm">ItemData.comment</code> variable.
+                    </p>
+                </div>
+            </details>
+
+            <details class="subsection">
+                <summary class="notice">Dialogue System</summary>
+                <div class="subsection">
+                    <p class="notice">This is a WIP.</p>
+                </div>
+            </details>
+
+            <details class="subsection">
+                <summary class="notice">Adding Cutscenes</summary>
+                <div class="subsection">
+                    <p class="notice">This is a WIP.</p>
+                    <p>However, the current working idea for it is that the cutscenes will play in a separate Unity scene 
+                        and the game system will change to that scene when a cutscene needs to play. Another idea is to have 
+                        a menu overlay the game scene and the cutscene will play there.
+                    </p>
+                    <p>Here are some videos on how to make cutscenes in Unity
+                        <ul>
+                            <li><a href="https://youtu.be/Zb5GxSz5mSI">How to Make Cutscenes with Timeline -UNITY TUTORIAL-</a> </li>
+                            <li><a href="https://youtu.be/0soGRKtpJuA">How To Create Cutscenes in UNITY (5 MINUTES) - Unity Timeline Tutorial 2022</a> </li>
+                        </ul>
+                    </p>
+                </div>
+            </details>
+        </div>
+
+        <br>
+
+        <!-- Information for Artist -->
+        <div>
+            <h2>Art</h2>
+
+            <details class="subsection">
+                <summary class="notice">Adding Background Art</summary>
+                <div class="subsection">
+                    <p class="notice">This is a WIP.</p>
+                    <p>One idea on how to implement this is to create a room prefab that's already 
+                        setup with the proper dimensions. The only thing you'd have to add is the image 
+                        for the background of the room.
+                    </p>
+                </div>
+            </details>
+
+            <details class="subsection">
+                <summary>Adding Item Sprites</summary>
+                <div class="subsection">
+                    <p>
+                        To add sprites for anything, first add the image files to <code class="path">Assets > Sprites</code>.
+                        Then, go to <code class="path">Assets > _Data > _itemData</code>, find the correct item, and put the 
+                        image from the "Sprites" folder into the <code class="prgm">ItemData.sprite</code> variable.
+                    </p>
+                </div>
+            </details>
+
+            <details class="subsection">
+                <summary class="notice">Adding Animations</summary>
+                <div class="subsection">
+                    <p class="notice">This is a WIP.</p>
+                    <p>
+                        This will be handled with an "Animation Manager." The idea is for that Singleton object to 
+                        have multiple lists of sprites (one for the player, one for the environment, etc.).
+                    </p>
+                </div>
+            </details>
+        </div>
+
+        <br>
+
+        <!-- Information for Sound Designer -->
+        <div>
+            <h2>Sound Design</h2>
+            
+            <details class="subsection">
+                <summary class="notice">This is a WIP.</summary>
+                <div class="subsection">
+                    <p>...</p>
+                </div>
+            </details>
+        </div>
+
+
+    </body>
+</html>
