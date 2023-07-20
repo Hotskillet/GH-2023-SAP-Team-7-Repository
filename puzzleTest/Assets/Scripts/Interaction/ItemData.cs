@@ -5,7 +5,7 @@ using UnityEngine;
 public enum ItemType
 {
     MISC,
-    KEY,
+    PICKUP,
     DOOR,
     CONTAINER
 };

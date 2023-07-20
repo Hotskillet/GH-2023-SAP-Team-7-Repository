@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 791090106128073246}
   - component: {fileID: 7383198300334476837}
-  - component: {fileID: 3604805241542279346}
+  - component: {fileID: 2415822054006894320}
   - component: {fileID: 8877341595225997783}
   - component: {fileID: 6112830037384014291}
-  - component: {fileID: 5675216064289944269}
   - component: {fileID: 4809469630743166036}
   - component: {fileID: 6623954234932340055}
+  - component: {fileID: -2655548051463922615}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3604805241542279346
+--- !u!114 &2415822054006894320
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,13 +99,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 602839638572860213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a521876f55cff7546b3be2c50fe11eac, type: 3}
+  m_Script: {fileID: 11500000, guid: b5f73cb9d83a2a9408a29004769cb9b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  gangy: {fileID: 602839638572860213}
+  speed: 4
   walkUpSprite: {fileID: 0}
   walkDownSprite: {fileID: 0}
+  walkSFX: 
 --- !u!95 &8877341595225997783
 Animator:
   serializedVersion: 5
@@ -141,18 +141,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   capacity: 2
   order: []
---- !u!114 &5675216064289944269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 602839638572860213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65444698a624c57448c434decef21f4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &4809469630743166036
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -225,3 +213,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-2655548051463922615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602839638572860213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 71d5ad8c185d317468aa20fad1b5959b, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Explore
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
