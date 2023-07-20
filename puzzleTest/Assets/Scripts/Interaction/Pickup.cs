@@ -14,7 +14,8 @@ public class Pickup : Item
         Inventory.Instance.AddItem(gameObject.name);
 
         //FIXME Step 2: Tell UI to add sprite to inventory bar
-
+        
+        AudioManager.instance.Play(soundEffect);
 
         // PLEASE FOR THE LOVE OF GOD THIS NEEEEEEEEEEEDS TO BE IN THE GAME 
         Debug.Log(gameObject.name + " has been picked up.");
@@ -22,11 +23,6 @@ public class Pickup : Item
         // Step 3: Delete object from world
         Destroy(gameObject, 0.5f);
         return;
-    }
-
-    // FIXME: remove since Player will be calling these functions
-    private void OnCollisionEnter2D(Collision2D other) {
-        interact();
     }
 
     // Update is called once per frame
