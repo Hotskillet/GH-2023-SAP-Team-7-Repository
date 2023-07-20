@@ -171,6 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d51161ecccd1aa418be6328c8db0310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iType: 2
+  soundEffect: 
   locked: 1
-  nextRoom: SampleScene
+  nextRoom: melTestScene

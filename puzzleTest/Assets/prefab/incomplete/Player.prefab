@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2415822054006894320}
   - component: {fileID: 8877341595225997783}
   - component: {fileID: 6112830037384014291}
-  - component: {fileID: 5675216064289944269}
   - component: {fileID: 4809469630743166036}
   - component: {fileID: 6623954234932340055}
   - component: {fileID: -2655548051463922615}
@@ -106,6 +105,7 @@ MonoBehaviour:
   speed: 4
   walkUpSprite: {fileID: 0}
   walkDownSprite: {fileID: 0}
+  walkSFX: 
 --- !u!95 &8877341595225997783
 Animator:
   serializedVersion: 5
@@ -141,18 +141,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   capacity: 2
   order: []
---- !u!114 &5675216064289944269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 602839638572860213}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65444698a624c57448c434decef21f4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &4809469630743166036
 BoxCollider2D:
   m_ObjectHideFlags: 0

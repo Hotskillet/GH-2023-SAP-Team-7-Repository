@@ -101,23 +101,66 @@
             </details>
 
             <details class="subsection">
-                <summary>Unlockable</summary>
+                <summary>Door</summary>
                 <div class="subsection">
                     <p>
-                        This is a type of <code class="prgm">Item</code>.
+                        This is a type of <code class="prgm">Item.Unlockable</code>.
+                    </p>
+                    <p>
+                        Properties of <code class="prgm">Door</code>:
+                        <ul>
+                            <li><code class="prgm">locked</code> (bool): whether the door is locked 
+                                or not.</li>
+                            <li><code class="prgm">nextRoom</code> (string): the name of the room (scene) 
+                                the door connects to. </li>
+                        </ul>
                     </p>
                     <br>
                     <p>Relevant functions:</p>
                     <div class="subsection">
-                        <code class="prgm">public void interact()</code>
+                        <code class="prgm">public void unlock()</code>
                         <p>
                             This function should be called when the Player is within range and 
                             presses the "interact button". It checks if the Player's inventory 
                             has its "key," then updates accordingly.
                         </p>
                         <p>
-                            If the Player has the correct "key," the item should open 
-                            (<code class="prgm">Unlockable.locked = false;</code> )
+                            If the Player has the correct "key," the door should open 
+                            (<code class="prgm">Unlockable.locked = false;</code> ).
+                        </p>
+                        <p>
+                            After being unlocked, the Player can then use the door to go to other 
+                            rooms.
+                        </p>
+                        <p>
+                            Otherwise, nothing will happen.
+                        </p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="subsection">
+                <summary>Container</summary>
+                <div class="subsection">
+                    <p>
+                        This is a type of <code class="prgm">Item.Unlockable</code>.
+                    </p>
+                    <br>
+                    <p>Relevant functions:</p>
+                    <div class="subsection">
+                        <code class="prgm">public void unlock()</code>
+                        <p>
+                            This function should be called when the Player is within range and 
+                            presses the "interact button". It checks if the Player's inventory 
+                            has its "key," then updates accordingly.
+                        </p>
+                        <p>
+                            If the Player has the correct "key," the container opens 
+                            (<code class="prgm">Unlockable.locked = false;</code> ).
+                        </p>
+                        <p>
+                            After being unlocked, a new item will appear (whatever was stored in the 
+                            container) that the Player can interact with.
                         </p>
                         <p>
                             Otherwise, nothing will happen.
@@ -145,19 +188,20 @@
             </details>
 
             <details class="subsection">
-                <summary>movement2D</summary>
+                <summary>PlayerControls</summary>
                 <div class="subsection">
                     <p>
-                        brief description here.
+                        This is an undated version of <code class="prgm"> movement2C.cs </code> 
+                        that allows for multiple input devices to be used (ie. controllers, 
+                        keyboard+mouse).
                     </p>
-                    <br>
-                    <p>Relevant functions:</p>
-                    <div class="subsection">
-                        <code class="prgm">fxn()</code>
-                        <p>
-                            desciption here.
-                        </p>
-                    </div>
+                    <p>
+                        The script allows the Player move the PC around and interact with items 
+                        through button presses.
+                    </p>
+                    <p>
+                        This script should be added to the Player prefab along with a "PlayerInput."
+                    </p>
                 </div>
             </details>
 
@@ -220,9 +264,32 @@
                         <code class="path">Assets > Prefabs</code>.
                     </p>
                     <p>
+                        Every item object has a <code class="prgm">soundEffect</code> variable. It's not mandatory, 
+                        but the name of the sound effect the item will have can be put there.
+                    </p>
+                    <p>
                         For the item scripts, <code class="prgm">Pickup</code> doesn't need any data, but 
                         <code class="prgm">Unlockable</code> does. To make an <code class="prgm">Unlockable</code> a "container," 
                         specify a game object for <code class="prgm">Unlockable.treasure</code>.
+                    </p>
+                </div>
+            </details>
+
+            <details class="subsection">
+                <summary>Creating Rooms</summary>
+                <div class="subsection">
+                    <p>You can create items using the <code class="prgm">Room</code> 
+                        prefab saved in <code class="path">Assets > Prefab</code>.
+                    </p>
+                    <p>
+                        The <code class="prgm">Room</code> prefab already a rigidbody and 
+                        composite collider for collision with the Player. Add the background sprite 
+                        to the <code class="prgm">Room</code>, update the wall and door placements to 
+                        match, and add whatever items.
+                    </p>
+                    <p>
+                        When the <code class="prgm">Room</code> is done, put it in its own scene. Don't 
+                        forget to put the name of the scene in whichever doors will lead the player to it.
                     </p>
                 </div>
             </details>
@@ -318,9 +385,29 @@
             <h2>Sound Design</h2>
             
             <details class="subsection">
-                <summary class="notice">This is a WIP.</summary>
+                <summary>AudioManager</summary>
                 <div class="subsection">
-                    <p>...</p>
+                    <p>
+                        The AudioManager keeps a list of all the audio (BGM & SFX) that
+                        out game will be using.
+                    </p>
+                    <p>
+                        To add audio to the AudioManager's list, go to the <i>prefab</i> and 
+                        add an entry to its list of <code class="prgm">Sound</code>. Then, just 
+                        fill in the information.
+                    </p>
+                    <p>
+                        Properties of <code class="prgm">Sound</code>:
+                        <ul>
+                            <li><code class="prgm">name</code> (string): the name of the sound. this will 
+                            be used to play it.</li>
+                            <li><code class="prgm">clip</code> (AudioClip): the actual audio file.</li>
+                            <li><code class="prgm">volume</code> (float): the volume of the audio clip.</li>
+                            <li><code class="prgm">pitch</code> (float): the pitch of the audio clip.</li>
+                            <li><code class="prgm">loop</code> (bool): whether the audio clip will loop or not 
+                            (set as true for BGM, false for most other things).</li>
+                        </ul>
+                    </p>
                 </div>
             </details>
         </div>
