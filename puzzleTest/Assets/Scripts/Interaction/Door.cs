@@ -11,24 +11,17 @@ using UnityEngine;
 public class Door : Unlockable
 {
     // the scene number of the room the door is supposed to link to
-    public int nextRoom;
+    public string nextRoom;
 
     public void Start() 
     {
         locked = true;
     }
 
-    private void unlock(){
+    public void unlock(){
         // call Unlockable.interact()
         base.interact();
         // go to next room
         SceneLoader.Instance.LoadRoom(nextRoom);
-    }    
-
-    // FIXME: remove since Player will be calling these functions
-    private void OnCollisionExit2D(Collision2D other) {
-        unlock();
-    }
-
-
+    } 
 }

@@ -5,6 +5,5 @@ using UnityEngine.UI;
 
 public abstract class Item : MonoBehaviour
 {
-    //FIXME
     public abstract void interact();
 }

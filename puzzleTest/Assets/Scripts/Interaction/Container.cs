@@ -18,17 +18,12 @@ public class Container : Unlockable
         }
     }
 
-    private void unlock(){
+    public void unlock(){
         // call Unlockable.interact()
         base.interact();
         // check if successful interaction
         if (base.GetFoundKey() && (treasure != null)){
             treasure.SetActive(true);
         }
-    }
-
-    // FIXME: remove since Player will be calling these functions
-    private void OnCollisionExit2D(Collision2D other) {
-        unlock();
     }
 }
