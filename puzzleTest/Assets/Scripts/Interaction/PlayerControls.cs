@@ -9,17 +9,25 @@ public class PlayerControls : MonoBehaviour
     public Sprite walkUpSprite;
     public Sprite walkDownSprite;
     private PlayerInput playerInput;
+    public string walkSFX;
 
     private bool movingUp;
     private bool movingDown;
     private bool movingLeft;
     private bool movingRight;
 
+    // keep track of when player is walking so that SFX can play
+    private bool isWalking;
+    // keep track of when player stops walking so SFX can be stopped
+    private bool wasWalking;
+
     //FIMXE:
     // animation sprites will be in AnimationManager
     // get corresponding animation from AnimationManager.Instance.__
     private SpriteRenderer spriteRenderer;
     private Animator spriteAnimator;
+
+    // FIXME: add SFX for player walking
 
     //making some custom vector3s so we dont run into transform.up issues later
     //if there's no rotation EVER, then we can use transform.up and stuff
@@ -53,33 +61,49 @@ public class PlayerControls : MonoBehaviour
     public void MoveUp(InputAction.CallbackContext context){
         if (context.performed){
             movingUp = true;
+            wasWalking = false;
+            isWalking = true;
         }
         if (context.canceled){
             movingUp = false;
+            wasWalking = true;
+            isWalking = false;
         }
     }
     public void MoveDown(InputAction.CallbackContext context){
         if (context.performed){
             movingDown = true;
+            wasWalking = false;
+            isWalking = true;
         }
         if (context.canceled){
             movingDown = false;
+            wasWalking = true;
+            isWalking = false;
         }
     }
     public void MoveLeft(InputAction.CallbackContext context){
         if (context.performed){
             movingLeft = true;
+            wasWalking = false;
+            isWalking = true;
         }
         if (context.canceled){
             movingLeft = false;
+            wasWalking = true;
+            isWalking = false;
         }
     }
     public void MoveRight(InputAction.CallbackContext context){
         if (context.performed){
             movingRight = true;
+            wasWalking = false;
+            isWalking = true;
         }
         if (context.canceled){
             movingRight = false;
+            wasWalking = true;
+            isWalking = false;
         }
     }
 
@@ -175,6 +199,15 @@ public class PlayerControls : MonoBehaviour
 
         // update animation
         UpdateAnimatorValues();
+        // plays walking SFX only when player is actaully walking
+        if (isWalking){
+            AudioManager.instance.Play(walkSFX);
+            isWalking = false;
+        // stops walking SFX as soon as player stops walking
+        }else if (wasWalking){
+            AudioManager.instance.Stop(walkSFX);
+            wasWalking = false;
+        }
         // update position
         UpdatePosition();
     }

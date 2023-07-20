@@ -25,6 +25,10 @@ public class Unlockable : Item
 
     public override void interact()
     {
+        // skip steps if already unlocked
+        if (!locked){
+            return;
+        }
         /* Steps:
             1. Check if Player's inventory has item that matches an item in this item's list
             2. update state

@@ -22,7 +22,8 @@ public class Container : Unlockable
         // call Unlockable.interact()
         base.interact();
         // check if successful interaction
-        if (base.GetFoundKey() && (treasure != null)){
+        if (!locked && (treasure != null)){
+            AudioManager.instance.Play(soundEffect);
             treasure.SetActive(true);
         }
     }
