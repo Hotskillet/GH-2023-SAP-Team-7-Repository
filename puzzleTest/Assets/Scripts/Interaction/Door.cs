@@ -15,12 +15,13 @@ public class Door : Unlockable
 
     public void Start() 
     {
-        locked = true;
     }
 
     public void unlock(){
         // call Unlockable.interact()
-        base.interact();
+        if (locked){
+            base.interact();
+        }
         // go to next room if door is unlocked
         if (!locked) {
             AudioManager.instance.Play(soundEffect);

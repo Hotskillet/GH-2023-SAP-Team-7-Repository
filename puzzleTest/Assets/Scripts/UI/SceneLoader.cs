@@ -7,17 +7,7 @@ public class SceneLoader : Singleton<SceneLoader>
 {
     public Animator transition;
     public float transitionTime = 1.0f;
-
-    IEnumerator LoadingRoom(int roomNumber){
-        // play animation
-        transition.SetTrigger("Start");
-
-        // wait
-        yield return new WaitForSeconds(transitionTime);
-
-        // go to next room
-        SceneManager.LoadScene(roomNumber);
-    }
+    
     IEnumerator LoadingRoom(string roomName){
         // play animation
         transition.SetTrigger("Start");
@@ -26,17 +16,36 @@ public class SceneLoader : Singleton<SceneLoader>
         yield return new WaitForSeconds(transitionTime);
 
         // go to next room
-        SceneManager.LoadScene(roomName);
+        SceneManager.LoadScene(roomName, LoadSceneMode.Additive);
     }
 
-    public void LoadRoom(int roomNumber){
-        StartCoroutine(LoadingRoom(roomNumber));
-    }
     public void LoadRoom(string roomName){
         StartCoroutine(LoadingRoom(roomName));
     }
 
-    public void LoadNextRoom(){
-        StartCoroutine(LoadingRoom(SceneManager.GetActiveScene().buildIndex + 1));
+    public void SaveCurrentRoom(){
+        // save the current active scene before going to next
+        string currRoom = SceneManager.GetActiveScene().name;
+        Debug.Log("---- " + currRoom + " ----");
+        if (!MySceneManager.Instance.IsSaved(currRoom)){
+            MySceneManager.Instance.TrackScene(currRoom);
+            Debug.Log("saved " + currRoom);
+        }
+        // hide current scene
+        MySceneManager.Instance.HideScene(currRoom);
+        Debug.Log("hid " + currRoom);
+    }
+
+    public void SaveNewRoom(string roomName){
+        // check if new scene is already saved before trying to load
+        if (MySceneManager.Instance.IsSaved(roomName)){
+            MySceneManager.Instance.UnhideScene(roomName);
+            Debug.Log("loaded " + roomName + " from save");
+            return;
+        }
+        // track new scene
+        LoadRoom(roomName);
+        MySceneManager.Instance.TrackScene(roomName);
+        Debug.Log("loaded " + roomName);
     }
 }

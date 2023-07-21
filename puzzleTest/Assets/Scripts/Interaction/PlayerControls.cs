@@ -130,11 +130,9 @@ public class PlayerControls : MonoBehaviour
     /*** FIXME: Interaction & Pauseing ***/
     public void Interact(InputAction.CallbackContext context){
         if (context.performed && (itemInContact != null)){
-            Debug.Log("other object");
             DetailedInteraction();
         }
         if (context.canceled && (itemInContact != null)){
-            Debug.Log("int-end");
         }
     }
     private void DetailedInteraction(){
