@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class PlayerControls : MonoBehaviour
     private bool movingDown;
     private bool movingLeft;
     private bool movingRight;
+
+    public SpawnPoints[] spawnPoints;
 
     // keep track of when player is walking so that SFX can play
     private bool isWalking;
@@ -42,6 +45,8 @@ public class PlayerControls : MonoBehaviour
 
 
     public void Awake(){
+        EvtSystem.EventDispatcher.AddListener<ChangeRoom>(ChangePosition);
+
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteAnimator = gameObject.GetComponent<Animator>();
         ResetMovement();
@@ -157,7 +162,7 @@ public class PlayerControls : MonoBehaviour
     }
 
     public void Pause(InputAction.CallbackContext context){
-        //
+        //FIXME
     }
 
 
@@ -208,5 +213,21 @@ public class PlayerControls : MonoBehaviour
         }
         // update position
         UpdatePosition();
+    }
+
+    IEnumerator TempDelay(float d){
+        yield return new WaitForSeconds(d);
+    }
+
+    // Changes the player's position when entering through a door
+    public void ChangePosition(ChangeRoom evt){
+        //StartCoroutine(TempDelay(1.0f));
+
+        foreach (SpawnPoints sp in spawnPoints){
+            if (sp.enteringFrom.Equals(evt.doorName)){
+                gameObject.transform.position = sp.enteringPosition;
+                break;
+            }
+        }
     }
 }

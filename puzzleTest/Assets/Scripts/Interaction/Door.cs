@@ -25,7 +25,9 @@ public class Door : Unlockable
         // go to next room if door is unlocked
         if (!locked) {
             AudioManager.instance.Play(soundEffect);
-            SceneLoader.Instance.LoadRoom(nextRoom);
+            //MySceneManager.Instance.LoadThisRoom(nextRoom);
+            ChangeRoom cr = new ChangeRoom {roomName = nextRoom, doorName = gameObject.name};
+            EvtSystem.EventDispatcher.Raise<ChangeRoom>(cr);
         }
     } 
 }

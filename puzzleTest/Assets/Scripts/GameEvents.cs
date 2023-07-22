@@ -14,3 +14,9 @@ public class hit : EvtSystem.Event
 {
     public float distanceThing;
 }
+
+public class ChangeRoom : EvtSystem.Event
+{
+    public string roomName;
+    public string doorName;
+}

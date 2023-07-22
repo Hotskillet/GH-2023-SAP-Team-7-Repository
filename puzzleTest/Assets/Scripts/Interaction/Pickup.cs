@@ -18,7 +18,7 @@ public class Pickup : Item
         AudioManager.instance.Play(soundEffect);
 
         // PLEASE FOR THE LOVE OF GOD THIS NEEEEEEEEEEEDS TO BE IN THE GAME 
-        //Debug.Log(gameObject.name + " has been picked up.");
+        Debug.Log(gameObject.name + " has been picked up.");
 
         // Step 3: Delete object from world
         Destroy(gameObject, 0.5f);
