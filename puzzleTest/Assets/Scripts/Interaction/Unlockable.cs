@@ -45,9 +45,11 @@ public class Unlockable : Item
                 // Step 2: Update state
                 locked = false;
                 foundKey = true;
-                // Steap 3: Disable this object's collider
-                Collider2D hitbox = gameObject.GetComponent<Collider2D>();
-                hitbox.enabled = false;
+                // SKIPPING: Steap 3: Disable this object's rigidbody
+                /*
+                Rigidbody2D rbody = gameObject.GetComponent<Rigidbody2D>();
+                rbody.simulated = false;
+                */
                 //FIXME: replace with animation & SFX
                 SpriteRenderer thisSprite = gameObject.GetComponent<SpriteRenderer>();
                 Color currCol = thisSprite.color;
