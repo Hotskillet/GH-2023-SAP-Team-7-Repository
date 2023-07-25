@@ -5,6 +5,6 @@ using UnityEngine.UI;
 
 public abstract class Item : MonoBehaviour
 {
-    //FIXME
+    public string soundEffect;
     public abstract void interact();
 }
