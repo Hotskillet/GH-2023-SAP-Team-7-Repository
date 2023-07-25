@@ -74,28 +74,28 @@ public class Inventory : Singleton<Inventory>
     public void AddItem(string something){
         // if inventory full, don't add item
         if (isFull()){
-            Debug.Log("My pockets are full..."); //FIXME: replace with UI stuff
+            //Debug.Log("My pockets are full..."); //FIXME: replace with UI stuff
             return;
         }
         // find empty slot
         int ind = findEmptySlot();
         // store item in slot
         order[ind] = something;
-        Debug.Log("Jabari put " + something + " in his pocket");
+        //Debug.Log("Jabari put " + something + " in his pocket");
     }
 
     // removes an item by name
     public void RemoveItem(string something){
         // if inventory empty, do nothing
         if (isEmpty()){
-            Debug.Log("My pockets are empty...");  //FIXME: replace with UI stuff
+            //Debug.Log("My pockets are empty...");  //FIXME: replace with UI stuff
             return;
         }
         // find index of item
         int ind = findItemIndex(something);
         // make sure item was actually found
         if (ind < 0){
-            Debug.Log("I don't have that..."); //FIXME: replace with UI stuff
+            //Debug.Log("I don't have that..."); //FIXME: replace with UI stuff
             return;
         }
         // remove item
