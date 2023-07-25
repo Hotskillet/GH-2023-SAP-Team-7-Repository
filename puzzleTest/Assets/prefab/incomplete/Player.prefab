@@ -324,9 +324,37 @@ MonoBehaviour:
     m_ActionId: 647d6f8f-9b12-4f2d-a359-6194addc228b
     m_ActionName: Explore/Interact[/Keyboard/f]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ea43c74e-c86f-4de2-8caa-f78655bff310
-    m_ActionName: UI/New action
+      m_Calls:
+      - m_Target: {fileID: 2415822054006894320}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f361e7ae-50d8-49cb-a71c-a42bd49d7b0b
+    m_ActionName: Explore/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2415822054006894320}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 49cdc83c-f877-4c13-9693-59e02ab70254
+    m_ActionName: UI/Unpause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Explore
