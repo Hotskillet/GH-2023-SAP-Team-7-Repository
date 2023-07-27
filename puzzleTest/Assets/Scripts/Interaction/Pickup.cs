@@ -16,11 +16,22 @@ public class Pickup : Item
         //FIXME Step 2: Tell UI to add sprite to inventory bar
         
         AudioManager.instance.Play(soundEffect);
-
-        // PLEASE FOR THE LOVE OF GOD THIS NEEEEEEEEEEEDS TO BE IN THE GAME 
+ 
         Debug.Log(gameObject.name + " has been picked up.");
 
-        // Step 3: Delete object from world
+
+        //FIXME Step 3: do event stuff 
+
+        // here im making a package to send through evt system
+        // it holds only the comment string4
+        //raises the event for the dialogue manager to pick up
+
+        commentPackage pickupComment = new commentPackage();
+        pickupComment.comment = "can someone tell me how to get the comment";
+        EvtSystem.EventDispatcher.Raise(pickupComment);
+
+
+        // Step 4: Delete object from world
         Destroy(gameObject, 0.5f);
         return;
     }
