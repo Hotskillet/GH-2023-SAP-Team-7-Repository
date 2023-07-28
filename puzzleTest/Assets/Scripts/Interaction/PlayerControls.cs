@@ -178,12 +178,12 @@ public class PlayerControls : MonoBehaviour
                 // start time
                 Time.timeScale = 1;
                 isPaused = false;
-                exploreAction = 1;
+                //exploreAction = 1;
                 // FIXME: turn off pause menu
             // if game is not yet paused, pause it
             }else{
                 // set flag to set action map
-                exploreAction = 2;
+                //exploreAction = 2;
                 // stop time
                 isPaused = true;
                 Time.timeScale = 0;
