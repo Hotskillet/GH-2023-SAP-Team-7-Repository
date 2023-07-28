@@ -184,19 +184,18 @@ public class PlayerControls : MonoBehaviour
         // resets movementVector to (0,0,0)
         ResetMovement();
 
-        // Upward movement is prioritized over downward movement
-        // Not sure how to make them cancel each other...
-        if (movingUp){
+        if (movingUp) {
             movementVector += up;
-        }else if (movingDown){
+        }
+        if (movingDown) {
             movementVector += down;
         }
 
-        // Leftward movement is prioritized over rightward movement
-        // Not sure how to make them cancel each other...
-        if (movingLeft){
+        
+        if (movingLeft) {
             movementVector += left;
-        }else if (movingRight){
+        }
+        if (movingRight) {
             movementVector += right;
         }
 

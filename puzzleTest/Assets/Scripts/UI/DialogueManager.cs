@@ -15,6 +15,14 @@ public class DialogueManager : MonoBehaviour
     //selecting the player thru the insepector
     public GameObject player;
     private Rigidbody2D rb;
+
+
+    // need:
+    // get the dialogue box
+    // get its text boxes
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,9 +51,18 @@ public class DialogueManager : MonoBehaviour
     // it is designed to do this from the event system
     void makeDialoguePopup(commentPackage grub) {
         
-        //Step one: Freeze the player
+        // Step one: Freeze the player
         // rb.constraints = RigidbodyConstraints2D.FreezePosition;
 
+
+        // Step two: make the dialogue box appear
+
+        // Step three: put grub text on it
+
+        // Step four: make it so that you can close it
+
+        
         Debug.Log(grub);
+
     }
 }
