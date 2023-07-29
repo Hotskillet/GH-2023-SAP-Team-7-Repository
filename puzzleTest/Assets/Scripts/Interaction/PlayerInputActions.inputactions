@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "f361e7ae-50d8-49cb-a71c-a42bd49d7b0b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -205,6 +214,28 @@
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "75635707-32ce-476a-8e8c-3e2fd3a75688",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48a3c039-f824-4ab7-899b-9cdbd46c8d20",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -213,9 +244,9 @@
             "id": "1e0202f0-8b2f-4755-8524-3e436e77feb4",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Unpause",
                     "type": "Button",
-                    "id": "ea43c74e-c86f-4de2-8caa-f78655bff310",
+                    "id": "49cdc83c-f877-4c13-9693-59e02ab70254",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -225,12 +256,23 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "3e5ad1c7-5bc5-41e8-8f86-43d11f3634e6",
-                    "path": "",
+                    "id": "cc523be8-ede7-4550-8160-b2c273c348f2",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Unpause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "33907899-2b30-4af4-8b3d-e29b4a6e7375",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Unpause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
