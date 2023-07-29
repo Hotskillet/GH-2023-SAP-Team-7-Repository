@@ -210,7 +210,8 @@ public class PlayerControls : MonoBehaviour
     private void Update(){
         // resets movementVector to (0,0,0)
         ResetMovement();
-
+        
+        
         // check if action map needs to be changed
         switch (exploreAction){
             case 1:
