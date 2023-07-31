@@ -34,6 +34,7 @@ public class Snap : MonoBehaviour
     // add colliders that enter into a list
     void OnTriggerEnter2D(Collider2D other)
     {
+        /* FIXME: save ref to currentlyTouching */
         // to make sure the piece's own collider isn't triggering this
         // and that the piece has been released
         // and that the piece is not already connected
@@ -49,6 +50,7 @@ public class Snap : MonoBehaviour
     // remove any collide from the list if they are moved outside of the hitbox
     void OnTriggerExit2D(Collider2D other)
     {
+        /* FIXME: clear currentlyTouching */
         // to make sure the piece's own collider isn't triggering this
         // and that the piece has been released
         // and that the piece is not already connected
@@ -60,6 +62,8 @@ public class Snap : MonoBehaviour
             connected = false;
         }
     }
+
+    /* FIXME: use mouse input event to check when released */
 
     // Update is called once per frame
     void Update()

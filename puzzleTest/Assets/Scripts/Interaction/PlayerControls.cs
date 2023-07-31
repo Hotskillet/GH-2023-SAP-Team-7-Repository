@@ -52,7 +52,7 @@ public class PlayerControls : MonoBehaviour
 
 
     public void Awake(){
-        EvtSystem.EventDispatcher.AddListener<ChangeRoom>(ChangePosition);
+        EvtSystem.EventDispatcher.AddListener<ChangePlayerPosition>(ChangePosition);
 
         playerInput = GetComponent<PlayerInput>();
 
@@ -260,19 +260,17 @@ public class PlayerControls : MonoBehaviour
         UpdatePosition();
     }
 
-    IEnumerator TempDelay(float d){
-        yield return new WaitForSeconds(d);
-    }
-
     // Changes the player's position when entering through a door
-    public void ChangePosition(ChangeRoom evt){
-        //StartCoroutine(TempDelay(1.0f));
-
+    public void ChangePosition(ChangePlayerPosition evt){
+        Debug.Log(evt.doorName);
         foreach (SpawnPoints sp in spawnPoints){
             if (sp.enteringFrom.Equals(evt.doorName)){
                 gameObject.transform.position = sp.enteringPosition;
+                Debug.Log(evt.doorName);
                 break;
             }
         }
+        ChangeRoomEnd cr = new ChangeRoomEnd {};
+        EvtSystem.EventDispatcher.Raise<ChangeRoomEnd>(cr);
     }
 }

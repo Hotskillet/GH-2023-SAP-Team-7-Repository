@@ -26,8 +26,8 @@ public class Door : Unlockable
         if (!locked) {
             AudioManager.instance.Play(soundEffect);
             //MySceneManager.Instance.LoadThisRoom(nextRoom);
-            ChangeRoom cr = new ChangeRoom {roomName = nextRoom, doorName = gameObject.name};
-            EvtSystem.EventDispatcher.Raise<ChangeRoom>(cr);
+            ChangeRoomStart cr = new ChangeRoomStart {roomName = nextRoom, doorName = gameObject.name};
+            EvtSystem.EventDispatcher.Raise<ChangeRoomStart>(cr);
         }
     } 
 }
