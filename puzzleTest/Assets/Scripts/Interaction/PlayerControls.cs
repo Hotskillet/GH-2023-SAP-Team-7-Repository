@@ -179,17 +179,22 @@ public class PlayerControls : MonoBehaviour
             if (isPaused){
                 // start time
                 Time.timeScale = 1;
+                // turn off pause menu
+                ToggleMenu tm = new ToggleMenu {state = false};
+                EvtSystem.EventDispatcher.Raise<ToggleMenu>(tm);
+                // switch to "Explore" controls
                 isPaused = false;
                 exploreAction = 1;
-                // FIXME: turn off pause menu
             // if game is not yet paused, pause it
             }else{
                 // set flag to set action map
-                exploreAction = 2;
-                // stop time
                 isPaused = true;
+                exploreAction = 2;
+                // turn on pause menu
+                ToggleMenu tm = new ToggleMenu {state = true};
+                EvtSystem.EventDispatcher.Raise<ToggleMenu>(tm);
+                // stop time
                 Time.timeScale = 0;
-                // FIXME: turn on pause menu
             }
         }
     }

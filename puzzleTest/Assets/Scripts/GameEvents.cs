@@ -27,3 +27,8 @@ public class ChangePlayerPosition : EvtSystem.Event
 public class ChangeRoomEnd : EvtSystem.Event
 {
 }
+
+public class ToggleMenu : EvtSystem.Event
+{
+    public bool state; //when to hide (false) or show (true) pause menu
+}
