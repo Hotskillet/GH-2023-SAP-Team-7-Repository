@@ -185,32 +185,40 @@ public class PieceGenerator : Singleton<PieceGenerator>
                                 newPosition.y + (poses[0].relY * 0.2f),
                                 0.0f);
             connection = Instantiate(connectionPrefab, posCon, Quaternion.identity);
-            connection.GetComponent<Snap>().connectionDist = CalcConnectionDistance(dirs[0]);
+            Snap conSnap = connection.GetComponent<Snap>();
+            conSnap.connectionDist = CalcConnectionDistance(dirs[0]);
             connection.transform.parent = go.transform;
+            conSnap.Init();
         }
         if (poses[1].relX != -3){
             posCon = new Vector3(newPosition.x + (poses[1].relX * 0.2f),
                                 newPosition.y + (poses[1].relY * 0.2f),
                                 0.0f);
             connection = Instantiate(connectionPrefab, posCon, Quaternion.identity);
-            connection.GetComponent<Snap>().connectionDist = CalcConnectionDistance(dirs[1]);
+            Snap conSnap = connection.GetComponent<Snap>();
+            conSnap.connectionDist = CalcConnectionDistance(dirs[1]);
             connection.transform.parent = go.transform;
+            conSnap.Init();
         }
         if (poses[2].relX != -3){
             posCon = new Vector3(newPosition.x + (poses[2].relX * 0.2f),
                                 newPosition.y + (poses[2].relY * 0.2f),
                                 0.0f);
             connection = Instantiate(connectionPrefab, posCon, Quaternion.identity);
-            connection.GetComponent<Snap>().connectionDist = CalcConnectionDistance(dirs[2]);
+            Snap conSnap = connection.GetComponent<Snap>();
+            conSnap.connectionDist = CalcConnectionDistance(dirs[2]);
             connection.transform.parent = go.transform;
+            conSnap.Init();
         }
         if (poses[3].relX != -3){
             posCon = new Vector3(newPosition.x + (poses[3].relX * 0.2f),
                                 newPosition.y + (poses[3].relY * 0.2f),
                                 0.0f);
             connection = Instantiate(connectionPrefab, posCon, Quaternion.identity);
-            connection.GetComponent<Snap>().connectionDist = CalcConnectionDistance(dirs[3]);
+            Snap conSnap = connection.GetComponent<Snap>();
+            conSnap.connectionDist = CalcConnectionDistance(dirs[3]);
             connection.transform.parent = go.transform;
+            conSnap.Init();
         }
     }
 
@@ -278,7 +286,6 @@ public class PieceGenerator : Singleton<PieceGenerator>
         // save coordinates
         go.GetComponent<Piece>().coordinates = pos;
         //FIXME: save sprite mask
-        //go.GetComponent<SpriteMask>().sprite = temp.spriteMask;
         go.GetComponent<SpriteRenderer>().sprite = temp.spriteMask;
         
 
