@@ -10,26 +10,25 @@ public class ExampleTrigger : EvtSystem.Event
     public float data2;
 }
 
-// dont delete this or snapper pls
-// bao doesnt really know how to use event dispatcher
-// he needs this until hes used to it
 public class hit : EvtSystem.Event
 {
     public float distanceThing;
 }
 
-// change room for switching rooms.
-// variables are self explanatory
-public class ChangeRoom : EvtSystem.Event
+public class ChangeRoomStart : EvtSystem.Event
 {
     public string roomName;
     public string doorName;
 }
+public class ChangePlayerPosition : EvtSystem.Event
+{
+    public string doorName;
+}
+public class ChangeRoomEnd : EvtSystem.Event
+{
+}
 
-
-public class commentPackage : EvtSystem.Event {
-
-    // this is the comment in the interactable
-    public string comment;
-
+public class ToggleMenu : EvtSystem.Event
+{
+    public bool state; //when to hide (false) or show (true) pause menu
 }
