@@ -6,7 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DejonScene.unity
+    path: Assets/Scenes/dummyStart.unity
+    guid: 56b33e98c2a5a6742820e18992ddd8c9
+  - enabled: 1
+    path: Assets/Scenes/dummyCut1.unity
+    guid: 2b63eb5b738c2b5468b982b71830f398
+  - enabled: 1
+    path: Assets/Scenes/DONT_USE.unity
+    guid: 2f9590ea6a884c5499cb5e88ebc6eb9a
+  - enabled: 1
+    path: Assets/Scenes/melTestScene.unity
     guid: 16f82ccfb9521a540ad8692ba25d681f
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
