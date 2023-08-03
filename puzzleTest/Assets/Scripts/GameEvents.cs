@@ -28,7 +28,9 @@ public class ChangeRoomEnd : EvtSystem.Event
 {
 }
 
-public class ToggleMenu : EvtSystem.Event
+public class TurnOnPauseMenu : EvtSystem.Event
 {
-    public bool state; //when to hide (false) or show (true) pause menu
+}
+public class TurnOffPauseMenu : EvtSystem.Event
+{
 }
