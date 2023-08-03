@@ -15,8 +15,20 @@ public class hit : EvtSystem.Event
     public float distanceThing;
 }
 
-public class ChangeRoom : EvtSystem.Event
+public class ChangeRoomStart : EvtSystem.Event
 {
     public string roomName;
     public string doorName;
+}
+public class ChangePlayerPosition : EvtSystem.Event
+{
+    public string doorName;
+}
+public class ChangeRoomEnd : EvtSystem.Event
+{
+}
+
+public class ToggleMenu : EvtSystem.Event
+{
+    public bool state; //when to hide (false) or show (true) pause menu
 }

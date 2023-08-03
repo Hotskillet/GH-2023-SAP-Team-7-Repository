@@ -24,6 +24,13 @@ public class PlayerControls : MonoBehaviour
     // keep track of when player stops walking so SFX can be stopped
     private bool wasWalking;
 
+    // for pausing the game
+    private bool isPaused;
+    // keep track of which action map the player is using
+    // to avoid a bug where Unity calls the SwitchActionMap() function 
+    // multiplpe times in one frame
+    private int exploreAction;
+
     //FIMXE:
     // animation sprites will be in AnimationManager
     // get corresponding animation from AnimationManager.Instance.__
@@ -45,7 +52,9 @@ public class PlayerControls : MonoBehaviour
 
 
     public void Awake(){
-        EvtSystem.EventDispatcher.AddListener<ChangeRoom>(ChangePosition);
+        EvtSystem.EventDispatcher.AddListener<ChangePlayerPosition>(ChangePosition);
+
+        playerInput = GetComponent<PlayerInput>();
 
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteAnimator = gameObject.GetComponent<Animator>();
@@ -55,6 +64,9 @@ public class PlayerControls : MonoBehaviour
         movingLeft = false;
         movingRight = false;
         itemInContact = null;
+
+        isPaused = false;
+        exploreAction = 0;
     }
 
 
@@ -162,7 +174,29 @@ public class PlayerControls : MonoBehaviour
     }
 
     public void Pause(InputAction.CallbackContext context){
-        //FIXME
+        if (context.performed){
+            // if game is already paused, unpause it
+            if (isPaused){
+                // start time
+                Time.timeScale = 1;
+                // turn off pause menu
+                ToggleMenu tm = new ToggleMenu {state = false};
+                EvtSystem.EventDispatcher.Raise<ToggleMenu>(tm);
+                // switch to "Explore" controls
+                isPaused = false;
+                exploreAction = 1;
+            // if game is not yet paused, pause it
+            }else{
+                // set flag to set action map
+                isPaused = true;
+                exploreAction = 2;
+                // turn on pause menu
+                ToggleMenu tm = new ToggleMenu {state = true};
+                EvtSystem.EventDispatcher.Raise<ToggleMenu>(tm);
+                // stop time
+                Time.timeScale = 0;
+            }
+        }
     }
 
 
@@ -184,19 +218,35 @@ public class PlayerControls : MonoBehaviour
         // resets movementVector to (0,0,0)
         ResetMovement();
 
-        // Upward movement is prioritized over downward movement
-        // Not sure how to make them cancel each other...
+        // check if action map needs to be changed
+        switch (exploreAction){
+            case 1:
+                // switch action map to Explore controls
+                playerInput.SwitchCurrentActionMap("Explore");
+                exploreAction = 0;
+                break;
+            case 2:
+                // switch action map to UI controls
+                playerInput.SwitchCurrentActionMap("UI");
+                exploreAction = 0;
+                break;
+            default:
+                break;
+        }
+
+        // apply up/down movement
         if (movingUp){
             movementVector += up;
-        }else if (movingDown){
+        }
+        if (movingDown){
             movementVector += down;
         }
 
-        // Leftward movement is prioritized over rightward movement
-        // Not sure how to make them cancel each other...
+        // apply left/right movement
         if (movingLeft){
             movementVector += left;
-        }else if (movingRight){
+        }
+        if (movingRight){
             movementVector += right;
         }
 
@@ -215,19 +265,17 @@ public class PlayerControls : MonoBehaviour
         UpdatePosition();
     }
 
-    IEnumerator TempDelay(float d){
-        yield return new WaitForSeconds(d);
-    }
-
     // Changes the player's position when entering through a door
-    public void ChangePosition(ChangeRoom evt){
-        //StartCoroutine(TempDelay(1.0f));
-
+    public void ChangePosition(ChangePlayerPosition evt){
+        Debug.Log(evt.doorName);
         foreach (SpawnPoints sp in spawnPoints){
             if (sp.enteringFrom.Equals(evt.doorName)){
                 gameObject.transform.position = sp.enteringPosition;
+                Debug.Log(evt.doorName);
                 break;
             }
         }
+        ChangeRoomEnd cr = new ChangeRoomEnd {};
+        EvtSystem.EventDispatcher.Raise<ChangeRoomEnd>(cr);
     }
 }

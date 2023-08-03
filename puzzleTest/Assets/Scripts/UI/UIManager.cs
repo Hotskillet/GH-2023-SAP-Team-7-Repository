@@ -5,26 +5,28 @@ using UnityEngine;
 public class UIManager : Singleton<UIManager>
 {
     // for onscreen inventory
-    public Transform slot0;
-    public Transform slot1;
+    public Transform gameUI;
+
+    // for pause menu
+    public Transform pauseMenu;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        EvtSystem.EventDispatcher.AddListener<ToggleMenu>(TogglePauseMenu);
     }
 
-    // call to show an image in the oncreen inventory
-    public void ShowInInventory(Sprite img, int spot){
-        switch (spot){
-            case 0:
-                //FIXME: add img to slot0 location
-                break;
-            case 1:
-                //FIXME: add img to slot1 location
-                break;
-            default:
-                break;
+    void TogglePauseMenu(ToggleMenu evt){
+        if (evt.state){
+            // hide game UI
+            gameUI.gameObject.SetActive(false);
+            // show pause menu
+            pauseMenu.gameObject.SetActive(true);
+        }else{
+            // hide pause menu
+            pauseMenu.gameObject.SetActive(false);
+            // show game UI
+            gameUI.gameObject.SetActive(true);
         }
     }
 
