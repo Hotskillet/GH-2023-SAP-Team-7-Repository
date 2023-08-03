@@ -32,3 +32,10 @@ public class ToggleMenu : EvtSystem.Event
 {
     public bool state; //when to hide (false) or show (true) pause menu
 }
+
+public class commentPackage : EvtSystem.Event {
+
+    // this is the comment in the interactable
+    public string comment;
+
+}

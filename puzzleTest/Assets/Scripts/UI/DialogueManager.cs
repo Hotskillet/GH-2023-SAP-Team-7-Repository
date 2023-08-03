@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 
 
 // The purpose of this script:
@@ -9,30 +9,20 @@ using UnityEngine;
 // at which point open up the dialogue.
 // the game then freezes player actions 
 // the player can close the dialogue and continue with the game
-public class DialogueManager : MonoBehaviour
+public class Dialogue : Singleton<Dialogue>
 {
-
-    //selecting the player thru the insepector
-    public GameObject player;
-    private Rigidbody2D rb;
-
 
     // need:
     // get the dialogue box
     // get its text boxes
-
-
+    public GameObject dialogueBox;
+    public GameObject dialogueTMP;
+    private TMP_Text TextComponent;
 
     // Start is called before the first frame update
     void Start()
     {
-        // use getComponent to get the rigidbody 
-        rb = player.GetComponent<Rigidbody2D>();
-
-
-        // add an event listener for the comment package
-        EvtSystem.EventDispatcher.AddListener<commentPackage>(makeDialoguePopup);
-
+        TextComponent = dialogueTMP.GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame
@@ -49,20 +39,20 @@ public class DialogueManager : MonoBehaviour
     // let the player close the popup
     // unfreeze player and close popup
     // it is designed to do this from the event system
-    void makeDialoguePopup(commentPackage grub) {
+    void makePopup(string grub) {
         
-        // Step one: Freeze the player
-        // rb.constraints = RigidbodyConstraints2D.FreezePosition;
-
-
         // Step two: make the dialogue box appear
-
+        dialogueBox.SetActive(true);
         // Step three: put grub text on it
-
+        TextComponent.text = grub;
         // Step four: make it so that you can close it
 
         
         Debug.Log(grub);
+
+    }
+
+    void closePopup() {
 
     }
 }

@@ -147,6 +147,7 @@ public class PlayerControls : MonoBehaviour
     /*** FIXME: Interaction & Pauseing ***/
     public void Interact(InputAction.CallbackContext context){
         if (context.performed && (itemInContact != null)){
+            Dialogue.Instance.closePopup();
             DetailedInteraction();
         }
         if (context.canceled && (itemInContact != null)){
