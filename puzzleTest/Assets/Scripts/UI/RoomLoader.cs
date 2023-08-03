@@ -6,7 +6,7 @@ using UnityEngine;
 public class RoomLoader : Singleton<RoomLoader>
 {
     public Animator transition;
-    public float transitionTime = 1.0f;
+    public float transitionTime;
 
     // A list of the cameras for each room 
     // (all should be disabled except the activeCamera)
@@ -17,23 +17,10 @@ public class RoomLoader : Singleton<RoomLoader>
 
     void Awake()
     {
-        EvtSystem.EventDispatcher.AddListener<ChangeRoom>(LoadThisRoom);
+        EvtSystem.EventDispatcher.AddListener<ChangeRoomStart>(DummyOut);
+        EvtSystem.EventDispatcher.AddListener<ChangeRoomEnd>(DummyIn);
     }
 
-
-    IEnumerator TransitionExit(){
-        //FIXME: play crossfadeOUT animation
-        transition.SetTrigger("Start");
-        // wait
-        yield return new WaitForSeconds(transitionTime);
-    }
-
-    IEnumerator TransitionEnter(){
-        // wait
-        yield return new WaitForSeconds(transitionTime);
-        //FIXME: play crossfadeIN animation
-        transition.SetTrigger("Start");
-    }
 
     public GameObject CamExists(string name){
         foreach (GameObject cam in roomCameras){
@@ -44,9 +31,7 @@ public class RoomLoader : Singleton<RoomLoader>
         return null;
     }
 
-    public void LoadThisRoom(ChangeRoom evt){
-        // start transition animation
-        StartCoroutine(TransitionExit());
+    public void LoadThisRoom(ChangeRoomStart evt){
         // disable active camera
         activeCamera.SetActive(false);
         // find new camera
@@ -59,7 +44,32 @@ public class RoomLoader : Singleton<RoomLoader>
         newCam.SetActive(true);
         // save as new active camera
         activeCamera = newCam;
-        // end transition animation
-        StartCoroutine(TransitionEnter());
+
+        // send signal to PlayerControls to update player position
+        ChangePlayerPosition cr = new ChangePlayerPosition {doorName = evt.doorName};
+        EvtSystem.EventDispatcher.Raise<ChangePlayerPosition>(cr);
+    }
+
+    IEnumerator TransitionOut(ChangeRoomStart evt){
+        //play crossfadeOUT animation
+        transition.SetTrigger("out");
+        // wait
+        yield return new WaitForSeconds(transitionTime);
+
+        LoadThisRoom(evt);
+    }
+    void DummyOut(ChangeRoomStart evt){
+        StartCoroutine(TransitionOut(evt));
+    }
+
+    IEnumerator TransitionIn(ChangeRoomEnd evt){
+        Debug.Log("coming back...");
+        // play crossfadeIN animation
+        transition.SetTrigger("in");
+        // wait
+        yield return new WaitForSeconds(transitionTime);
+    }
+    void DummyIn(ChangeRoomEnd evt){
+        StartCoroutine(TransitionIn(evt));
     }
 }

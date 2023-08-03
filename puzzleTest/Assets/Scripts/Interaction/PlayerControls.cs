@@ -52,7 +52,7 @@ public class PlayerControls : MonoBehaviour
 
 
     public void Awake(){
-        EvtSystem.EventDispatcher.AddListener<ChangeRoom>(ChangePosition);
+        EvtSystem.EventDispatcher.AddListener<ChangePlayerPosition>(ChangePosition);
 
         playerInput = GetComponent<PlayerInput>();
 
@@ -179,17 +179,22 @@ public class PlayerControls : MonoBehaviour
             if (isPaused){
                 // start time
                 Time.timeScale = 1;
+                // turn off pause menu
+                ToggleMenu tm = new ToggleMenu {state = false};
+                EvtSystem.EventDispatcher.Raise<ToggleMenu>(tm);
+                // switch to "Explore" controls
                 isPaused = false;
                 exploreAction = 1;
-                // FIXME: turn off pause menu
             // if game is not yet paused, pause it
             }else{
                 // set flag to set action map
-                exploreAction = 2;
-                // stop time
                 isPaused = true;
+                exploreAction = 2;
+                // turn on pause menu
+                ToggleMenu tm = new ToggleMenu {state = true};
+                EvtSystem.EventDispatcher.Raise<ToggleMenu>(tm);
+                // stop time
                 Time.timeScale = 0;
-                // FIXME: turn on pause menu
             }
         }
     }
@@ -260,19 +265,17 @@ public class PlayerControls : MonoBehaviour
         UpdatePosition();
     }
 
-    IEnumerator TempDelay(float d){
-        yield return new WaitForSeconds(d);
-    }
-
     // Changes the player's position when entering through a door
-    public void ChangePosition(ChangeRoom evt){
-        //StartCoroutine(TempDelay(1.0f));
-
+    public void ChangePosition(ChangePlayerPosition evt){
+        Debug.Log(evt.doorName);
         foreach (SpawnPoints sp in spawnPoints){
             if (sp.enteringFrom.Equals(evt.doorName)){
                 gameObject.transform.position = sp.enteringPosition;
+                Debug.Log(evt.doorName);
                 break;
             }
         }
+        ChangeRoomEnd cr = new ChangeRoomEnd {};
+        EvtSystem.EventDispatcher.Raise<ChangeRoomEnd>(cr);
     }
 }
