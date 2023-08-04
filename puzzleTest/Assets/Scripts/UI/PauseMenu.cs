@@ -11,32 +11,20 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         pauseMenu.SetActive(false);
+
+        // Keep an eye out for if the player want's to pause/unpause the game
+        EvtSystem.EventDispatcher.AddListener<TurnOnPauseMenu>(PauseGame);
+        EvtSystem.EventDispatcher.AddListener<TurnOffPauseMenu>(ResumeGame);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-            }
-        }
-    }
-
-    public void PauseGame()
+    public void PauseGame(TurnOnPauseMenu evt)
     {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
     }
 
-    public void ResumeGame()
+    public void ResumeGame(TurnOffPauseMenu evt)
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
