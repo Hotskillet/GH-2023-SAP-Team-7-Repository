@@ -34,3 +34,13 @@ public class TurnOnPauseMenu : EvtSystem.Event
 public class TurnOffPauseMenu : EvtSystem.Event
 {
 }
+
+public class LoadPieces : EvtSystem.Event
+{
+    public int gridWidth;
+    public int gridHeight;
+    public GameObject[,] pieces;
+}
+public class FoundAPiece : EvtSystem.Event
+{
+}

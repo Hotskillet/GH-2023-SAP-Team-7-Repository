@@ -36,8 +36,8 @@ public class Snap : MonoBehaviour
     // add colliders that enter into a list
     void OnTriggerEnter2D(Collider2D other)
     {
-        /* FIXME: save ref to currentlyTouching */
-        if (isDifferentPiece(other.gameObject) && dragFunction.justReleased && !connected){
+        /* save ref to currentlyTouching */
+        if (isDifferentPiece(other.gameObject) && !connected && (dragFunction.state == 1)){
             currentlyTouching = other.gameObject;
             Debug.Log("load");
         }
@@ -59,9 +59,11 @@ public class Snap : MonoBehaviour
     // remove any collide from the list if they are moved outside of the hitbox
     void OnTriggerExit2D(Collider2D other)
     {
-        /* FIXME: clear currentlyTouching */
-        currentlyTouching = null;
-        Debug.Log("clear");
+        /* clear currentlyTouching */
+        if (currentlyTouching != null){
+            currentlyTouching = null;
+            Debug.Log("clear");
+        }
         /*
         // to make sure the piece's own collider isn't triggering this
         // and that the piece has been released
@@ -76,13 +78,18 @@ public class Snap : MonoBehaviour
         */
     }
 
-    /* FIXME: use mouse input event to check when released */
-
     // Update is called once per frame
     void Update()
     {
         if ((currentlyTouching != null) && dragFunction.justReleased && !connected){
             // FIXME: do snapping
+            // parent dragged piece to other peice
+            Transform thisParent = gameObject.transform.parent;
+            Transform otherParent = currentlyTouching.transform.parent;
+            thisParent.transform.parent = otherParent.transform;
+            // move dragged piece to proper location
+            Vector3 otherDist = currentlyTouching.GetComponent<Snap>().connectionDist;
+            thisParent.transform.position = otherParent.transform.position + otherDist;
             Debug.Log("SNAP");
             connected = true;
         }
