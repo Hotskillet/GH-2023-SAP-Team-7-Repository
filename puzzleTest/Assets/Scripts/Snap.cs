@@ -60,9 +60,14 @@ public class Snap : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         /* clear currentlyTouching */
-        if (currentlyTouching != null){
+        if ((currentlyTouching != null) && isDifferentPiece(other.gameObject) && (dragFunction.state == 1)){
             currentlyTouching = null;
             Debug.Log("clear");
+        }
+        /* disconnect if connection is moved away and piece is connected to something */
+        if (connected && isDifferentPiece(other.gameObject)){
+            gameObject.transform.parent.transform.parent = null;
+            connected = false;
         }
         /*
         // to make sure the piece's own collider isn't triggering this
