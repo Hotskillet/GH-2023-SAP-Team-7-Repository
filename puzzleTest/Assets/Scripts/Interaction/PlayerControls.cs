@@ -184,12 +184,12 @@ public class PlayerControls : MonoBehaviour
                 EvtSystem.EventDispatcher.Raise<ToggleMenu>(tm);
                 // switch to "Explore" controls
                 isPaused = false;
-                exploreAction = 1;
+                //exploreAction = 1;
             // if game is not yet paused, pause it
             }else{
                 // set flag to set action map
                 isPaused = true;
-                exploreAction = 2;
+                //exploreAction = 2;
                 // turn on pause menu
                 ToggleMenu tm = new ToggleMenu {state = true};
                 EvtSystem.EventDispatcher.Raise<ToggleMenu>(tm);
