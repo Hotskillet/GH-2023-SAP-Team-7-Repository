@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7383198300334476837
 SpriteRenderer:
@@ -343,7 +343,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2415822054006894320}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: Pause
+        m_MethodName: Unpause
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
