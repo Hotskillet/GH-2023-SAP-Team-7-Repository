@@ -13,22 +13,18 @@ public class Pickup : Item
         // Step 1: Add name of item to inventory
         Inventory.Instance.AddItem(gameObject.name);
 
-        //FIXME Step 2: Tell UI to add sprite to inventory bar
+        // FIXME Step 2: Tell UI to add sprite to inventory bar
         
         AudioManager.instance.Play(soundEffect);
  
         Debug.Log(gameObject.name + " has been picked up.");
 
 
-        //FIXME Step 3: do event stuff 
+        // FIXME Step 3: make the popup
 
-        // here im making a package to send through evt system
-        // it holds only the comment string4
-        //raises the event for the dialogue manager to pick up
+        ItemData objectData = ItemManager.Instance.GetData(gameObject.name);
 
-        commentPackage pickupComment = new commentPackage();
-        pickupComment.comment = "can someone tell me how to get the comment";
-        EvtSystem.EventDispatcher.Raise(pickupComment);
+        DialogueManager.Instance.makePopup("can someone tell me how to get the comment");
 
 
         // Step 4: Delete object from world

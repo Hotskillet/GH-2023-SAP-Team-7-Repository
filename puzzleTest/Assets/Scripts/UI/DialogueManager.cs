@@ -9,7 +9,7 @@ using TMPro;
 // at which point open up the dialogue.
 // the game then freezes player actions 
 // the player can close the dialogue and continue with the game
-public class Dialogue : Singleton<Dialogue>
+public class DialogueManager : Singleton<DialogueManager>
 {
 
     // need:
@@ -39,12 +39,14 @@ public class Dialogue : Singleton<Dialogue>
     // let the player close the popup
     // unfreeze player and close popup
     // it is designed to do this from the event system
-    void makePopup(string grub) {
+    public void makePopup(string grub) {
         
         // Step two: make the dialogue box appear
         dialogueBox.SetActive(true);
+
         // Step three: put grub text on it
         TextComponent.text = grub;
+
         // Step four: make it so that you can close it
 
         
@@ -52,7 +54,7 @@ public class Dialogue : Singleton<Dialogue>
 
     }
 
-    void closePopup() {
+    public void closePopup() {
 
     }
 }

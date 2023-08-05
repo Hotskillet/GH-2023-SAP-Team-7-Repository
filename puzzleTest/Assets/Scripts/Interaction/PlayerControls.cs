@@ -126,6 +126,7 @@ public class PlayerControls : MonoBehaviour
 
     public void UpdatePosition(){
         //update the transform position
+        Debug.Log(movementVector);
         transform.position += (movementVector * Time.deltaTime * speed);
     }
 
@@ -145,9 +146,11 @@ public class PlayerControls : MonoBehaviour
 
 
     /*** FIXME: Interaction & Pauseing ***/
-    public void Interact(InputAction.CallbackContext context){
+    public void Interact(InputAction.CallbackContext context)
+    {
+        DialogueManager.Instance.closePopup();
+
         if (context.performed && (itemInContact != null)){
-            Dialogue.Instance.closePopup();
             DetailedInteraction();
         }
         if (context.canceled && (itemInContact != null)){
@@ -256,11 +259,11 @@ public class PlayerControls : MonoBehaviour
         UpdateAnimatorValues();
         // plays walking SFX only when player is actaully walking
         if (isWalking){
-            AudioManager.instance.Play(walkSFX);
+            // AudioManager.instance.Play(walkSFX);
             isWalking = false;
         // stops walking SFX as soon as player stops walking
         }else if (wasWalking){
-            AudioManager.instance.Stop(walkSFX);
+            // AudioManager.instance.Stop(walkSFX);
             wasWalking = false;
         }
         // update position
