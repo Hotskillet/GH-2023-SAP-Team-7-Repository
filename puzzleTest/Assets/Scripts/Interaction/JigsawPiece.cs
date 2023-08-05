@@ -9,10 +9,19 @@ public class JigsawPiece : Pickup
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
+    
+    public override void interact() {
+         //FIXME Step 2: Tell UI to add sprite to inventory bar
         
+        AudioManager.instance.Play(soundEffect);
+
+        // PLEASE FOR THE LOVE OF GOD THIS NEEEEEEEEEEEDS TO BE IN THE GAME 
+        Debug.Log(gameObject.name + " has been found.");
+
+        // Step 3: Delete object from world
+        Destroy(gameObject, 0.5f);
+
+        // add to puzzle menu
+        EvtSystem.EventDispatcher.Raise<FoundAPiece>(new FoundAPiece {});
     }
 }

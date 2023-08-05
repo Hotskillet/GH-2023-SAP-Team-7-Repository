@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Pickup : Item
 {
+    public float destroyDelay;
+
+    
     // Start is called before the first frame update
     void Start() {
     }

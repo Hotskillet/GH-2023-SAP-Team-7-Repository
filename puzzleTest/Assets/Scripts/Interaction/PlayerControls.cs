@@ -24,13 +24,6 @@ public class PlayerControls : MonoBehaviour
     // keep track of when player stops walking so SFX can be stopped
     private bool wasWalking;
 
-    // for pausing the game
-    private bool isPaused;
-    // keep track of which action map the player is using
-    // to avoid a bug where Unity calls the SwitchActionMap() function 
-    // multiplpe times in one frame
-    private int exploreAction;
-
     //FIMXE:
     // animation sprites will be in AnimationManager
     // get corresponding animation from AnimationManager.Instance.__
@@ -64,9 +57,6 @@ public class PlayerControls : MonoBehaviour
         movingLeft = false;
         movingRight = false;
         itemInContact = null;
-
-        isPaused = false;
-        exploreAction = 0;
     }
 
 
@@ -126,7 +116,6 @@ public class PlayerControls : MonoBehaviour
 
     public void UpdatePosition(){
         //update the transform position
-        Debug.Log(movementVector);
         transform.position += (movementVector * Time.deltaTime * speed);
     }
 
@@ -146,10 +135,7 @@ public class PlayerControls : MonoBehaviour
 
 
     /*** FIXME: Interaction & Pauseing ***/
-    public void Interact(InputAction.CallbackContext context)
-    {
-        DialogueManager.Instance.closePopup();
-
+    public void Interact(InputAction.CallbackContext context){
         if (context.performed && (itemInContact != null)){
             DetailedInteraction();
         }
@@ -177,10 +163,9 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
-    public void Pause(InputAction.CallbackContext context){
-        if (context.performed){
-            // if game is already paused, unpause it
-            if (isPaused){
+
+
+    /*
                 // start time
                 Time.timeScale = 1;
                 // turn off pause menu
@@ -191,15 +176,23 @@ public class PlayerControls : MonoBehaviour
                 exploreAction = 1;
             // if game is not yet paused, pause it
             }else{
-                // set flag to set action map
-                isPaused = true;
-                exploreAction = 2;
-                // turn on pause menu
-                ToggleMenu tm = new ToggleMenu {state = true};
-                EvtSystem.EventDispatcher.Raise<ToggleMenu>(tm);
-                // stop time
-                Time.timeScale = 0;
-            }
+    */
+    public void Pause(InputAction.CallbackContext context){
+        if (context.performed){
+            // switch action map to "UI"
+            playerInput.SwitchCurrentActionMap("UI");
+            // send signal to pause game
+            TurnOnPauseMenu to = new TurnOnPauseMenu {};
+            EvtSystem.EventDispatcher.Raise<TurnOnPauseMenu>(to);
+        }
+    }
+    public void Unpause(InputAction.CallbackContext context){
+        if (context.performed){
+            // switch action map to "Explore"
+            playerInput.SwitchCurrentActionMap("Explore");
+            // send signal to pause game
+            TurnOffPauseMenu to = new TurnOffPauseMenu {};
+            EvtSystem.EventDispatcher.Raise<TurnOffPauseMenu>(to);
         }
     }
 
@@ -222,23 +215,6 @@ public class PlayerControls : MonoBehaviour
         // resets movementVector to (0,0,0)
         ResetMovement();
         
-        
-        // check if action map needs to be changed
-        switch (exploreAction){
-            case 1:
-                // switch action map to Explore controls
-                playerInput.SwitchCurrentActionMap("Explore");
-                exploreAction = 0;
-                break;
-            case 2:
-                // switch action map to UI controls
-                playerInput.SwitchCurrentActionMap("UI");
-                exploreAction = 0;
-                break;
-            default:
-                break;
-        }
-
         // apply up/down movement
         if (movingUp){
             movementVector += up;
@@ -259,11 +235,11 @@ public class PlayerControls : MonoBehaviour
         UpdateAnimatorValues();
         // plays walking SFX only when player is actaully walking
         if (isWalking){
-            // AudioManager.instance.Play(walkSFX);
+            AudioManager.instance.Play(walkSFX);
             isWalking = false;
         // stops walking SFX as soon as player stops walking
         }else if (wasWalking){
-            // AudioManager.instance.Stop(walkSFX);
+            AudioManager.instance.Stop(walkSFX);
             wasWalking = false;
         }
         // update position
