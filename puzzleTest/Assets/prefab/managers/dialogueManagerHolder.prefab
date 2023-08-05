@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 9078239804866973452}
   - component: {fileID: 4565894608412124294}
   m_Layer: 0
-  m_Name: dialogueManagerHolder 1
+  m_Name: dialogueManagerHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
