@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PuzzleMenu : MonoBehaviour
+public class JigsawMenu : Singleton<JigsawMenu>
 {
+    public RectTransform spawnArea;
+
     private int gridWidth;
     private int gridHeight;
     private GameObject[,] orderedPieces;
     // this keeps track of when pieces were found
     private bool[,] wasFound;
     private int[] pos; // [x, y]
+
+    private int minPosX;
+    private int maxPosX;
+    private int minPosY;
+    private int maxPosY;
 
 
     // Start is called before the first frame update
@@ -20,6 +27,8 @@ public class PuzzleMenu : MonoBehaviour
         EvtSystem.EventDispatcher.AddListener<FoundAPiece>(UpdateFoundState);
 
         pos = new int[] {0,0};
+
+        // FIXME: set the min/max positions the pieces can spawn at
     }
 
     void InitializeFoundStates(int w, int h){
