@@ -28,7 +28,26 @@ public class ChangeRoomEnd : EvtSystem.Event
 {
 }
 
-public class ToggleMenu : EvtSystem.Event
+public class TurnOnPauseMenu : EvtSystem.Event
 {
-    public bool state; //when to hide (false) or show (true) pause menu
+}
+public class TurnOffPauseMenu : EvtSystem.Event
+{
+}
+
+public class LoadPieces : EvtSystem.Event
+{
+    public int gridWidth;
+    public int gridHeight;
+    public GameObject[,] pieces;
+}
+public class FoundAPiece : EvtSystem.Event
+{
+}
+
+public class commentPackage : EvtSystem.Event {
+
+    // this is the comment in the interactable
+    public string comment;
+
 }

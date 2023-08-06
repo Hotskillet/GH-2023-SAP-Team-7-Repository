@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Pickup : Item
 {
+    public float destroyDelay;
+
+    
     // Start is called before the first frame update
     void Start() {
     }
@@ -13,14 +16,21 @@ public class Pickup : Item
         // Step 1: Add name of item to inventory
         Inventory.Instance.AddItem(gameObject.name);
 
-        //FIXME Step 2: Tell UI to add sprite to inventory bar
+        // FIXME Step 2: Tell UI to add sprite to inventory bar
         
         AudioManager.instance.Play(soundEffect);
-
-        // PLEASE FOR THE LOVE OF GOD THIS NEEEEEEEEEEEDS TO BE IN THE GAME 
+ 
         Debug.Log(gameObject.name + " has been picked up.");
 
-        // Step 3: Delete object from world
+
+        // FIXME Step 3: make the popup
+
+        ItemData objectData = ItemManager.Instance.GetData(gameObject.name);
+
+        DialogueManager.Instance.makePopup("can someone tell me how to get the comment");
+
+
+        // Step 4: Delete object from world
         Destroy(gameObject, 0.5f);
         return;
     }

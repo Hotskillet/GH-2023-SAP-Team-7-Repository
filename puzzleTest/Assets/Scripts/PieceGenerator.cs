@@ -14,14 +14,19 @@ public class PieceGenerator : Singleton<PieceGenerator>
 {
     public GameObject piecePrefab;
     public GameObject connectionPrefab;
+    public GameObject pieceImage;
     public int width;
     public int height;
-    public Transform topLeftCornerPosition;
+    // the top-left corner position
+    public Transform jigsawPosition;
     public float dist;
+    public Sprite jigsawArt;
 
     public PieceDatabase database;
 
     public System.Random rnd;
+
+    private Vector3 jigsawArtPosition;
 
     private GameObject[,] gridPieces;
     private List<PieceTemplate> cornerPieces;
@@ -32,6 +37,9 @@ public class PieceGenerator : Singleton<PieceGenerator>
     void Start()
     {
         rnd = new System.Random();
+        Vector3 beginning = jigsawPosition.position;
+        jigsawArtPosition = new Vector3(beginning.x - 0.3f, beginning.y + 0.3f, 0.0f);
+
         gridPieces = new GameObject[width,height];
         cornerPieces = new List<PieceTemplate>();
         sidePieces = new List<PieceTemplate>();
@@ -156,7 +164,6 @@ public class PieceGenerator : Singleton<PieceGenerator>
 
     //
     Vector3 CalcConnectionDistance(int dir){
-        float dist = 0.7f;
         Vector3 spawnPos = new Vector3(0,0,0);
         switch (dir){
             case 1:
@@ -224,9 +231,9 @@ public class PieceGenerator : Singleton<PieceGenerator>
 
     // instantiates pieces with proper connections
     GameObject CreatePiece(PieceTemplate temp, int[] pos, int rot){
-        Vector3 newPosition = new Vector3(topLeftCornerPosition.position.x + (pos[0] * dist),
-                                                    topLeftCornerPosition.position.y - (pos[1] * dist),
-                                                    topLeftCornerPosition.position.z);
+        Vector3 newPosition = new Vector3(jigsawPosition.position.x + (pos[0] * dist),
+                                                    jigsawPosition.position.y - (pos[1] * dist),
+                                                    jigsawPosition.position.z);
         Quaternion newRotation = Quaternion.Euler(0, 0, rot);
         GameObject go = Instantiate(piecePrefab, newPosition, newRotation);
         // rotate side id if needed
@@ -286,8 +293,15 @@ public class PieceGenerator : Singleton<PieceGenerator>
         // save coordinates
         go.GetComponent<Piece>().coordinates = pos;
         //FIXME: save sprite mask
-        go.GetComponent<SpriteRenderer>().sprite = temp.spriteMask;
+        go.GetComponent<SpriteMask>().sprite = temp.spriteMask;
         
+        //FIXME: add image as child
+        // create image object at center of puzzle
+        GameObject pi = Instantiate(pieceImage, jigsawArtPosition, Quaternion.identity);
+        // set sprite as jigsaw art
+        pi.GetComponent<SpriteRenderer>().sprite = jigsawArt;
+        // set as child of piece
+        pi.transform.parent = go.transform;
 
         return go;
     }
@@ -490,6 +504,8 @@ public class PieceGenerator : Singleton<PieceGenerator>
                 break;
             }
         }
+        //FIXME: LoadPieces loadPieces = new LoadPieces {gridWidth = width, gridHeight = height, gridPieces = gridPieces};
+        // FIXME: EvtSystem.EventDispatcher.Raise<LoadPieces>(lp);
         return;
     }
 }
