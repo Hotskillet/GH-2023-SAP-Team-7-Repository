@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - interactable
+  - dialoguePopup
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - Water
   - UI
   - player
-  - ScrBG
+  - 
   - 
   - 
   - 
@@ -45,9 +46,12 @@ TagManager:
   - name: background
     uniqueID: 908909875
     locked: 0
+  - name: Interactable
+    uniqueID: 2418349377
+    locked: 0
   - name: foreground
     uniqueID: 202309597
     locked: 0
-  - name: Interactable
-    uniqueID: 2418349377
+  - name: UI
+    uniqueID: 3133765199
     locked: 0

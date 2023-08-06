@@ -44,3 +44,10 @@ public class LoadPieces : EvtSystem.Event
 public class FoundAPiece : EvtSystem.Event
 {
 }
+
+public class commentPackage : EvtSystem.Event {
+
+    // this is the comment in the interactable
+    public string comment;
+
+}
