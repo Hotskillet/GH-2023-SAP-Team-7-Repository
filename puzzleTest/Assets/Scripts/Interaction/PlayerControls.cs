@@ -172,30 +172,23 @@ public class PlayerControls : MonoBehaviour
             return;
         }
     }
-
+    
     public void Pause(InputAction.CallbackContext context){
         if (context.performed){
-            // if game is already paused, unpause it
-            if (isPaused){
-                // start time
-                Time.timeScale = 1;
-                // turn off pause menu
-                ToggleMenu tm = new ToggleMenu {state = false};
-                EvtSystem.EventDispatcher.Raise<ToggleMenu>(tm);
-                // switch to "Explore" controls
-                isPaused = false;
-                //exploreAction = 1;
-            // if game is not yet paused, pause it
-            }else{
-                // set flag to set action map
-                isPaused = true;
-                //exploreAction = 2;
-                // turn on pause menu
-                ToggleMenu tm = new ToggleMenu {state = true};
-                EvtSystem.EventDispatcher.Raise<ToggleMenu>(tm);
-                // stop time
-                Time.timeScale = 0;
-            }
+            // switch action map to "UI"
+            playerInput.SwitchCurrentActionMap("UI");
+            // send signal to pause game
+            TurnOnPauseMenu to = new TurnOnPauseMenu {};
+            EvtSystem.EventDispatcher.Raise<TurnOnPauseMenu>(to);
+        }
+    }
+    public void Unpause(InputAction.CallbackContext context){
+        if (context.performed){
+            // switch action map to "Explore"
+            playerInput.SwitchCurrentActionMap("Explore");
+            // send signal to pause game
+            TurnOffPauseMenu to = new TurnOffPauseMenu {};
+            EvtSystem.EventDispatcher.Raise<TurnOffPauseMenu>(to);
         }
     }
 
