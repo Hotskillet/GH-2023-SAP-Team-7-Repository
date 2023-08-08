@@ -162,21 +162,7 @@ public class PlayerControls : MonoBehaviour
             return;
         }
     }
-
-
-
-    /*
-                // start time
-                Time.timeScale = 1;
-                // turn off pause menu
-                ToggleMenu tm = new ToggleMenu {state = false};
-                EvtSystem.EventDispatcher.Raise<ToggleMenu>(tm);
-                // switch to "Explore" controls
-                isPaused = false;
-                exploreAction = 1;
-            // if game is not yet paused, pause it
-            }else{
-    */
+    
     public void Pause(InputAction.CallbackContext context){
         if (context.performed){
             // switch action map to "UI"
