@@ -24,6 +24,13 @@ public class PlayerControls : MonoBehaviour
     // keep track of when player stops walking so SFX can be stopped
     private bool wasWalking;
 
+    // for pausing the game
+    private bool isPaused;
+    // keep track of which action map the player is using
+    // to avoid a bug where Unity calls the SwitchActionMap() function 
+    // multiplpe times in one frame
+    private int exploreAction;
+
     //FIMXE:
     // animation sprites will be in AnimationManager
     // get corresponding animation from AnimationManager.Instance.__
@@ -57,6 +64,9 @@ public class PlayerControls : MonoBehaviour
         movingLeft = false;
         movingRight = false;
         itemInContact = null;
+
+        isPaused = false;
+        exploreAction = 0;
     }
 
 
@@ -201,7 +211,23 @@ public class PlayerControls : MonoBehaviour
         Debug.Log(playerInput.currentActionMap.name);
         // resets movementVector to (0,0,0)
         ResetMovement();
-        
+
+        // check if action map needs to be changed
+        switch (exploreAction){
+            case 1:
+                // switch action map to Explore controls
+                playerInput.SwitchCurrentActionMap("Explore");
+                exploreAction = 0;
+                break;
+            case 2:
+                // switch action map to UI controls
+                playerInput.SwitchCurrentActionMap("UI");
+                exploreAction = 0;
+                break;
+            default:
+                break;
+        }
+
         // apply up/down movement
         if (movingUp){
             movementVector += up;
