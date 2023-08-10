@@ -22,16 +22,17 @@ public class Pickup : Item
  
         Debug.Log(gameObject.name + " has been picked up.");
 
-
+        /* THIS IS THROWING AN ERROR SO I HAD TO COMMENT IT
         // FIXME Step 3: make the popup
 
         ItemData objectData = ItemManager.Instance.GetData(gameObject.name);
 
-        // DialogueManager.Instance.makePopup("can someone tell me how to get the comment");
+        DialogueManager.Instance.makePopup("can someone tell me how to get the comment");
+        */
 
 
         // Step 4: Delete object from world
-        Destroy(gameObject, destroyDelay);
+        Destroy(gameObject, 0.5f);
         return;
     }
 

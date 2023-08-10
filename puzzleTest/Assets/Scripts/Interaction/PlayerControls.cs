@@ -9,15 +9,16 @@ public class PlayerControls : MonoBehaviour
     public float speed;
     public Sprite walkUpSprite;
     public Sprite walkDownSprite;
-    private PlayerInput playerInput;
     public string walkSFX;
+
+    public SpawnPoints[] spawnPoints;
 
     private bool movingUp;
     private bool movingDown;
     private bool movingLeft;
     private bool movingRight;
 
-    public SpawnPoints[] spawnPoints;
+    private PlayerInput playerInput;
 
     // keep track of when player is walking so that SFX can play
     private bool isWalking;
@@ -46,6 +47,7 @@ public class PlayerControls : MonoBehaviour
 
     public void Awake(){
         EvtSystem.EventDispatcher.AddListener<ChangePlayerPosition>(ChangePosition);
+        EvtSystem.EventDispatcher.AddListener<ChangeInputMap>(ChangeMap);
 
         playerInput = GetComponent<PlayerInput>();
 
@@ -162,21 +164,7 @@ public class PlayerControls : MonoBehaviour
             return;
         }
     }
-
-
-
-    /*
-                // start time
-                Time.timeScale = 1;
-                // turn off pause menu
-                ToggleMenu tm = new ToggleMenu {state = false};
-                EvtSystem.EventDispatcher.Raise<ToggleMenu>(tm);
-                // switch to "Explore" controls
-                isPaused = false;
-                exploreAction = 1;
-            // if game is not yet paused, pause it
-            }else{
-    */
+    
     public void Pause(InputAction.CallbackContext context){
         if (context.performed){
             // switch action map to "UI"
@@ -190,9 +178,14 @@ public class PlayerControls : MonoBehaviour
         if (context.performed){
             // switch action map to "Explore"
             playerInput.SwitchCurrentActionMap("Explore");
-            // send signal to pause game
+            // send signal to unpause game
             TurnOffPauseMenu to = new TurnOffPauseMenu {};
             EvtSystem.EventDispatcher.Raise<TurnOffPauseMenu>(to);
+        }
+    }
+    public void ChangeMap(ChangeInputMap evt){
+        if (evt.map != playerInput.currentActionMap.name){
+            playerInput.SwitchCurrentActionMap(evt.map);
         }
     }
 
@@ -214,7 +207,7 @@ public class PlayerControls : MonoBehaviour
     private void Update(){
         // resets movementVector to (0,0,0)
         ResetMovement();
-        
+
         // apply up/down movement
         if (movingUp){
             movementVector += up;
