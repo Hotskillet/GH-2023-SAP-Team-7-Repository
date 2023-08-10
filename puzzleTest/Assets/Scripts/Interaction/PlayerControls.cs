@@ -9,15 +9,16 @@ public class PlayerControls : MonoBehaviour
     public float speed;
     public Sprite walkUpSprite;
     public Sprite walkDownSprite;
-    private PlayerInput playerInput;
     public string walkSFX;
+
+    public SpawnPoints[] spawnPoints;
 
     private bool movingUp;
     private bool movingDown;
     private bool movingLeft;
     private bool movingRight;
 
-    public SpawnPoints[] spawnPoints;
+    private PlayerInput playerInput;
 
     // keep track of when player is walking so that SFX can play
     private bool isWalking;
@@ -58,7 +59,7 @@ public class PlayerControls : MonoBehaviour
         movingLeft = false;
         movingRight = false;
         itemInContact = null;
-        }
+    }
 
 
     public void ResetMovement(){
@@ -175,16 +176,18 @@ public class PlayerControls : MonoBehaviour
     }
     public void Unpause(InputAction.CallbackContext context){
         if (context.performed){
+            // switch action map to "Explore"
+            playerInput.SwitchCurrentActionMap("Explore");
             // send signal to unpause game
             TurnOffPauseMenu to = new TurnOffPauseMenu {};
             EvtSystem.EventDispatcher.Raise<TurnOffPauseMenu>(to);
-            // switch action map to "Explore"
-            playerInput.SwitchCurrentActionMap("Explore");
         }
     }
     public void ChangeMap(ChangeInputMap evt){
-        playerInput.ActivateInput();
-        playerInput.SwitchCurrentActionMap(evt.map);
+        if (evt.map != playerInput.currentActionMap.name){
+            Debug.Log("changing map");
+            playerInput.SwitchCurrentActionMap(evt.map);
+        }
     }
 
 
