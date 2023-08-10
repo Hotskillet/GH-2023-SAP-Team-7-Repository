@@ -24,13 +24,6 @@ public class PlayerControls : MonoBehaviour
     // keep track of when player stops walking so SFX can be stopped
     private bool wasWalking;
 
-    // for pausing the game
-    private bool isPaused;
-    // keep track of which action map the player is using
-    // to avoid a bug where Unity calls the SwitchActionMap() function 
-    // multiplpe times in one frame
-    private int exploreAction;
-
     //FIMXE:
     // animation sprites will be in AnimationManager
     // get corresponding animation from AnimationManager.Instance.__
@@ -53,6 +46,7 @@ public class PlayerControls : MonoBehaviour
 
     public void Awake(){
         EvtSystem.EventDispatcher.AddListener<ChangePlayerPosition>(ChangePosition);
+        EvtSystem.EventDispatcher.AddListener<ChangeInputMap>(ChangeMap);
 
         playerInput = GetComponent<PlayerInput>();
 
@@ -64,10 +58,7 @@ public class PlayerControls : MonoBehaviour
         movingLeft = false;
         movingRight = false;
         itemInContact = null;
-
-        isPaused = false;
-        exploreAction = 0;
-    }
+        }
 
 
     public void ResetMovement(){
@@ -184,12 +175,16 @@ public class PlayerControls : MonoBehaviour
     }
     public void Unpause(InputAction.CallbackContext context){
         if (context.performed){
-            // switch action map to "Explore"
-            playerInput.SwitchCurrentActionMap("Explore");
-            // send signal to pause game
+            // send signal to unpause game
             TurnOffPauseMenu to = new TurnOffPauseMenu {};
             EvtSystem.EventDispatcher.Raise<TurnOffPauseMenu>(to);
+            // switch action map to "Explore"
+            playerInput.SwitchCurrentActionMap("Explore");
         }
+    }
+    public void ChangeMap(ChangeInputMap evt){
+        playerInput.ActivateInput();
+        playerInput.SwitchCurrentActionMap(evt.map);
     }
 
 
@@ -211,22 +206,6 @@ public class PlayerControls : MonoBehaviour
         Debug.Log(playerInput.currentActionMap.name);
         // resets movementVector to (0,0,0)
         ResetMovement();
-
-        // check if action map needs to be changed
-        switch (exploreAction){
-            case 1:
-                // switch action map to Explore controls
-                playerInput.SwitchCurrentActionMap("Explore");
-                exploreAction = 0;
-                break;
-            case 2:
-                // switch action map to UI controls
-                playerInput.SwitchCurrentActionMap("UI");
-                exploreAction = 0;
-                break;
-            default:
-                break;
-        }
 
         // apply up/down movement
         if (movingUp){
