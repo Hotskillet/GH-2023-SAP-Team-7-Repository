@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenuUI.unity
     guid: 1794171f183042d479b1daeca649f1b0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/dummyCut1.unity
     guid: 2b63eb5b738c2b5468b982b71830f398
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AlphaScene.unity
     guid: 062b07843c03341d7ba3901d01f8a677
   - enabled: 0
@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/testRoom2.unity
     guid: d9ef4b1004a4ee7449f789d1a9c8f70e
+  - enabled: 0
+    path: Assets/Scenes/DejonDuplicate.unity
+    guid: fdfd90648c66c0e4fb3178d17850bfb9
+  - enabled: 1
+    path: Assets/Scenes/DONT_USE.unity
+    guid: 2f9590ea6a884c5499cb5e88ebc6eb9a
   m_configObjects: {}

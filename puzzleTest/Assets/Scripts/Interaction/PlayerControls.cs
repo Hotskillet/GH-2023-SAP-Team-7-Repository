@@ -9,15 +9,16 @@ public class PlayerControls : MonoBehaviour
     public float speed;
     public Sprite walkUpSprite;
     public Sprite walkDownSprite;
-    private PlayerInput playerInput;
     public string walkSFX;
+
+    public SpawnPoints[] spawnPoints;
 
     private bool movingUp;
     private bool movingDown;
     private bool movingLeft;
     private bool movingRight;
 
-    public SpawnPoints[] spawnPoints;
+    private PlayerInput playerInput;
 
     // keep track of when player is walking so that SFX can play
     private bool isWalking;
@@ -46,6 +47,7 @@ public class PlayerControls : MonoBehaviour
 
     public void Awake(){
         EvtSystem.EventDispatcher.AddListener<ChangePlayerPosition>(ChangePosition);
+        EvtSystem.EventDispatcher.AddListener<ChangeInputMap>(ChangeMap);
 
         playerInput = GetComponent<PlayerInput>();
 
@@ -176,9 +178,14 @@ public class PlayerControls : MonoBehaviour
         if (context.performed){
             // switch action map to "Explore"
             playerInput.SwitchCurrentActionMap("Explore");
-            // send signal to pause game
+            // send signal to unpause game
             TurnOffPauseMenu to = new TurnOffPauseMenu {};
             EvtSystem.EventDispatcher.Raise<TurnOffPauseMenu>(to);
+        }
+    }
+    public void ChangeMap(ChangeInputMap evt){
+        if (evt.map != playerInput.currentActionMap.name){
+            playerInput.SwitchCurrentActionMap(evt.map);
         }
     }
 
@@ -200,7 +207,7 @@ public class PlayerControls : MonoBehaviour
     private void Update(){
         // resets movementVector to (0,0,0)
         ResetMovement();
-        
+
         // apply up/down movement
         if (movingUp){
             movementVector += up;

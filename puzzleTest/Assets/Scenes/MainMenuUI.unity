@@ -2537,7 +2537,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6827586975556381691, guid: e7efc6f55bc697a4387d633a46dcb47d, type: 3}
       propertyPath: sounds.Array.data[0].volume
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8356853625416199374, guid: e7efc6f55bc697a4387d633a46dcb47d, type: 3}
       propertyPath: m_RootOrder
@@ -5224,7 +5224,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1697098778}
   - component: {fileID: 1697098777}
-  - component: {fileID: 1697098776}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5232,14 +5231,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1697098776
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697098775}
-  m_Enabled: 1
 --- !u!20 &1697098777
 Camera:
   m_ObjectHideFlags: 0

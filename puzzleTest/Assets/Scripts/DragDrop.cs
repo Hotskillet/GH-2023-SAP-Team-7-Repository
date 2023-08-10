@@ -40,20 +40,20 @@ public class DragDrop : MonoBehaviour
     }
 
     void OnMouseOver() {
+        /* FIXME: add logic to stop this from running if a piece is already being dragged. */
+
         // UI: scale-up object
         transform.localScale = new Vector3(originalScale.x * hoverFactor.x,
             originalScale.y * hoverFactor.y, 
             originalScale.z * hoverFactor.z);
-
+        
         if (Input.GetMouseButton(0)) // if left button clicked
         {
             held = true;
-            justReleased = false; //FIXME: remove when raise is added
+            justReleased = false;
         }else if (held){
             justReleased = true;
             held = false;
-            //FIXME: add Snap-Raise here, then set justRealeased to false
-            //FIXME: above is not right ^
         }
     }
 
