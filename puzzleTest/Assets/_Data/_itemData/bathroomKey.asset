@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: bathroomKey
   m_EditorClassIdentifier: 
   iType: 1
-  comment: 
+  comment: '""'
   sprite: {fileID: 0}
   canInteractWith: []
