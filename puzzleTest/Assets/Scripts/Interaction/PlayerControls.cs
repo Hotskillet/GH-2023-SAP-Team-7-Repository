@@ -185,7 +185,6 @@ public class PlayerControls : MonoBehaviour
     }
     public void ChangeMap(ChangeInputMap evt){
         if (evt.map != playerInput.currentActionMap.name){
-            Debug.Log("changing map");
             playerInput.SwitchCurrentActionMap(evt.map);
         }
     }
@@ -206,7 +205,6 @@ public class PlayerControls : MonoBehaviour
 
     // Update
     private void Update(){
-        Debug.Log(playerInput.currentActionMap.name);
         // resets movementVector to (0,0,0)
         ResetMovement();
 
