@@ -189,6 +189,25 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
+    public void OpenJigsawMenu(InputAction.CallbackContext context){
+        if (context.performed){
+            // switch action map to "UI"
+            playerInput.SwitchCurrentActionMap("UI");
+            // send signal to show jigsaw menu
+            TurnOnJigsawMenu to = new TurnOnJigsawMenu {};
+            EvtSystem.EventDispatcher.Raise<TurnOnJigsawMenu>(to);
+        }
+    }
+    public void CloseJigsawMenu(InputAction.CallbackContext context){
+        if (context.performed){
+            // switch action map to "Explore"
+            playerInput.SwitchCurrentActionMap("Explore");
+            // send signal to unpause game
+            TurnOffJigsawMenu to = new TurnOffJigsawMenu {};
+            EvtSystem.EventDispatcher.Raise<TurnOffJigsawMenu>(to);
+        }
+    }
+
 
     /*** Collision Detection ***/
     private void OnCollisionEnter2D(Collision2D other) {
