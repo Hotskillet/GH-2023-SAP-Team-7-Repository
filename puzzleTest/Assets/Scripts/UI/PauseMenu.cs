@@ -30,6 +30,14 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
     }
+    public void ResumeGame2()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
+        ChangeInputMap to = new ChangeInputMap {map = "Explore"};
+        EvtSystem.EventDispatcher.Raise<ChangeInputMap>(to);
+    }
 
     public void GoToMainMenu()
     {
