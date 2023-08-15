@@ -168,10 +168,18 @@ public class PlayerControls : MonoBehaviour
     public void Pause(InputAction.CallbackContext context){
         if (context.performed){
             // switch action map to "UI"
-            playerInput.SwitchCurrentActionMap("UI");
+            if (playerInput != null){
+                playerInput.SwitchCurrentActionMap("UI");
+            }else{
+                print("player input is null");
+            }
             // send signal to pause game
             TurnOnPauseMenu to = new TurnOnPauseMenu {};
-            EvtSystem.EventDispatcher.Raise<TurnOnPauseMenu>(to);
+            if (to != null){
+                EvtSystem.EventDispatcher.Raise<TurnOnPauseMenu>(to);
+            }else{
+                print("TurnOnPauseMenu obj is null");
+            }
         }
     }
     public void Unpause(InputAction.CallbackContext context){
@@ -270,5 +278,11 @@ public class PlayerControls : MonoBehaviour
         }
         ChangeRoomEnd cr = new ChangeRoomEnd {};
         EvtSystem.EventDispatcher.Raise<ChangeRoomEnd>(cr);
+    }
+
+    void OnDestroy()
+    {
+        EvtSystem.EventDispatcher.RemoveListener<ChangePlayerPosition>(ChangePosition);
+        EvtSystem.EventDispatcher.RemoveListener<ChangeInputMap>(ChangeMap);
     }
 }

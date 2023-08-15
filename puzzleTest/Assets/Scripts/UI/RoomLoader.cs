@@ -72,4 +72,10 @@ public class RoomLoader : Singleton<RoomLoader>
     void DummyIn(ChangeRoomEnd evt){
         StartCoroutine(TransitionIn(evt));
     }
+
+    void OnDestroy()
+    {
+        EvtSystem.EventDispatcher.RemoveListener<ChangeRoomStart>(DummyOut);
+        EvtSystem.EventDispatcher.RemoveListener<ChangeRoomEnd>(DummyIn);
+    }
 }

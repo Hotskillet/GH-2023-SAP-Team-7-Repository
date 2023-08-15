@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class JigsawMenu : Singleton<JigsawMenu>
+public class JigsawMenu : MonoBehaviour
 {
     public GameObject jigsawMenu;
     public GameObject gridParent;
@@ -67,5 +67,13 @@ public class JigsawMenu : Singleton<JigsawMenu>
         unfoundJigsawPieces.RemoveAt(rndIndex);
         // update spawn counter
         spawnCounter++;
+    }
+
+    void OnDestroy()
+    {
+        EvtSystem.EventDispatcher.RemoveListener<LoadPieces>(SavePieces);
+        EvtSystem.EventDispatcher.RemoveListener<FoundAPiece>(UpdateFoundState);
+        EvtSystem.EventDispatcher.RemoveListener<TurnOnJigsawMenu>(OpenMenu);
+        EvtSystem.EventDispatcher.RemoveListener<TurnOffJigsawMenu>(CloseMenu);
     }
 }

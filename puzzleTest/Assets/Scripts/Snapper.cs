@@ -47,7 +47,10 @@ public class Snapper : MonoBehaviour
 
     }
 
-
+    void OnDestroy()
+    {
+        EvtSystem.EventDispatcher.RemoveListener<hit>(receiveHit);
+    }
 
 
 }
