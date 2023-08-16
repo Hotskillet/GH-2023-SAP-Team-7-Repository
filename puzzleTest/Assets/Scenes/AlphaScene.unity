@@ -6858,7 +6858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79baf2515b118c44bd1b48a1aa35747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 1800659329}
   isPaused: 0
 --- !u!4 &583043881 stripped
 Transform:
@@ -18545,6 +18545,11 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7131492129054338979, guid: 45a66f5091d79a648983ad8abb403945, type: 3}
   m_PrefabInstance: {fileID: 1847849029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1800659329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2432132664432091694, guid: 96fbd162eaf99a74586191e33f3390aa, type: 3}
+  m_PrefabInstance: {fileID: 445892136}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1842185762 stripped
 Transform:
