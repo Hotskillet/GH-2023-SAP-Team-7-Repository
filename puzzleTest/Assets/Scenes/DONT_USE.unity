@@ -4284,10 +4284,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1680079938}
     - target: {fileID: 9149838439863453940, guid: 710d8d14ca595f948a81ee6f45d03598, type: 3}
-      propertyPath: transitionTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9149838439863453940, guid: 710d8d14ca595f948a81ee6f45d03598, type: 3}
       propertyPath: roomCameras.Array.data[0]
       value: 
       objectReference: {fileID: 1680079938}

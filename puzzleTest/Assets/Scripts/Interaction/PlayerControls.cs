@@ -276,8 +276,6 @@ public class PlayerControls : MonoBehaviour
                 break;
             }
         }
-        ChangeRoomEnd cr = new ChangeRoomEnd {};
-        EvtSystem.EventDispatcher.Raise<ChangeRoomEnd>(cr);
     }
 
     void OnDestroy()
