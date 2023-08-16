@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7a0776177018084ea78efbc75bca34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capacity: 2
+  capacity: 10
   order: []
 --- !u!61 &4809469630743166036
 BoxCollider2D:
