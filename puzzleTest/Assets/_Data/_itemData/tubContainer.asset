@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: tubContainer
   m_EditorClassIdentifier: 
   iType: 3
-  comment: 
+  comment: "\u201CThen after I came back here, where did I go next?\u201D"
   sprite: {fileID: 0}
   canInteractWith:
   - closetKey

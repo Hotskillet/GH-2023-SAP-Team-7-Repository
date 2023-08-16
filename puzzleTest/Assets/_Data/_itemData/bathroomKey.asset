@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: bathroomKey
   m_EditorClassIdentifier: 
   iType: 1
-  comment: '""'
+  comment: "\u201CSo after I left here, I went to the closet next\u2026\u201D"
   sprite: {fileID: 0}
   canInteractWith: []

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: closetKey
   m_EditorClassIdentifier: 
   iType: 1
-  comment: 
+  comment: "\u201CThen, I went back to the bathroom to replace it\u2026\u201D"
   sprite: {fileID: 0}
   canInteractWith: []

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: kitchenKey
   m_EditorClassIdentifier: 
   iType: 1
-  comment: 
+  comment: "\u201CI think I went back to the living room after I came through here
+    again\u2026\u201D "
   sprite: {fileID: 0}
   canInteractWith: []

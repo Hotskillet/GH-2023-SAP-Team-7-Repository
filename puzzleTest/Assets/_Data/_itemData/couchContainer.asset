@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: couchContainer
   m_EditorClassIdentifier: 
   iType: 3
-  comment: 
+  comment: "\u201CStared at my childhood photo for a bit\u2026I think it\u2019s over
+    there\u2026\u201D "
   sprite: {fileID: 0}
   canInteractWith:
   - kitchenKey
