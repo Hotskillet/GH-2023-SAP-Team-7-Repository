@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenJigsaw",
+                    "type": "Button",
+                    "id": "f4241518-9425-47b8-a136-2ea086c000e0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -236,6 +245,17 @@
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f84784bf-539f-46af-b6b0-74255db79685",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenJigsaw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -247,6 +267,15 @@
                     "name": "Unpause",
                     "type": "Button",
                     "id": "49cdc83c-f877-4c13-9693-59e02ab70254",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CloseJigsaw",
+                    "type": "Button",
+                    "id": "61cac8a3-4f17-49ba-857a-2061d0ff4518",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -273,6 +302,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Unpause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d9cc908-c672-456f-81cc-2e02dbfa3bb1",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseJigsaw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

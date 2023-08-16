@@ -17,7 +17,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         else
         {
             _instance = gameObject.GetComponent<T>();
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
     }
 

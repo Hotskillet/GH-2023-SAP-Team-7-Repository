@@ -15,10 +15,21 @@ public class RoomLoader : Singleton<RoomLoader>
     // this is the starting camera
     public GameObject activeCamera;
 
+    // to be able to check whether the calculations within the corutine are completed
+    private Coroutine fadeRoutine;
+
+
     void Awake()
     {
-        EvtSystem.EventDispatcher.AddListener<ChangeRoomStart>(DummyOut);
-        EvtSystem.EventDispatcher.AddListener<ChangeRoomEnd>(DummyIn);
+        EvtSystem.EventDispatcher.AddListener<ChangeRoomStart>(TryFade);
+    }
+
+    void Update(){
+        if (fadeRoutine == null){
+            print("done");
+        }else{
+            print("working...");
+        }
     }
 
 
@@ -31,45 +42,47 @@ public class RoomLoader : Singleton<RoomLoader>
         return null;
     }
 
-    public void LoadThisRoom(ChangeRoomStart evt){
+    void TryFade(ChangeRoomStart evt)
+    {
+        if (fadeRoutine == null){
+            fadeRoutine = StartCoroutine(RoomTransition(evt));
+        }
+    }
+
+    IEnumerator RoomTransition(ChangeRoomStart evt)
+    {
+        // fade out
+        transition.SetTrigger("out");
+        yield return new WaitForSeconds(transitionTime);
+
+        // FIXME: do logic
         // disable active camera
         activeCamera.SetActive(false);
         // find new camera
         GameObject newCam = CamExists(evt.roomName);
         if (newCam == null){
             Debug.Log("couldn't find " + evt.roomName);
-            return;
+            // fade in
+            transition.SetTrigger("in");
+            yield break;
         }
         // enable new camera
         newCam.SetActive(true);
         // save as new active camera
         activeCamera = newCam;
-
         // send signal to PlayerControls to update player position
-        ChangePlayerPosition cr = new ChangePlayerPosition {doorName = evt.doorName};
-        EvtSystem.EventDispatcher.Raise<ChangePlayerPosition>(cr);
-    }
+        EvtSystem.EventDispatcher.Raise<ChangePlayerPosition>(new ChangePlayerPosition {doorName = evt.doorName});
 
-    IEnumerator TransitionOut(ChangeRoomStart evt){
-        //play crossfadeOUT animation
-        transition.SetTrigger("out");
-        // wait
-        yield return new WaitForSeconds(transitionTime);
-
-        LoadThisRoom(evt);
-    }
-    void DummyOut(ChangeRoomStart evt){
-        StartCoroutine(TransitionOut(evt));
-    }
-
-    IEnumerator TransitionIn(ChangeRoomEnd evt){
-        Debug.Log("coming back...");
-        // play crossfadeIN animation
+        // fade in
         transition.SetTrigger("in");
-        // wait
         yield return new WaitForSeconds(transitionTime);
+
+        // clear var
+        fadeRoutine = null;
     }
-    void DummyIn(ChangeRoomEnd evt){
-        StartCoroutine(TransitionIn(evt));
+
+    void OnDestroy()
+    {
+        EvtSystem.EventDispatcher.RemoveListener<ChangeRoomStart>(TryFade);
     }
 }
