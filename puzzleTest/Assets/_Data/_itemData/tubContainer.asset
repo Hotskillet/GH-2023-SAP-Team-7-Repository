@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1caeac3b9429e042b2e664237e57ff0, type: 3}
-  m_Name: containerExample
+  m_Name: tubContainer
   m_EditorClassIdentifier: 
   iType: 3
-  comment: What was I doing before bed? Right, bathroom!
+  comment: "\u201CThen after I came back here, where did I go next?\u201D"
   sprite: {fileID: 0}
   canInteractWith:
-  - keyExample2
+  - closetKey

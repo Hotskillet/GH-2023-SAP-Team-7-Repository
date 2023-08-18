@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: storageContainer
   m_EditorClassIdentifier: 
   iType: 3
-  comment: 
+  comment: "\u201CRight, I went to grab some more toilet paper for the bathroom!\u201D "
   sprite: {fileID: 0}
   canInteractWith:
   - bathroomkey
