@@ -47,7 +47,6 @@ public class PlayerControls : MonoBehaviour
 
     public void Awake(){
         EvtSystem.EventDispatcher.AddListener<ChangePlayerPosition>(ChangePosition);
-        EvtSystem.EventDispatcher.AddListener<ChangeInputMap>(ChangeMap);
 
         playerInput = GetComponent<PlayerInput>();
 
@@ -191,11 +190,6 @@ public class PlayerControls : MonoBehaviour
             EvtSystem.EventDispatcher.Raise<TurnOffPauseMenu>(to);
         }
     }
-    public void ChangeMap(ChangeInputMap evt){
-        if (evt.map != playerInput.currentActionMap.name){
-            playerInput.SwitchCurrentActionMap(evt.map);
-        }
-    }
 
     public void OpenJigsawMenu(InputAction.CallbackContext context){
         if (context.performed){
@@ -281,6 +275,5 @@ public class PlayerControls : MonoBehaviour
     void OnDestroy()
     {
         EvtSystem.EventDispatcher.RemoveListener<ChangePlayerPosition>(ChangePosition);
-        EvtSystem.EventDispatcher.RemoveListener<ChangeInputMap>(ChangeMap);
     }
 }

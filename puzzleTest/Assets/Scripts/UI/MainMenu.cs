@@ -8,8 +8,6 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        ChangeInputMap to = new ChangeInputMap {map = "Explore"};
-        EvtSystem.EventDispatcher.Raise<ChangeInputMap>(to);
     }
 
     public void QuitGame()
