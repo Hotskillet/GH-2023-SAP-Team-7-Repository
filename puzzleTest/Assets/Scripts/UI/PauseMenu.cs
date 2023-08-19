@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         pauseMenu.SetActive(false);
+        isPaused = false;
 
         // Keep an eye out for if the player want's to pause/unpause the game
         EvtSystem.EventDispatcher.AddListener<TurnOnPauseMenu>(PauseGame);
@@ -19,7 +20,11 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame(TurnOnPauseMenu evt)
     {
-        pauseMenu.SetActive(true);
+        if (pauseMenu != null){
+            pauseMenu.SetActive(true);
+        }else{
+            print("pause menu is null");
+        }
         Time.timeScale = 0f;
         isPaused = true;
     }
@@ -29,6 +34,14 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+    }
+    public void ResumeGame2()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
+        ChangeInputMap to = new ChangeInputMap {map = "Explore"};
+        EvtSystem.EventDispatcher.Raise<ChangeInputMap>(to);
     }
 
     public void GoToMainMenu()
@@ -40,5 +53,11 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    void OnDestroy()
+    {
+        EvtSystem.EventDispatcher.RemoveListener<TurnOnPauseMenu>(PauseGame);
+        EvtSystem.EventDispatcher.RemoveListener<TurnOffPauseMenu>(ResumeGame);
     }
 }

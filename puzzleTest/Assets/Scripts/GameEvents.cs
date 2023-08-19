@@ -34,6 +34,17 @@ public class TurnOnPauseMenu : EvtSystem.Event
 public class TurnOffPauseMenu : EvtSystem.Event
 {
 }
+public class ChangeInputMap : EvtSystem.Event
+{
+    public string map;
+}
+
+public class TurnOnJigsawMenu : EvtSystem.Event
+{
+}
+public class TurnOffJigsawMenu : EvtSystem.Event
+{
+}
 
 public class LoadPieces : EvtSystem.Event
 {
