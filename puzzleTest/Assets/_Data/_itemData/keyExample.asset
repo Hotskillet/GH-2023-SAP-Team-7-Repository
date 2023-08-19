@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: keyExample
   m_EditorClassIdentifier: 
   iType: 1
-  comment: this is an example of a key
+  comment: Think, Jabari... Last night, you were in the kitchen...
   sprite: {fileID: -1089713613, guid: be553e1b0e8726e4194640d4eb39e6a3, type: 3}
   canInteractWith: []
