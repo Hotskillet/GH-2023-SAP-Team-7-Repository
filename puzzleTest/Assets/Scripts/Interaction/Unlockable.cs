@@ -14,7 +14,6 @@ public class Unlockable : Item
     // Start is called before the first frame update
     void Start()
     {
-        locked = true;
         foundKey = false;
     }
 
