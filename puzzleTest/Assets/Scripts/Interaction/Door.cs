@@ -12,10 +12,7 @@ public class Door : Unlockable
 {
     // the scene number of the room the door is supposed to link to
     public string nextRoom;
-
-    public void Start() 
-    {
-    }
+    
 
     public void unlock(){
         // call Unlockable.interact()

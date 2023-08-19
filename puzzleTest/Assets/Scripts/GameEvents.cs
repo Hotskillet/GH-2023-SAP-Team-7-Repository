@@ -34,12 +34,24 @@ public class TurnOnPauseMenu : EvtSystem.Event
 public class TurnOffPauseMenu : EvtSystem.Event
 {
 }
+public class ChangeInputMap : EvtSystem.Event
+{
+    public string map;
+}
+
+public class TurnOnJigsawMenu : EvtSystem.Event
+{
+}
+public class TurnOffJigsawMenu : EvtSystem.Event
+{
+}
+public class ChangeParent : EvtSystem.Event
+{
+    public Transform newParent;
+}
 
 public class LoadPieces : EvtSystem.Event
 {
-    public int gridWidth;
-    public int gridHeight;
-    public GameObject[,] pieces;
 }
 public class FoundAPiece : EvtSystem.Event
 {

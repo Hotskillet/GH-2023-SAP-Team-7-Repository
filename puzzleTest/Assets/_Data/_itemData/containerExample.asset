@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: containerExample
   m_EditorClassIdentifier: 
   iType: 3
-  comment: an example of a container
+  comment: What was I doing before bed? Right, bathroom!
   sprite: {fileID: 0}
   canInteractWith:
   - keyExample2
