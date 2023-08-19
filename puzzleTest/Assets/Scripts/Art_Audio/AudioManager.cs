@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public string startBGM;
     public Sound[] sounds;
 
     public static AudioManager instance;
@@ -32,7 +33,7 @@ public class AudioManager : MonoBehaviour
     }
     void Start(){
         // play game's BGM here
-        Play("BeginningBGM");
+        Play(startBGM);
     }
 
     // Call to play a given sound
