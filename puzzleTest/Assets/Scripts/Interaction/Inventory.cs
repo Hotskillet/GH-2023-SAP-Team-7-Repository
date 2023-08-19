@@ -71,17 +71,18 @@ public class Inventory : Singleton<Inventory>
     }
 
     // adds an item by name
-    public void AddItem(string something){
+    public bool AddItem(string something){
         // if inventory full, don't add item
         if (isFull()){
             //Debug.Log("My pockets are full..."); //FIXME: replace with UI stuff
-            return;
+            return false;
         }
         // find empty slot
         int ind = findEmptySlot();
         // store item in slot
         order[ind] = something;
         //Debug.Log("Jabari put " + something + " in his pocket");
+        return true;
     }
 
     // removes an item by name
