@@ -1456,7 +1456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &762616531
 Transform:
   m_ObjectHideFlags: 0
@@ -2959,9 +2959,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1161202097
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.90199995, g: 0.40826592, b: 0.041492, a: 0.60784316}
+  m_Color: {r: 0.90199995, g: 0.40826592, b: 0.041492, a: 0.5254902}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3633,6 +3633,8 @@ MonoBehaviour:
   - {fileID: 832480630}
   - {fileID: 759733909}
   - {fileID: 494608421}
+  unfoundJigsawPieces: []
+  foundJigsawPieces: []
 --- !u!114 &1418908747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3753,7 +3755,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.33400002, g: 0.108550005, b: 0.108550005, a: 0.5882353}
+  m_Color: {r: 0.33400002, g: 0.108550005, b: 0.108550005, a: 0.62352943}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3815,7 +3817,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.677943
+  orthographic size: 4.512994
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3857,15 +3859,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2077355908067421648, guid: 06ccb4a0e125e8b46baaea7913372488, type: 3}
       propertyPath: width
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2077355908067421648, guid: 06ccb4a0e125e8b46baaea7913372488, type: 3}
       propertyPath: height
-      value: 12
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2077355908067421648, guid: 06ccb4a0e125e8b46baaea7913372488, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2077355908067421648, guid: 06ccb4a0e125e8b46baaea7913372488, type: 3}
       propertyPath: jigsawPosition
@@ -4168,11 +4170,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7384006078560195586, guid: 437eb1650283cc94b81c231644446255, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.25
+      value: -13.5
       objectReference: {fileID: 0}
     - target: {fileID: 7384006078560195586, guid: 437eb1650283cc94b81c231644446255, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.82
+      value: 4.43
       objectReference: {fileID: 0}
     - target: {fileID: 7384006078560195586, guid: 437eb1650283cc94b81c231644446255, type: 3}
       propertyPath: m_LocalPosition.z
