@@ -45,9 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74fa890a653d95c439c83368b5ee7728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startBGM: IntroTheme
   sounds:
   - name: BeginningBGM
     clip: {fileID: 8300000, guid: 12bae8f5e088a4bb7868dcbaf34bdc03, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: IntroTheme
+    clip: {fileID: 8300000, guid: 705c362baa3f9594e8ae8ce3672b5284, type: 3}
     volume: 0.6
     pitch: 1
     loop: 1

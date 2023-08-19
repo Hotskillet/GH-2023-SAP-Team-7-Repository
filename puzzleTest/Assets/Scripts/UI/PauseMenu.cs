@@ -47,6 +47,8 @@ public class PauseMenu : MonoBehaviour
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
+        AudioManager.instance.Stop("BeginningBGM");
+        AudioManager.instance.Play(AudioManager.instance.startBGM);
         SceneManager.LoadScene("MainMenuUI");
     }
 
