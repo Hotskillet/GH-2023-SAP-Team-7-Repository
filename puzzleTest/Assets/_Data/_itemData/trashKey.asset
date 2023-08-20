@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1caeac3b9429e042b2e664237e57ff0, type: 3}
   m_Name: trashKey
   m_EditorClassIdentifier: 
-  iType: 0
+  iType: 1
   comment: 
   sprite: {fileID: 0}
   canInteractWith: []

@@ -16,4 +16,4 @@ MonoBehaviour:
   comment: Right! I had grabbed some food, then headed to my bedroom...
   sprite: {fileID: 0}
   canInteractWith:
-  - keyExample
+  - kitchenKey

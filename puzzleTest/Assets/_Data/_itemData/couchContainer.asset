@@ -17,4 +17,4 @@ MonoBehaviour:
     there\u2026\u201D "
   sprite: {fileID: 0}
   canInteractWith:
-  - kitchenKey
+  - trashKey
