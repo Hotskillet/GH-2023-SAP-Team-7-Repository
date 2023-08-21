@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1caeac3b9429e042b2e664237e57ff0, type: 3}
-  m_Name: Door2Clo
+  m_Name: OutKey
   m_EditorClassIdentifier: 
-  iType: 2
-  comment: 
-  sprite: {fileID: 0}
-  canInteractWith:
-  - OutKey
+  iType: 1
+  comment: '"lol!"'
+  sprite: {fileID: 2032127361, guid: be553e1b0e8726e4194640d4eb39e6a3, type: 3}
+  canInteractWith: []
