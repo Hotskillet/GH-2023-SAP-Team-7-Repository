@@ -15,4 +15,5 @@ MonoBehaviour:
   iType: 2
   comment: 
   sprite: {fileID: 0}
-  canInteractWith: []
+  canInteractWith:
+  - OutKey
