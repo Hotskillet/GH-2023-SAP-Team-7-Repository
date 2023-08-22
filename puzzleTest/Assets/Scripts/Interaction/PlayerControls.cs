@@ -154,6 +154,11 @@ public class PlayerControls : MonoBehaviour
         Door otherScript2 = itemInContact.GetComponent<Door>();
         if (otherScript2 != null) {
             otherScript2.unlock();
+            // check for room reset script
+            ResetRoom otherScript4 = itemInContact.GetComponent<ResetRoom>();
+            if (otherScript4 != null){
+                otherScript4.Reset();
+            }
             return;
         }
         // check if a Container
@@ -161,11 +166,6 @@ public class PlayerControls : MonoBehaviour
         if (otherScript3 != null) {
             otherScript3.unlock();
             return;
-        }
-        // check for room reset script
-        ResetRoom otherScript4 = itemInContact.GetComponent<ResetRoom>();
-        if (otherScript4 != null){
-            otherScript4.Reset();
         }
     }
     

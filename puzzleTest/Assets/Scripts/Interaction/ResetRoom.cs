@@ -8,6 +8,7 @@ public class ResetRoom : MonoBehaviour
     public GameObject defaultState;
     // a reference to the actual room or components
     public GameObject currentState;
+    public GameObject roomParent;
 
 
     // Start is called before the first frame update
@@ -20,6 +21,8 @@ public class ResetRoom : MonoBehaviour
     {
         // instantiate new room
         GameObject newRoom = Instantiate(defaultState, currentState.transform.position, Quaternion.identity);
+        newRoom.transform.parent = roomParent.transform;
+        newRoom.transform.localScale = currentState.transform.localScale;
         // destroy current room
         Destroy(currentState, 0.1f);
         // reference new instantiation as current room
