@@ -7,4 +7,5 @@ public abstract class Item : MonoBehaviour
 {
     public string soundEffect;
     public abstract void interact();
+    public CallDialogue commentCaller;
 }

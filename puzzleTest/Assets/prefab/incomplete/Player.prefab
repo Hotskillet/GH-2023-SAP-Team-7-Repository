@@ -395,6 +395,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 61cac8a3-4f17-49ba-857a-2061d0ff4518
     m_ActionName: UI/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ac8e1c0f-f9c3-4a7c-9996-e5560c802830
+    m_ActionName: Explore/Inventory[/Keyboard/i]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2415822054006894320}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: Next
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9c8fddca-8aaa-46e5-b0e5-36e32719b46e
+    m_ActionName: Explore/NextDialogue[/Keyboard/t]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Explore
