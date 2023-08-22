@@ -162,6 +162,11 @@ public class PlayerControls : MonoBehaviour
             otherScript3.unlock();
             return;
         }
+        // check for room reset script
+        ResetRoom otherScript4 = itemInContact.GetComponent<ResetRoom>();
+        if (otherScript4 != null){
+            otherScript4.Reset();
+        }
     }
     
     public void Pause(InputAction.CallbackContext context){
