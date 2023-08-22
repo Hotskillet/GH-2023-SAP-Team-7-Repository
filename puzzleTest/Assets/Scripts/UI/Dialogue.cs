@@ -6,6 +6,7 @@ using TMPro;
 
 public class Dialogue : Singleton<Dialogue>
 {
+    public GameObject box;
     public TextMeshProUGUI textComponent;
     public string[] lines;
     public float textSpeed;
@@ -17,12 +18,14 @@ public class Dialogue : Singleton<Dialogue>
     void Start()
     {
         textComponent.text = string.Empty;
-        StartDialogue();
+        box.SetActive(false);
+        //StartDialogue();
     }
 
-    void StartDialogue()
+    public void StartDialogue()
     {
         index = 0;
+        box.SetActive(true);
         StartCoroutine(TypeLine());
     }
 
@@ -44,7 +47,7 @@ public class Dialogue : Singleton<Dialogue>
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
         }else{
-            gameObject.SetActive(false);
+            box.SetActive(false);
         }
     }
 

@@ -32,6 +32,9 @@ public class Pickup : Item
 
         DialogueManager.Instance.makePopup("can someone tell me how to get the comment");
         */
+        if (commentCaller != null){
+            commentCaller.ShowDialogue(gameObject.name);
+        }
 
 
         // Step 4: Delete object from world

@@ -1047,6 +1047,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: keyExample
       objectReference: {fileID: 0}
+    - target: {fileID: 1372394056063385235, guid: cd514a143098e88428d5b0f53443614f, type: 3}
+      propertyPath: commentCaller
+      value: 
+      objectReference: {fileID: 2666973828100986074, guid: 9e94b81fd19920148a4bbec57445de3f, type: 3}
     - target: {fileID: 1963010178337341605, guid: cd514a143098e88428d5b0f53443614f, type: 3}
       propertyPath: m_Color.b
       value: 0.23137255
@@ -3134,7 +3138,6 @@ GameObject:
   - component: {fileID: 1547700242}
   - component: {fileID: 1547700244}
   - component: {fileID: 1547700243}
-  - component: {fileID: 1547700245}
   m_Layer: 5
   m_Name: DialogueBox
   m_TagString: Untagged
@@ -3149,7 +3152,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1547700241}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3202,23 +3205,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1547700241}
   m_CullTransparentMesh: 1
---- !u!114 &1547700245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1547700241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e5b75632e1f20347bf82c6445ec0781, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textComponent: {fileID: 708712430}
-  lines:
-  - is this thing on?
-  - maybe...
-  textSpeed: 0.3
 --- !u!1 &1680079938
 GameObject:
   m_ObjectHideFlags: 0
@@ -3467,6 +3453,11 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2798770539716683469, guid: d46fdcaa6de2ca64b9eac34a0feb0142, type: 3}
   m_PrefabInstance: {fileID: 350100673711585045}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2100773527 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1766816133643074058, guid: 7aac9536d5de01e428f95ce5454e3b62, type: 3}
+  m_PrefabInstance: {fileID: 7297028207924420956}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &350100673711585045
 PrefabInstance:
@@ -3837,10 +3828,31 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 66033017974972323, guid: 7aac9536d5de01e428f95ce5454e3b62, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1547700242}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1766816133643074058, guid: 7aac9536d5de01e428f95ce5454e3b62, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7297028207924420963}
   m_SourcePrefab: {fileID: 100100000, guid: 7aac9536d5de01e428f95ce5454e3b62, type: 3}
 --- !u!224 &7297028207924420957 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 66033017974972323, guid: 7aac9536d5de01e428f95ce5454e3b62, type: 3}
   m_PrefabInstance: {fileID: 7297028207924420956}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7297028207924420963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100773527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e5b75632e1f20347bf82c6445ec0781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  box: {fileID: 1547700241}
+  textComponent: {fileID: 708712430}
+  lines:
+  - is this thing on?
+  - maybe...
+  textSpeed: 0.3
