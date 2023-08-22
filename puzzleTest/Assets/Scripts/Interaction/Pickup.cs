@@ -14,7 +14,10 @@ public class Pickup : Item
     public override void interact() {
 
         // Step 1: Add name of item to inventory
-        Inventory.Instance.AddItem(gameObject.name);
+        if (!Inventory.Instance.AddItem(gameObject.name)){
+            AudioManager.instance.Play("notPickedUp"); // FIXME: make this sound?
+            return;
+        }
 
         // FIXME Step 2: Tell UI to add sprite to inventory bar
         
