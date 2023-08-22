@@ -210,6 +210,17 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
+    // Progresses to next line of dialogue. If there are no more lines, this will close the dialouge box
+    public void Next(InputAction.CallbackContext context){
+        if (context.performed){
+            if (Dialogue.Instance.LineFullyShown()){
+                Dialogue.Instance.NextLine();
+            }else{
+                Dialogue.Instance.ShowFullLine();
+            }
+        }
+    }
+
 
     /*** Collision Detection ***/
     private void OnCollisionEnter2D(Collision2D other) {
