@@ -59,6 +59,36 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: Mental
+    clip: {fileID: 8300000, guid: 162c092a2ef634e489bac89d12835660, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Cabinet
+    clip: {fileID: 8300000, guid: f9517545cd7914a27bccfbc467fa3625, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Clothes Rustling
+    clip: {fileID: 8300000, guid: 0c61886818ed1406aa393162e66700c1, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DoorOpen
+    clip: {fileID: 8300000, guid: dff5357f9fbf4414dbdfeeb374487242, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DoorClosed
+    clip: {fileID: 8300000, guid: 39c07d6bac53447f28dea4e9db4ba398, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!81 &7486914320241720481
 AudioListener:
   m_ObjectHideFlags: 0
