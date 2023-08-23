@@ -32,8 +32,10 @@ public class Pickup : Item
 
         DialogueManager.Instance.makePopup("can someone tell me how to get the comment");
         */
+        CallDialogue commentCaller = gameObject.GetComponent<CallDialogue>();
         if (commentCaller != null){
             commentCaller.ShowDialogue(gameObject.name);
+        }else{
         }
 
 

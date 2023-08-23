@@ -13,8 +13,10 @@ public class CallDialogue : MonoBehaviour
             return;
         }
         // call Dialuge using comment data from item data
-        Dialogue.Instance.lines = thisData.comments;
-        // start dialogue
-        Dialogue.Instance.StartDialogue();
+        if (thisData.comments.Length > 0){
+            Dialogue.Instance.lines = thisData.comments;
+            // start dialogue
+            Dialogue.Instance.StartDialogue();
+        }
     }
 }

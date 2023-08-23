@@ -239,9 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   box: {fileID: 5280406423361974577}
   textComponent: {fileID: 1204838563796372350}
-  lines:
-  - is this thing on?
-  - maybe...
+  lines: []
   textSpeed: 0.5
 --- !u!1 &6831615904774503317
 GameObject:

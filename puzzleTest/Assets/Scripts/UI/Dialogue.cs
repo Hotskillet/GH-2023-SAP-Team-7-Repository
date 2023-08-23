@@ -24,8 +24,9 @@ public class Dialogue : Singleton<Dialogue>
 
     public void StartDialogue()
     {
-        index = 0;
         box.SetActive(true);
+        print("hello!!!!!");
+        index = 0;
         StartCoroutine(TypeLine());
     }
 
@@ -37,6 +38,7 @@ public class Dialogue : Singleton<Dialogue>
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
+        yield return null;
     }
 
     public void NextLine()
@@ -47,6 +49,7 @@ public class Dialogue : Singleton<Dialogue>
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
         }else{
+            textComponent.text = string.Empty;
             box.SetActive(false);
         }
     }
