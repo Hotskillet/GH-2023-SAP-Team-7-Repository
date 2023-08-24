@@ -119,6 +119,7 @@ MonoBehaviour:
     enteringPosition: {x: -2.6, y: -1.76, z: 0}
   - enteringFrom: KtEn
     enteringPosition: {x: 90, y: 2.4, z: 0}
+  interactDelay: 0.5
 --- !u!95 &8877341595225997783
 Animator:
   serializedVersion: 5
