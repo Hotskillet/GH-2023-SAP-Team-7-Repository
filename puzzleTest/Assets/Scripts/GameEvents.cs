@@ -63,3 +63,12 @@ public class commentPackage : EvtSystem.Event {
     public string comment;
 
 }
+
+public class ShowInteractTip : EvtSystem.Event
+{
+    public string info;
+    public Vector3 objectPosition;
+}
+public class HideInteractTip : EvtSystem.Event
+{
+}
