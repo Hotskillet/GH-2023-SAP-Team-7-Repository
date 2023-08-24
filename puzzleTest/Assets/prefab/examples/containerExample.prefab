@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4862cba21db7cc949b77c39d8ee4de31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usefulInfo: 
+  usefulInfo: Use corrisponding color key to open
 --- !u!1001 &5681655818095460400
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -186,4 +186,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4862cba21db7cc949b77c39d8ee4de31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usefulInfo: this is a text :)
+  usefulInfo: Use on the correct container/door
