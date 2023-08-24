@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffect: 
-  destroyDelay: 0.5
+  destroyDelay: 0.3
 --- !u!50 &8283209418944405317
 Rigidbody2D:
   serializedVersion: 4

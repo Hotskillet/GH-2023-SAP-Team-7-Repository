@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffect: 
-  destroyDelay: 1
+  destroyDelay: 0.3
 --- !u!114 &-3678673236462205768
 MonoBehaviour:
   m_ObjectHideFlags: 0
