@@ -67,7 +67,7 @@ public class commentPackage : EvtSystem.Event {
 public class ShowInteractTip : EvtSystem.Event
 {
     public string info;
-    public Vector3 objectPosition;
+    public Transform obj;
 }
 public class HideInteractTip : EvtSystem.Event
 {

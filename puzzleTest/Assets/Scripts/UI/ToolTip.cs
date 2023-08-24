@@ -22,7 +22,7 @@ public class ToolTip : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             signalRaised = true;
-            ShowInteractTip signal = new ShowInteractTip() {info = usefulInfo};
+            ShowInteractTip signal = new ShowInteractTip() {info = usefulInfo, obj = gameObject.transform};
             EvtSystem.EventDispatcher.Raise<ShowInteractTip>(signal);
         }
     }

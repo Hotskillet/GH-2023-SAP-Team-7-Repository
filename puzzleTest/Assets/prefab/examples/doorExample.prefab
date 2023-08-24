@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 78906599739112472}
   - component: {fileID: 702026854317025486}
   - component: {fileID: 8197082553947306159}
+  - component: {fileID: -7933550136813682700}
   m_Layer: 0
   m_Name: doorExample
   m_TagString: Untagged
@@ -174,3 +175,16 @@ MonoBehaviour:
   soundEffect: 
   locked: 1
   nextRoom: melTestScene
+--- !u!114 &-7933550136813682700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3994187602578082259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4862cba21db7cc949b77c39d8ee4de31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usefulInfo: ...

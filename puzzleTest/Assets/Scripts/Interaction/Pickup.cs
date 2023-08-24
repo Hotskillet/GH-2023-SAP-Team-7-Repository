@@ -40,6 +40,16 @@ public class Pickup : Item
 
 
         // Step 4: Delete object from world
+        // unparent ToolTip first
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Transform child = gameObject.transform.GetChild(i);
+            if ((child != null) && (child.gameObject.tag == "tipCanvas"))
+            {
+                child.parent = null;
+                break;
+            }
+        }
         Destroy(gameObject, 0.5f);
         return;
     }

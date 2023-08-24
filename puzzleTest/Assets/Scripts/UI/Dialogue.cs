@@ -25,7 +25,6 @@ public class Dialogue : Singleton<Dialogue>
     public void StartDialogue()
     {
         box.SetActive(true);
-        print("hello!!!!!");
         index = 0;
         StartCoroutine(TypeLine());
     }
