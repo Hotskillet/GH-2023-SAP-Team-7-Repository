@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3038990727344927194}
   - component: {fileID: 3029283374594523271}
   - component: {fileID: 3439169832469195300}
+  - component: {fileID: -3678673236462205768}
   m_Layer: 0
   m_Name: pieceItem
   m_TagString: Untagged
@@ -172,4 +173,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffect: 
-  destroyDelay: 1
+  destroyDelay: 0.3
+--- !u!114 &-3678673236462205768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2540686297380918276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4862cba21db7cc949b77c39d8ee4de31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usefulInfo: 

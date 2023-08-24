@@ -23,7 +23,7 @@ public class Pickup : Item
         
         AudioManager.instance.Play(soundEffect);
  
-        Debug.Log(gameObject.name + " has been picked up.");
+        Debug.Log(gameObject.name + " has been picked up."); // FIXME: show in inventory
 
         /* THIS IS THROWING AN ERROR SO I HAD TO COMMENT IT
         // FIXME Step 3: make the popup
@@ -32,12 +32,24 @@ public class Pickup : Item
 
         DialogueManager.Instance.makePopup("can someone tell me how to get the comment");
         */
+        CallDialogue commentCaller = gameObject.GetComponent<CallDialogue>();
         if (commentCaller != null){
             commentCaller.ShowDialogue(gameObject.name);
+        }else{
         }
 
 
         // Step 4: Delete object from world
+        // unparent ToolTip first
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Transform child = gameObject.transform.GetChild(i);
+            if ((child != null) && (child.gameObject.tag == "tipCanvas"))
+            {
+                child.parent = null;
+                break;
+            }
+        }
         Destroy(gameObject, 0.5f);
         return;
     }

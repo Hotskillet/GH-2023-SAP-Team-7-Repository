@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3370160178579777235}
   - component: {fileID: 1789459510438718337}
   - component: {fileID: 1118516849749844449}
+  - component: {fileID: -6669753540617210160}
   m_Layer: 0
   m_Name: containerExample
   m_TagString: Untagged
@@ -175,6 +176,19 @@ MonoBehaviour:
   soundEffect: 
   locked: 1
   treasure: {fileID: 0}
+--- !u!114 &-6669753540617210160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312773934998673938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4862cba21db7cc949b77c39d8ee4de31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usefulInfo: 
 --- !u!1001 &5681655818095460400
 PrefabInstance:
   m_ObjectHideFlags: 0

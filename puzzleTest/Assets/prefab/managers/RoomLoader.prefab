@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 2544743321649338433}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9149838439863453940
 MonoBehaviour:
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 7673237454124333878}
   - component: {fileID: 4030688432468767329}
   - component: {fileID: 1248379858224139399}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CrossFade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 6325175705988321219}
   - component: {fileID: 1397323521846093693}
   - component: {fileID: 6939987672151776619}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}

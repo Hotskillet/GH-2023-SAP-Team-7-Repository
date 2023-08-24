@@ -6,6 +6,7 @@ TagManager:
   tags:
   - interactable
   - dialoguePopup
+  - tipCanvas
   layers:
   - Default
   - TransparentFX

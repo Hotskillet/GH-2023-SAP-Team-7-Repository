@@ -58,7 +58,7 @@ public class Unlockable : Item
                 return;
             }
         }
-        Debug.Log("You don't have the correct item to open this.");  //FIXME: UI & Narrative
+        Debug.Log("You don't have the correct item to open this.");  //FIXME: locked door sound?
         return;
     }
 }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7243385875111449531}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Spawn6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4949467757700338499}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Spawn4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2947745188867533612}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Spawn7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8350862560396897998}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Spawn5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9140384424168358641}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Spawn8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7445756249310903890}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Spawn2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3087374210892657213}
   - component: {fileID: 6153107758949978366}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BGBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6333795249685534924}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2466266185592686408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -312,7 +312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6539783816658887648}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Spawn9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1406489520390495449}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PieceSpawnArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2798770539716683469}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.46, y: 0, z: 0}
+  m_LocalPosition: {x: -2.46, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -384,7 +384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1918684840395777106}
   - component: {fileID: 3575082856311462005}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BGEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6922406431884164495}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: JigsawMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -500,7 +500,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 592687935037578356}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Spawn1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1080396037763682759}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Spawn3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

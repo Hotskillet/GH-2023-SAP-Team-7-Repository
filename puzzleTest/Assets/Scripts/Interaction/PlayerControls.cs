@@ -24,6 +24,9 @@ public class PlayerControls : MonoBehaviour
     private bool isWalking;
     // keep track of when player stops walking so SFX can be stopped
     private bool wasWalking;
+    // interaction input buffer
+    public float interactDelay;
+    private Coroutine interactBuffer;
 
     //FIMXE:
     // animation sprites will be in AnimationManager
@@ -58,6 +61,7 @@ public class PlayerControls : MonoBehaviour
         movingLeft = false;
         movingRight = false;
         itemInContact = null;
+        interactBuffer = null;
     }
 
 
@@ -137,30 +141,40 @@ public class PlayerControls : MonoBehaviour
 
     /*** FIXME: Interaction & Pauseing ***/
     public void Interact(InputAction.CallbackContext context){
-        if (context.performed && (itemInContact != null)){
-            DetailedInteraction();
+        if (context.performed && (itemInContact != null) && (interactBuffer == null)){
+            interactBuffer = StartCoroutine(DetailedInteraction());
         }
         if (context.canceled && (itemInContact != null)){
         }
     }
-    private void DetailedInteraction(){
+    IEnumerator DetailedInteraction(){
         // check if a Pickup
         Pickup otherScript = itemInContact.GetComponent<Pickup>();
         if (otherScript != null) {
             otherScript.interact();
-            return;
+            yield return new WaitForSeconds(interactDelay);
+            interactBuffer = null;
+            yield break;
         }
         // check if a Door
         Door otherScript2 = itemInContact.GetComponent<Door>();
         if (otherScript2 != null) {
             otherScript2.unlock();
-            return;
+            // check for room reset script
+            ResetRoom otherScript4 = itemInContact.GetComponent<ResetRoom>();
+            if (otherScript4 != null){
+                otherScript4.Reset();
+            }
+            yield return new WaitForSeconds(interactDelay);
+            interactBuffer = null;
+            yield break;
         }
         // check if a Container
         Container otherScript3 = itemInContact.GetComponent<Container>();
         if (otherScript3 != null) {
             otherScript3.unlock();
-            return;
+            yield return new WaitForSeconds(interactDelay);
+            interactBuffer = null;
         }
     }
     
