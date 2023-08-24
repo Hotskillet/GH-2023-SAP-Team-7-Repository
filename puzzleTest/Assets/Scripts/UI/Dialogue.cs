@@ -8,10 +8,12 @@ public class Dialogue : Singleton<Dialogue>
 {
     public GameObject box;
     public TextMeshProUGUI textComponent;
-    public string[] lines;
     public float textSpeed;
 
+    private string[] lines;
     private int index;
+
+    private Coroutine updateCheck;
 
 
     // Start is called before the first frame update
@@ -20,6 +22,21 @@ public class Dialogue : Singleton<Dialogue>
         textComponent.text = string.Empty;
         box.SetActive(false);
         //StartDialogue();
+    }
+
+    public void NewLines(string[] newLines)
+    {
+        if (updateCheck == null)
+        {
+            updateCheck = StartCoroutine(UpdateLines(newLines));
+        }
+    }
+
+    IEnumerator UpdateLines(string[] newLines)
+    {
+        lines = newLines;
+        yield return new WaitForSeconds(0.5f);
+        updateCheck = null;
     }
 
     public void StartDialogue()

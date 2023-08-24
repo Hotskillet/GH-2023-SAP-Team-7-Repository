@@ -23,7 +23,7 @@ public class Pickup : Item
         
         AudioManager.instance.Play(soundEffect);
  
-        Debug.Log(gameObject.name + " has been picked up.");
+        Debug.Log(gameObject.name + " has been picked up."); // FIXME: show in inventory
 
         /* THIS IS THROWING AN ERROR SO I HAD TO COMMENT IT
         // FIXME Step 3: make the popup
