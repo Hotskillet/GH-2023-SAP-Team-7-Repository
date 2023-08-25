@@ -118,4 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9fd7c93df1f71749bc90a1088241aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxConnect: PiecesConnect
+  sfxDisconnect: PiecesDisconnect
   connectionDist: {x: 0, y: 0, z: 0}
+  connected: 0

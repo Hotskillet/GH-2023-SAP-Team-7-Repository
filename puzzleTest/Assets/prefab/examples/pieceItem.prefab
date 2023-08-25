@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fd611b0cf1d1046a0478f6a8ff8411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffect: 
+  soundEffect: ClothesRustling
   destroyDelay: 0.3
 --- !u!114 &-3678673236462205768
 MonoBehaviour:

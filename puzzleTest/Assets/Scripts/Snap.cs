@@ -9,6 +9,8 @@ using UnityEngine;
 
 public class Snap : MonoBehaviour
 {
+    public string sfxConnect;
+    public string sfxDisconnect;
     public Vector3 connectionDist;
     public bool connected;
     
@@ -50,19 +52,6 @@ public class Snap : MonoBehaviour
             currentlyTouching = other.gameObject;
             Debug.Log("load");
         }
-        
-        /*
-        // to make sure the piece's own collider isn't triggering this
-        // and that the piece has been released
-        // and that the piece is not already connected
-        if (isDifferentPiece(other.gameObject) && dragFunction.justReleased && !connected)
-        {
-            Debug.Log("enter");
-            // once piece is released, child this object to the other
-            gameObject.transform.parent = other.gameObject.transform;
-            connected = true;
-        }
-        */
     }
 
     // remove any collide from the list if they are moved outside of the hitbox
@@ -77,26 +66,15 @@ public class Snap : MonoBehaviour
         if (connected && isDifferentPiece(other.gameObject)){
             gameObject.transform.parent.transform.parent = defaultParent;
             connected = false;
+            AudioManager.instance.Play(sfxDisconnect);
         }
-        /*
-        // to make sure the piece's own collider isn't triggering this
-        // and that the piece has been released
-        // and that the piece is not already connected
-        if (isDifferentPiece(other.gameObject) && dragFunction.justReleased && connected)
-        {
-            Debug.Log("exit");
-            // once piece is released, child this object to the other
-            gameObject.transform.parent = null;
-            connected = false;
-        }
-        */
     }
 
     // Update is called once per frame
     void Update()
     {
         if ((currentlyTouching != null) && dragFunction.justReleased && !connected){
-            // FIXME: do snapping
+            // do snapping
             // parent dragged piece to other peice
             Transform thisParent = gameObject.transform.parent;
             Transform otherParent = currentlyTouching.transform.parent;
@@ -104,7 +82,7 @@ public class Snap : MonoBehaviour
             // move dragged piece to proper location
             Vector3 otherDist = currentlyTouching.GetComponent<Snap>().connectionDist;
             thisParent.transform.position = otherParent.transform.position + otherDist;
-            Debug.Log("SNAP");
+            AudioManager.instance.Play(sfxConnect);
             connected = true;
         }
     }

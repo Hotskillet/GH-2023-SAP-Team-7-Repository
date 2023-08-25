@@ -8,6 +8,7 @@ using UnityEngine;
 public class Unlockable : Item
 {
     public bool locked;
+    //public sfxClose;
 
     private bool foundKey;
 
@@ -49,7 +50,7 @@ public class Unlockable : Item
                 Rigidbody2D rbody = gameObject.GetComponent<Rigidbody2D>();
                 rbody.simulated = false;
                 */
-                //FIXME: replace with animation & SFX
+                //FIXME: replace with animation
                 SpriteRenderer thisSprite = gameObject.GetComponent<SpriteRenderer>();
                 Color currCol = thisSprite.color;
                 thisSprite.color = new Color(currCol.r, currCol.g, currCol.b, currCol.a * 0.1f);
