@@ -17,11 +17,20 @@ public class Snap : MonoBehaviour
 
     private GameObject currentlyTouching;
 
+    private Transform defaultParent;
+
     // Start is called before the first frame update
     void Start()
     {
         dragFunction = gameObject.transform.parent.GetComponent<DragDrop>();
         parentPiece = gameObject.transform.parent;
+        defaultParent = null;
+    }
+
+    public void SetDefaultParent(Transform parent)
+    {
+        defaultParent = default;
+        return;
     }
 
     public void Init(){
@@ -66,7 +75,7 @@ public class Snap : MonoBehaviour
         }
         /* disconnect if connection is moved away and piece is connected to something */
         if (connected && isDifferentPiece(other.gameObject)){
-            gameObject.transform.parent.transform.parent = null;
+            gameObject.transform.parent.transform.parent = defaultParent;
             connected = false;
         }
         /*

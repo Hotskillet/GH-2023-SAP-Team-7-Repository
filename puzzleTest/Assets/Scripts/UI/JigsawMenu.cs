@@ -78,6 +78,22 @@ public class JigsawMenu : MonoBehaviour
         // set pieces position & parent
         found.transform.position = spawnAreas[spawnCounter].position;
         found.transform.parent = gridParent.transform;
+        // update default parent
+        for (int i = 0; i < found.transform.childCount; i++)
+        {
+            Transform child = found.transform.GetChild(i);
+            if (child == null)
+            {
+                break;
+            }
+            Snap script = child.gameObject.GetComponent<Snap>();
+            if (script == null)
+            {
+                continue;
+            }else{
+                script.SetDefaultParent(gridParent.transform);
+            }
+        }
         // remove & add
         foundJigsawPieces.Add(found);
         unfoundJigsawPieces.RemoveAt(rndIndex);
