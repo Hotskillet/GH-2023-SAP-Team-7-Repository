@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb06ddd9fa051b4fb951eef077a052a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffect: 
+  soundEffect: ClothesRustling
   destroyDelay: 0.3
 --- !u!50 &8283209418944405317
 Rigidbody2D:

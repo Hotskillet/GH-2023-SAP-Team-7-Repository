@@ -14,9 +14,7 @@ public class CallDialogue : MonoBehaviour
         }
         // call Dialuge using comment data from item data
         if (thisData.comments.Length > 0){
-            Dialogue.Instance.NewLines(thisData.comments);
-            // start dialogue
-            Dialogue.Instance.StartDialogue();
+            EvtSystem.EventDispatcher.Raise<UpdateNewLines>(new UpdateNewLines() {moreLines = thisData.comments});
         }
     }
 }

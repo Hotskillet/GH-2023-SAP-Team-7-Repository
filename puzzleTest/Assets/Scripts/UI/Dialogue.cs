@@ -10,26 +10,38 @@ public class Dialogue : Singleton<Dialogue>
     public TextMeshProUGUI textComponent;
     public float textSpeed;
 
+    public bool showing;
+
     private string[] lines;
     private int index;
 
     private Coroutine updateCheck;
 
 
+    void Awake()
+    {
+        EvtSystem.EventDispatcher.AddListener<ContinueDialogue>(Next);
+        EvtSystem.EventDispatcher.AddListener<UpdateNewLines>(NewLines);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        showing = false;
         textComponent.text = string.Empty;
+        EvtSystem.EventDispatcher.Raise<UpdateDialogueState>(new UpdateDialogueState() {state = false});
         box.SetActive(false);
+        lines = null;
         //StartDialogue();
     }
 
-    public void NewLines(string[] newLines)
+    public void NewLines(UpdateNewLines evt)
     {
         if (updateCheck == null)
         {
-            updateCheck = StartCoroutine(UpdateLines(newLines));
+            updateCheck = StartCoroutine(UpdateLines(evt.moreLines));
         }
+        StartDialogue();
     }
 
     IEnumerator UpdateLines(string[] newLines)
@@ -42,6 +54,8 @@ public class Dialogue : Singleton<Dialogue>
     public void StartDialogue()
     {
         box.SetActive(true);
+        EvtSystem.EventDispatcher.Raise<UpdateDialogueState>(new UpdateDialogueState() {state = true});
+        showing = true;
         index = 0;
         StartCoroutine(TypeLine());
     }
@@ -57,7 +71,7 @@ public class Dialogue : Singleton<Dialogue>
         yield return null;
     }
 
-    public void NextLine()
+    private void NextLine()
     {
         if (index < lines.Length - 1)
         {
@@ -66,16 +80,33 @@ public class Dialogue : Singleton<Dialogue>
             StartCoroutine(TypeLine());
         }else{
             textComponent.text = string.Empty;
+            EvtSystem.EventDispatcher.Raise<UpdateDialogueState>(new UpdateDialogueState() {state = false});
             box.SetActive(false);
+            showing = false;
         }
     }
 
-    public bool LineFullyShown(){
+    private bool LineFullyShown(){
         return textComponent.text == lines[index];
     }
-    public void ShowFullLine(){
+    private void ShowFullLine(){
         StopAllCoroutines();
         textComponent.text = lines[index];
         return;
+    }
+
+    void Next(ContinueDialogue evt)
+    {
+        if (LineFullyShown()){
+            NextLine();
+        }else{
+            ShowFullLine();
+        }
+    }
+
+    void OnDestroy()
+    {
+        EvtSystem.EventDispatcher.RemoveListener<ContinueDialogue>(Next);
+        EvtSystem.EventDispatcher.RemoveListener<UpdateNewLines>(NewLines);
     }
 }

@@ -72,3 +72,27 @@ public class ShowInteractTip : EvtSystem.Event
 public class HideInteractTip : EvtSystem.Event
 {
 }
+
+public class UpdateDialogueState : EvtSystem.Event
+{
+    public bool state;
+}
+public class ContinueDialogue : EvtSystem.Event
+{
+}
+public class UpdateNewLines : EvtSystem.Event
+{
+    public string[] moreLines;
+}
+
+public class TryDragPiece : EvtSystem.Event
+{
+}
+public class StopDragPiece : EvtSystem.Event
+{
+}
+public class CursorMovement : EvtSystem.Event
+{
+    public string directionState;
+    public float speed;
+}
