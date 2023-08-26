@@ -24,6 +24,8 @@ public class Cursor : MonoBehaviour
     private Vector3 left = new Vector3(-1, 0, 0);
     private Vector3 right = new Vector3(1, 0, 0);
 
+    private DragDrop script;
+
 
     void Awake()
     {
@@ -92,39 +94,60 @@ public class Cursor : MonoBehaviour
         {
             held = true;
             justReleased = false;
+            // update DragDrop script
+            if (script != null){
+                script.held = true;
+                script.justReleased = false;
+                script.fakeCursor = gameObject.transform;
+            }
         }
     }
     public void StopDrag(StopDragPiece evt)
     {
-        if (!inside)
-        {
-            justReleased = true;
-            held = false;
+        justReleased = true;
+        held = false;
+        // update DragDrop script
+        if (script != null){
+            script.justReleased = true;
+            script.held = false;
+            script.fakeCursor = null;
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        print("uh");
-        if (other.gameObject.tag == "jigsaw")
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "jigsaw" && (thingBeingDragged == null))
         {
-            print("hello");
+             // UI: scale-up object
+            other.transform.localScale = new Vector3(other.transform.localScale.x * hoverFactor.x,
+                other.transform.localScale.y * hoverFactor.y, 
+                other.transform.localScale.z * hoverFactor.z);
             inside = true;
+            thingBeingDragged = other.gameObject;
+            // update DragDrop script
+            script = other.gameObject.GetComponent<DragDrop>();
+            script.cursorControlled = true;
+            script.inside = true;
+            script.fakeCursor = gameObject.transform;
         }
     }
 
-    private void OnCollisionStay2D(Collision2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        // UI: scale-up object
-        other.transform.localScale = new Vector3(other.transform.localScale.x * hoverFactor.x,
-            other.transform.localScale.y * hoverFactor.y, 
-            other.transform.localScale.z * hoverFactor.z);
+       //
     }
 
-    private void OnCollisionExit2D(Collision2D other) {
+    private void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject.tag == "jigsaw")
         {
-            inside = true;
+            inside = false;
             other.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            thingBeingDragged = null;
+            // update DragDrop script
+            if (script != null){
+                script.inside = false;
+                script.cursorControlled = false;
+                script = null;
+            }
         }
     }
 
@@ -150,28 +173,6 @@ public class Cursor : MonoBehaviour
 
         // update position
         UpdatePosition();
-
-        /* 
-        Update State
-            Allows object to follow mouse even if mouse moves outside of it (as long as left-click
-            is still being held down)
-        */
-        if (inside && held){
-            state = 1;
-        }else if (!held){
-            state = 0;
-        }
-
-        switch (state){
-            case 0:
-                break;
-            case 1:
-                // make object follow mouse
-                thingBeingDragged.transform.position = gameObject.transform.position;
-                break;
-            default:
-                break;
-        }
     }
 
     void OnDestroy()
