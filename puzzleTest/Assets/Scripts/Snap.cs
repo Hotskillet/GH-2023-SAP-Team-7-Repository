@@ -47,6 +47,7 @@ public class Snap : MonoBehaviour
     // add colliders that enter into a list
     void OnTriggerEnter2D(Collider2D other)
     {
+        print("uh" + other.gameObject.name + ", " + isDifferentPiece(other.gameObject));
         /* save ref to currentlyTouching */
         if (isDifferentPiece(other.gameObject) && !connected && (dragFunction.state == 1)){
             currentlyTouching = other.gameObject;
