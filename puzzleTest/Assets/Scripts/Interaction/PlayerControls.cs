@@ -159,6 +159,14 @@ public class PlayerControls : MonoBehaviour
         }
     }
     IEnumerator DetailedInteraction(){
+        // check if chain
+        Chain otherScript0 = itemInContact.GetComponent<Chain>();
+        if (otherScript0 != null) {
+            otherScript0.interact();
+            yield return new WaitForSeconds(interactDelay);
+            interactBuffer = null;
+            yield break;
+        }
         // check if a Pickup
         Pickup otherScript = itemInContact.GetComponent<Pickup>();
         if (otherScript != null) {
