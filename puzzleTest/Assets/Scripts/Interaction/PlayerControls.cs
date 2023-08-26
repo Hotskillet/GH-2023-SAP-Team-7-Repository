@@ -13,6 +13,8 @@ public class PlayerControls : MonoBehaviour
 
     public SpawnPoints[] spawnPoints;
 
+    public float cursorSpeed;
+
     private bool movingUp;
     private bool movingDown;
     private bool movingLeft;
@@ -24,6 +26,9 @@ public class PlayerControls : MonoBehaviour
     private bool isWalking;
     // keep track of when player stops walking so SFX can be stopped
     private bool wasWalking;
+    // interaction input buffer
+    public float interactDelay;
+    private Coroutine interactBuffer;
 
     //FIMXE:
     // animation sprites will be in AnimationManager
@@ -44,10 +49,12 @@ public class PlayerControls : MonoBehaviour
 
     private GameObject itemInContact;
 
+    private bool dialogueActive;
+
 
     public void Awake(){
         EvtSystem.EventDispatcher.AddListener<ChangePlayerPosition>(ChangePosition);
-        EvtSystem.EventDispatcher.AddListener<ChangeInputMap>(ChangeMap);
+        EvtSystem.EventDispatcher.AddListener<UpdateDialogueState>(UpdateDialgoue);
 
         playerInput = GetComponent<PlayerInput>();
 
@@ -59,6 +66,13 @@ public class PlayerControls : MonoBehaviour
         movingLeft = false;
         movingRight = false;
         itemInContact = null;
+        interactBuffer = null;
+        dialogueActive = false;
+    }
+
+    void UpdateDialgoue(UpdateDialogueState evt)
+    {
+        dialogueActive = evt.state;
     }
 
 
@@ -138,30 +152,40 @@ public class PlayerControls : MonoBehaviour
 
     /*** FIXME: Interaction & Pauseing ***/
     public void Interact(InputAction.CallbackContext context){
-        if (context.performed && (itemInContact != null)){
-            DetailedInteraction();
+        if (context.performed && (itemInContact != null) && (interactBuffer == null)){
+            interactBuffer = StartCoroutine(DetailedInteraction());
         }
         if (context.canceled && (itemInContact != null)){
         }
     }
-    private void DetailedInteraction(){
+    IEnumerator DetailedInteraction(){
         // check if a Pickup
         Pickup otherScript = itemInContact.GetComponent<Pickup>();
         if (otherScript != null) {
             otherScript.interact();
-            return;
+            yield return new WaitForSeconds(interactDelay);
+            interactBuffer = null;
+            yield break;
         }
         // check if a Door
         Door otherScript2 = itemInContact.GetComponent<Door>();
         if (otherScript2 != null) {
             otherScript2.unlock();
-            return;
+            // check for room reset script
+            ResetRoom otherScript4 = itemInContact.GetComponent<ResetRoom>();
+            if (otherScript4 != null){
+                otherScript4.Reset();
+            }
+            yield return new WaitForSeconds(interactDelay);
+            interactBuffer = null;
+            yield break;
         }
         // check if a Container
         Container otherScript3 = itemInContact.GetComponent<Container>();
         if (otherScript3 != null) {
             otherScript3.unlock();
-            return;
+            yield return new WaitForSeconds(interactDelay);
+            interactBuffer = null;
         }
     }
     
@@ -191,11 +215,6 @@ public class PlayerControls : MonoBehaviour
             EvtSystem.EventDispatcher.Raise<TurnOffPauseMenu>(to);
         }
     }
-    public void ChangeMap(ChangeInputMap evt){
-        if (evt.map != playerInput.currentActionMap.name){
-            playerInput.SwitchCurrentActionMap(evt.map);
-        }
-    }
 
     public void OpenJigsawMenu(InputAction.CallbackContext context){
         if (context.performed){
@@ -213,6 +232,59 @@ public class PlayerControls : MonoBehaviour
             // send signal to unpause game
             TurnOffJigsawMenu to = new TurnOffJigsawMenu {};
             EvtSystem.EventDispatcher.Raise<TurnOffJigsawMenu>(to);
+        }
+    }
+
+    // Progresses to next line of dialogue. If there are no more lines, this will close the dialouge box
+    public void Next(InputAction.CallbackContext context){
+        if (context.performed && dialogueActive){
+            ContinueDialogue signal = new ContinueDialogue() {};
+            EvtSystem.EventDispatcher.Raise<ContinueDialogue>(signal);
+        }
+    }
+
+    // for jigsaw cursor movement
+    public void MoveCursorUp(InputAction.CallbackContext context){
+        if (context.performed){
+            CursorMovement signal = new CursorMovement() {directionState = "upTrue", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }if (context.canceled){
+            CursorMovement signal = new CursorMovement() {directionState = "upFalse", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }
+    }
+    public void MoveCursorDown(InputAction.CallbackContext context){
+        if (context.performed){
+            CursorMovement signal = new CursorMovement() {directionState = "downTrue", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }if (context.canceled){
+            CursorMovement signal = new CursorMovement() {directionState = "downFalse", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }
+    }
+    public void MoveCursorLeft(InputAction.CallbackContext context){
+        if (context.performed){
+            CursorMovement signal = new CursorMovement() {directionState = "leftTrue", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }if (context.canceled){
+            CursorMovement signal = new CursorMovement() {directionState = "leftFalse", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }
+    }
+    public void MoveCursorRight(InputAction.CallbackContext context){
+        if (context.performed){
+            CursorMovement signal = new CursorMovement() {directionState = "rightTrue", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }if (context.canceled){
+            CursorMovement signal = new CursorMovement() {directionState = "rightFalse", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }
+    }
+    public void DragPiece(InputAction.CallbackContext context){
+        if (context.performed){
+            EvtSystem.EventDispatcher.Raise<TryDragPiece>(new TryDragPiece() {});
+        }else if (context.canceled){
+            EvtSystem.EventDispatcher.Raise<StopDragPiece>(new StopDragPiece() {});
         }
     }
 
@@ -281,6 +353,5 @@ public class PlayerControls : MonoBehaviour
     void OnDestroy()
     {
         EvtSystem.EventDispatcher.RemoveListener<ChangePlayerPosition>(ChangePosition);
-        EvtSystem.EventDispatcher.RemoveListener<ChangeInputMap>(ChangeMap);
     }
 }

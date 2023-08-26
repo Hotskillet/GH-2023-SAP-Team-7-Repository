@@ -24,14 +24,6 @@ public class RoomLoader : Singleton<RoomLoader>
         EvtSystem.EventDispatcher.AddListener<ChangeRoomStart>(TryFade);
     }
 
-    void Update(){
-        if (fadeRoutine == null){
-            print("done");
-        }else{
-            print("working...");
-        }
-    }
-
 
     public GameObject CamExists(string name){
         foreach (GameObject cam in roomCameras){
@@ -70,6 +62,8 @@ public class RoomLoader : Singleton<RoomLoader>
         newCam.SetActive(true);
         // save as new active camera
         activeCamera = newCam;
+        // send signal to JigsawMenu to update jigsawMenu parent
+        EvtSystem.EventDispatcher.Raise<ChangeParent>(new ChangeParent {newParent = activeCamera.transform});
         // send signal to PlayerControls to update player position
         EvtSystem.EventDispatcher.Raise<ChangePlayerPosition>(new ChangePlayerPosition {doorName = evt.doorName});
 

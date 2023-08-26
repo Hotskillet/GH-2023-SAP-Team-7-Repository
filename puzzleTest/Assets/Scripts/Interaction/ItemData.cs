@@ -16,7 +16,7 @@ public class ItemData : ScriptableObject
     // the type of item (use enum)
     public ItemType iType;
     // bao understands this
-    public string comment;
+    public string[] comments;
     public Sprite sprite;
     // only for the static object that needs a "key"
     public List<string> canInteractWith = new List<string>();

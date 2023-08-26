@@ -19,9 +19,18 @@ public class JigsawPiece : Pickup
         Debug.Log(gameObject.name + " has been found.");
 
         // Step 3: Delete object from world
-        Destroy(gameObject, 0.5f);
-
         // add to puzzle menu
         EvtSystem.EventDispatcher.Raise<FoundAPiece>(new FoundAPiece {});
+        // unparent ToolTip first
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Transform child = gameObject.transform.GetChild(i);
+            if ((child != null) && (child.gameObject.tag == "tipCanvas"))
+            {
+                child.parent = null;
+                break;
+            }
+        }
+        Destroy(gameObject, destroyDelay);
     }
 }

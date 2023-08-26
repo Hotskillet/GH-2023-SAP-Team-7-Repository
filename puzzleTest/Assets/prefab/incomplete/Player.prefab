@@ -119,6 +119,8 @@ MonoBehaviour:
     enteringPosition: {x: -2.6, y: -1.76, z: 0}
   - enteringFrom: KtEn
     enteringPosition: {x: 90, y: 2.4, z: 0}
+  cursorSpeed: 0
+  interactDelay: 0.5
 --- !u!95 &8877341595225997783
 Animator:
   serializedVersion: 5
@@ -395,6 +397,106 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 61cac8a3-4f17-49ba-857a-2061d0ff4518
     m_ActionName: UI/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ac8e1c0f-f9c3-4a7c-9996-e5560c802830
+    m_ActionName: Explore/Inventory[/Keyboard/i]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2415822054006894320}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: Next
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9c8fddca-8aaa-46e5-b0e5-36e32719b46e
+    m_ActionName: Explore/NextDialogue[/Keyboard/t]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2415822054006894320}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: MoveCursorUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 065436d6-9f09-4724-9e52-312fe53a8428
+    m_ActionName: UI/MoveCursorUp
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2415822054006894320}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: MoveCursorDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 53474698-9464-486a-9997-5ef239ac2937
+    m_ActionName: UI/MoveCursorDown
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2415822054006894320}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: MoveCursorLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fba5a020-8d98-4cb4-af6c-fa3e9f124fd4
+    m_ActionName: UI/MoveCursorLeft
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2415822054006894320}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: MoveCursorRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a029535e-c9bd-4794-9ba0-45daeecb065f
+    m_ActionName: UI/MoveCursorRight
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2415822054006894320}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: DragPiece
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0b1fa82c-a43f-4807-a886-72a28912982b
+    m_ActionName: UI/DragPiece
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Explore

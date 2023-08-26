@@ -4,7 +4,8 @@ using UnityEngine;
 
 /* FSM
 0 = no follow
-1 = follow
+1 = follow mouse (keyboard)
+2 = follow cursor (controller)
 */
 
 public class DragDrop : MonoBehaviour
@@ -17,9 +18,12 @@ public class DragDrop : MonoBehaviour
     private Camera cam;
 
     public int state;
-    private bool held;
+    public bool held;
     public bool justReleased;
-    private bool inside;
+    public bool inside;
+    public bool cursorControlled;
+
+    public Transform fakeCursor;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +31,7 @@ public class DragDrop : MonoBehaviour
         state = 0;
         held = false;
         justReleased = false;
+        cursorControlled = false;
         cam = Camera.main;
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0.0f;
@@ -70,7 +75,11 @@ public class DragDrop : MonoBehaviour
             is still being held down)
         */
         if (inside && held){
-            state = 1;
+            if (cursorControlled){
+                state = 2;
+            }else{
+                state = 1;
+            }
         }else if (!held){
             state = 0;
         }
@@ -84,6 +93,9 @@ public class DragDrop : MonoBehaviour
                 mousePosition.z = 0.0f;
                 // make object follow mouse
                 transform.position = mousePosition;
+                break;
+            case 2:
+                transform.position = fakeCursor.position;
                 break;
             default:
                 break;

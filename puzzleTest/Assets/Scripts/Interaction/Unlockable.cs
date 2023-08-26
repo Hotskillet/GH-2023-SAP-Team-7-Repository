@@ -8,13 +8,13 @@ using UnityEngine;
 public class Unlockable : Item
 {
     public bool locked;
+    //public sfxClose;
 
     private bool foundKey;
 
     // Start is called before the first frame update
     void Start()
     {
-        locked = true;
         foundKey = false;
     }
 
@@ -50,7 +50,7 @@ public class Unlockable : Item
                 Rigidbody2D rbody = gameObject.GetComponent<Rigidbody2D>();
                 rbody.simulated = false;
                 */
-                //FIXME: replace with animation & SFX
+                //FIXME: replace with animation
                 SpriteRenderer thisSprite = gameObject.GetComponent<SpriteRenderer>();
                 Color currCol = thisSprite.color;
                 thisSprite.color = new Color(currCol.r, currCol.g, currCol.b, currCol.a * 0.1f);
@@ -59,7 +59,7 @@ public class Unlockable : Item
                 return;
             }
         }
-        Debug.Log("You don't have the correct item to open this.");  //FIXME: UI & Narrative
+        Debug.Log("You don't have the correct item to open this.");  //FIXME: locked door sound?
         return;
     }
 }

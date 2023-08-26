@@ -7,9 +7,9 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
+        AudioManager.instance.Stop(AudioManager.instance.startBGM);
+        AudioManager.instance.Play("BeginningBGM");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        ChangeInputMap to = new ChangeInputMap {map = "Explore"};
-        EvtSystem.EventDispatcher.Raise<ChangeInputMap>(to);
     }
 
     public void QuitGame()

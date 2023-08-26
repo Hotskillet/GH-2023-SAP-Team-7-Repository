@@ -6,6 +6,8 @@ TagManager:
   tags:
   - interactable
   - dialoguePopup
+  - tipCanvas
+  - jigsaw
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - Water
   - UI
   - player
-  - 
+  - cursor
   - 
   - 
   - 

@@ -28,7 +28,7 @@ public class PieceGenerator : Singleton<PieceGenerator>
 
     private Vector3 jigsawArtPosition;
 
-    private GameObject[,] gridPieces;
+    public GameObject[,] gridPieces;
     private List<PieceTemplate> cornerPieces;
     private List<PieceTemplate> sidePieces;
     private List<PieceTemplate> middlePieces;
@@ -299,7 +299,10 @@ public class PieceGenerator : Singleton<PieceGenerator>
         // create image object at center of puzzle
         GameObject pi = Instantiate(pieceImage, jigsawArtPosition, Quaternion.identity);
         // set sprite as jigsaw art
-        pi.GetComponent<SpriteRenderer>().sprite = jigsawArt;
+        SpriteRenderer tempSR = pi.GetComponent<SpriteRenderer>();
+        tempSR.sprite = jigsawArt;
+        tempSR.sortingLayerName = "UI";
+        tempSR.sortingOrder = 5;
         // set as child of piece
         pi.transform.parent = go.transform;
 
@@ -504,8 +507,7 @@ public class PieceGenerator : Singleton<PieceGenerator>
                 break;
             }
         }
-        //FIXME: LoadPieces loadPieces = new LoadPieces {gridWidth = width, gridHeight = height, gridPieces = gridPieces};
-        // FIXME: EvtSystem.EventDispatcher.Raise<LoadPieces>(lp);
+        EvtSystem.EventDispatcher.Raise<LoadPieces>(new LoadPieces() {});
         return;
     }
 }

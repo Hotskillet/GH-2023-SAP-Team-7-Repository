@@ -12,7 +12,6 @@ public class Door : Unlockable
 {
     // the scene number of the room the door is supposed to link to
     public string nextRoom;
-    
 
     public void unlock(){
         // call Unlockable.interact()
@@ -25,6 +24,12 @@ public class Door : Unlockable
             //MySceneManager.Instance.LoadThisRoom(nextRoom);
             ChangeRoomStart cr = new ChangeRoomStart {roomName = nextRoom, doorName = gameObject.name};
             EvtSystem.EventDispatcher.Raise<ChangeRoomStart>(cr);
+            // BGM
+            SwitchBGM script = gameObject.GetComponent<SwitchBGM>();
+            if (script != null)
+            {
+                script.ChangeBGM();
+            }
         }
     } 
 }
