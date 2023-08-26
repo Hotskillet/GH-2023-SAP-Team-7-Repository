@@ -55,7 +55,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: IntroTheme
     clip: {fileID: 8300000, guid: 705c362baa3f9594e8ae8ce3672b5284, type: 3}
-    volume: 0.6
+    volume: 0.4
     pitch: 1
     loop: 1
     source: {fileID: 0}

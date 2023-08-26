@@ -32,7 +32,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/DejonDuplicate.unity
     guid: fdfd90648c66c0e4fb3178d17850bfb9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DONT_USE.unity
     guid: 2f9590ea6a884c5499cb5e88ebc6eb9a
   m_configObjects: {}
