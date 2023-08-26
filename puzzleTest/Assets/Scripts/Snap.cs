@@ -31,7 +31,12 @@ public class Snap : MonoBehaviour
 
     public void SetDefaultParent(Transform parent)
     {
-        defaultParent = default;
+        defaultParent = parent;
+        if (defaultParent == null){
+            print("no parent");
+        }else{
+            print("defaultParent: " + defaultParent.gameObject.name);
+        }
         return;
     }
 
@@ -47,7 +52,6 @@ public class Snap : MonoBehaviour
     // add colliders that enter into a list
     void OnTriggerEnter2D(Collider2D other)
     {
-        print("uh" + other.gameObject.name + ", " + isDifferentPiece(other.gameObject));
         /* save ref to currentlyTouching */
         if (isDifferentPiece(other.gameObject) && !connected && (dragFunction.state == 1)){
             currentlyTouching = other.gameObject;
@@ -65,6 +69,11 @@ public class Snap : MonoBehaviour
         }
         /* disconnect if connection is moved away and piece is connected to something */
         if (connected && isDifferentPiece(other.gameObject)){
+            if (defaultParent == null){
+                print("no parent");
+            }else{
+                print("defaultParent: " + defaultParent.gameObject.name);
+            }
             gameObject.transform.parent.transform.parent = defaultParent;
             connected = false;
             AudioManager.instance.Play(sfxDisconnect);
