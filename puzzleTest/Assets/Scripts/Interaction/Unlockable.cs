@@ -27,6 +27,10 @@ public class Unlockable : Item
     {
         // skip steps if already unlocked
         if (!locked){
+            //FIXME: replace with animation
+            SpriteRenderer thisSprite = gameObject.GetComponent<SpriteRenderer>();
+            Color currCol = thisSprite.color;
+            thisSprite.color = new Color(currCol.r, currCol.g, currCol.b, currCol.a * 0.1f);
             return;
         }
         /* Steps:
