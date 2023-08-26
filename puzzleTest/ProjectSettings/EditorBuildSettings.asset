@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/DONT_USE.unity
     guid: 2f9590ea6a884c5499cb5e88ebc6eb9a
+  - enabled: 1
+    path: Assets/Scenes/EndCutscene.unity
+    guid: 23d6814d846864e46bb35d2df748293e
   m_configObjects: {}

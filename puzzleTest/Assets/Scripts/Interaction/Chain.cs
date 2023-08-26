@@ -14,6 +14,6 @@ public class Chain : Pickup
         // do regular pickup interactions
         base.interact();
         // go to end game cutscene
-        SceneLoader.Instance.GoToScene("MainMenuUI");
+        SceneLoader.Instance.GoToNextScene();
     }
 }
