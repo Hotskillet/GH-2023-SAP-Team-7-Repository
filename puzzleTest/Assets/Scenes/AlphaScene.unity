@@ -16054,6 +16054,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ToolTipCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2223189493537775578, guid: 5a704650ea43f89419465b8547f1906e, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3017248819835500292, guid: 5a704650ea43f89419465b8547f1906e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -24958,11 +24962,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2439980527405381894, guid: d30ba11150ed53a43a4a956346baa894, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.6
+      value: -8.8
       objectReference: {fileID: 0}
     - target: {fileID: 2439980527405381894, guid: d30ba11150ed53a43a4a956346baa894, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.99
+      value: 3.84
       objectReference: {fileID: 0}
     - target: {fileID: 2439980527405381894, guid: d30ba11150ed53a43a4a956346baa894, type: 3}
       propertyPath: m_LocalPosition.z
