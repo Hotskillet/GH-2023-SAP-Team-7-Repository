@@ -5,6 +5,7 @@ using UnityEngine;
 public class CreditsEndingScript : MonoBehaviour
 {
     public float delay;
+    public AudioManager music;
 
 void Start(){
   // this will run as soon as scene is loaded
@@ -16,6 +17,8 @@ IEnumerator DelayedReturn(float d){
   yield return new WaitForSeconds(d);
   // go back to main menu
   // SceneLoader.Instance.GoToScene("MainMenuUI"); old code in case it breaks - de'jon
-  SceneLoader.Instance.GoToScene("MainMenuUI");
+  music.Stop("CreditsMusic");
+  SceneLoader.Instance.GoToScene("Intro");
 }
 }
+

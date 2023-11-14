@@ -2535,6 +2535,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6827586975556381691, guid: e7efc6f55bc697a4387d633a46dcb47d, type: 3}
+      propertyPath: sounds.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827586975556381691, guid: e7efc6f55bc697a4387d633a46dcb47d, type: 3}
+      propertyPath: sounds.Array.data[9].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ea69cdda2118c4127a81cd7576466658, type: 3}
+    - target: {fileID: 6827586975556381691, guid: e7efc6f55bc697a4387d633a46dcb47d, type: 3}
+      propertyPath: sounds.Array.data[9].name
+      value: CreditsMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827586975556381691, guid: e7efc6f55bc697a4387d633a46dcb47d, type: 3}
+      propertyPath: sounds.Array.data[9].pitch
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827586975556381691, guid: e7efc6f55bc697a4387d633a46dcb47d, type: 3}
+      propertyPath: sounds.Array.data[9].volume
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 8356853625416199374, guid: e7efc6f55bc697a4387d633a46dcb47d, type: 3}
       propertyPath: m_RootOrder
       value: 3
