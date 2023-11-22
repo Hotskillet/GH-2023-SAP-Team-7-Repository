@@ -2855,6 +2855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 165.48
   music: {fileID: 928695764}
+  scenename: Intro
 --- !u!114 &1461699888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3257,7 +3258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6827586975556381691, guid: e7efc6f55bc697a4387d633a46dcb47d, type: 3}
       propertyPath: sounds.Array.data[9].volume
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7486914320241720481, guid: e7efc6f55bc697a4387d633a46dcb47d, type: 3}
       propertyPath: m_Enabled
