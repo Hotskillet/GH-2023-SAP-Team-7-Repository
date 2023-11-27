@@ -1774,10 +1774,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 3840, y: 2160}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2051,17 +2051,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654266283}
   m_CullTransparentMesh: 1
---- !u!114 &928695764 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6827586975556381691, guid: e7efc6f55bc697a4387d633a46dcb47d, type: 3}
-  m_PrefabInstance: {fileID: 1886357452}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74fa890a653d95c439c83368b5ee7728, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1006360999
 GameObject:
   m_ObjectHideFlags: 0
@@ -2783,7 +2772,6 @@ GameObject:
   - component: {fileID: 1461699885}
   - component: {fileID: 1461699884}
   - component: {fileID: 1461699887}
-  - component: {fileID: 1461699888}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -2854,22 +2842,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 165.48
-  music: {fileID: 928695764}
-  scenename: Intro
---- !u!114 &1461699888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1461699883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 935fdc7ffa644954d8dc01bab13f09b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   switchTo: CreditsMusic
   switchFrom: BeginningBGM
+  scenename: Intro
 --- !u!1 &1556528143
 GameObject:
   m_ObjectHideFlags: 0
