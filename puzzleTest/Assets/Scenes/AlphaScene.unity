@@ -32655,6 +32655,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2077355908067421648, guid: 06ccb4a0e125e8b46baaea7913372488, type: 3}
+      propertyPath: jigsawArt
+      value: 
+      objectReference: {fileID: 21300000, guid: 7c5bf16d1959a48a89d2fbf2311bd697, type: 3}
+    - target: {fileID: 2077355908067421648, guid: 06ccb4a0e125e8b46baaea7913372488, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
