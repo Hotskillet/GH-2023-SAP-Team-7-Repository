@@ -19883,6 +19883,10 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[16].enteringPosition.y
       value: -2.1
       objectReference: {fileID: 0}
+    - target: {fileID: 8877341595225997783, guid: 79d92d09b0d1ea743a91c995a637a309, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ddfdda19d9db4114cab99ad5e9a41512, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
