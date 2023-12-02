@@ -13,6 +13,8 @@ public class PlayerControls : MonoBehaviour
 
     public SpawnPoints[] spawnPoints;
 
+    public float cursorSpeed;
+
     private bool movingUp;
     private bool movingDown;
     private bool movingLeft;
@@ -47,9 +49,12 @@ public class PlayerControls : MonoBehaviour
 
     private GameObject itemInContact;
 
+    private bool dialogueActive;
+
 
     public void Awake(){
         EvtSystem.EventDispatcher.AddListener<ChangePlayerPosition>(ChangePosition);
+        EvtSystem.EventDispatcher.AddListener<UpdateDialogueState>(UpdateDialgoue);
 
         playerInput = GetComponent<PlayerInput>();
 
@@ -62,6 +67,12 @@ public class PlayerControls : MonoBehaviour
         movingRight = false;
         itemInContact = null;
         interactBuffer = null;
+        dialogueActive = false;
+    }
+
+    void UpdateDialgoue(UpdateDialogueState evt)
+    {
+        dialogueActive = evt.state;
     }
 
 
@@ -148,6 +159,14 @@ public class PlayerControls : MonoBehaviour
         }
     }
     IEnumerator DetailedInteraction(){
+        // check if chain
+        Chain otherScript0 = itemInContact.GetComponent<Chain>();
+        if (otherScript0 != null) {
+            otherScript0.interact();
+            yield return new WaitForSeconds(interactDelay);
+            interactBuffer = null;
+            yield break;
+        }
         // check if a Pickup
         Pickup otherScript = itemInContact.GetComponent<Pickup>();
         if (otherScript != null) {
@@ -226,12 +245,54 @@ public class PlayerControls : MonoBehaviour
 
     // Progresses to next line of dialogue. If there are no more lines, this will close the dialouge box
     public void Next(InputAction.CallbackContext context){
+        if (context.performed && dialogueActive){
+            ContinueDialogue signal = new ContinueDialogue() {};
+            EvtSystem.EventDispatcher.Raise<ContinueDialogue>(signal);
+        }
+    }
+
+    // for jigsaw cursor movement
+    public void MoveCursorUp(InputAction.CallbackContext context){
         if (context.performed){
-            if (Dialogue.Instance.LineFullyShown()){
-                Dialogue.Instance.NextLine();
-            }else{
-                Dialogue.Instance.ShowFullLine();
-            }
+            CursorMovement signal = new CursorMovement() {directionState = "upTrue", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }if (context.canceled){
+            CursorMovement signal = new CursorMovement() {directionState = "upFalse", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }
+    }
+    public void MoveCursorDown(InputAction.CallbackContext context){
+        if (context.performed){
+            CursorMovement signal = new CursorMovement() {directionState = "downTrue", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }if (context.canceled){
+            CursorMovement signal = new CursorMovement() {directionState = "downFalse", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }
+    }
+    public void MoveCursorLeft(InputAction.CallbackContext context){
+        if (context.performed){
+            CursorMovement signal = new CursorMovement() {directionState = "leftTrue", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }if (context.canceled){
+            CursorMovement signal = new CursorMovement() {directionState = "leftFalse", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }
+    }
+    public void MoveCursorRight(InputAction.CallbackContext context){
+        if (context.performed){
+            CursorMovement signal = new CursorMovement() {directionState = "rightTrue", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }if (context.canceled){
+            CursorMovement signal = new CursorMovement() {directionState = "rightFalse", speed = cursorSpeed};
+            EvtSystem.EventDispatcher.Raise<CursorMovement>(signal);
+        }
+    }
+    public void DragPiece(InputAction.CallbackContext context){
+        if (context.performed){
+            EvtSystem.EventDispatcher.Raise<TryDragPiece>(new TryDragPiece() {});
+        }else if (context.canceled){
+            EvtSystem.EventDispatcher.Raise<StopDragPiece>(new StopDragPiece() {});
         }
     }
 

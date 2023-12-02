@@ -55,7 +55,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: IntroTheme
     clip: {fileID: 8300000, guid: 705c362baa3f9594e8ae8ce3672b5284, type: 3}
-    volume: 0.6
+    volume: 0.4
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -71,7 +71,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Clothes Rustling
+  - name: ClothesRustling
     clip: {fileID: 8300000, guid: 0c61886818ed1406aa393162e66700c1, type: 3}
     volume: 0.6
     pitch: 1
@@ -87,6 +87,24 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 39c07d6bac53447f28dea4e9db4ba398, type: 3}
     volume: 0.6
     pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PiecesConnect
+    clip: {fileID: 8300000, guid: 80c31c65e37b7481c99b0852bf76c6b5, type: 3}
+    volume: 0.6
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: PiecesDisconnect
+    clip: {fileID: 8300000, guid: 80c31c65e37b7481c99b0852bf76c6b5, type: 3}
+    volume: 0.6
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: CreditsMusic
+    clip: {fileID: 8300000, guid: ea69cdda2118c4127a81cd7576466658, type: 3}
+    volume: 0.6
+    pitch: 0.5
     loop: 0
     source: {fileID: 0}
 --- !u!81 &7486914320241720481

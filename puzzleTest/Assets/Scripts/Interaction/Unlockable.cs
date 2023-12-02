@@ -9,7 +9,18 @@ public class Unlockable : Item
 {
     public bool locked;
 
+    
+    
+    //public sfxClose;
+
     private bool foundKey;
+    
+    IEnumerator DelayedReturn(float d){
+  // wait for a bit so player can see "Thanks for playing!"
+  yield return new WaitForSeconds(d);
+
+}
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +37,20 @@ public class Unlockable : Item
     {
         // skip steps if already unlocked
         if (!locked){
+            //FIXME: replace with animation
+            SpriteRenderer thisSprite = gameObject.GetComponent<SpriteRenderer>();
+            Color currCol = thisSprite.color;
+            thisSprite.color = new Color(currCol.r, currCol.g, currCol.b, currCol.a * 0.1f);
             return;
+        } 
+        
+        else if (locked){
+
+            
+            StartCoroutine(DelayedReturn(1));
         }
+            
+     
         /* Steps:
             1. Check if Player's inventory has item that matches an item in this item's list
             2. update state
@@ -49,7 +72,7 @@ public class Unlockable : Item
                 Rigidbody2D rbody = gameObject.GetComponent<Rigidbody2D>();
                 rbody.simulated = false;
                 */
-                //FIXME: replace with animation & SFX
+                //FIXME: replace with animation
                 SpriteRenderer thisSprite = gameObject.GetComponent<SpriteRenderer>();
                 Color currCol = thisSprite.color;
                 thisSprite.color = new Color(currCol.r, currCol.g, currCol.b, currCol.a * 0.1f);
@@ -60,5 +83,5 @@ public class Unlockable : Item
         }
         Debug.Log("You don't have the correct item to open this.");  //FIXME: locked door sound?
         return;
-    }
+}
 }

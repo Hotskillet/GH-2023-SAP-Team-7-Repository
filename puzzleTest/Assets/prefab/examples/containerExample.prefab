@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f7c9c8014a55fb47ada9955e6cf5504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffect: 
+  soundEffect: Cabinet
   locked: 1
   treasure: {fileID: 0}
 --- !u!114 &-6669753540617210160
