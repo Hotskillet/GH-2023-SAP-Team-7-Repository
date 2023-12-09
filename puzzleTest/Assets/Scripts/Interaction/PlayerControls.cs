@@ -146,6 +146,8 @@ public class PlayerControls : MonoBehaviour
 
         //update values for the animator
         spriteAnimator.SetFloat("Vertical", diffY);
+        spriteAnimator.SetFloat("Horizontal", diffX);
+        
         spriteAnimator.SetFloat("Speed", diffVector.sqrMagnitude);
     }
 
