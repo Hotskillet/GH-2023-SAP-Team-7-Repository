@@ -102,9 +102,9 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: CreditsMusic
-    clip: {fileID: 8300000, guid: ea69cdda2118c4127a81cd7576466658, type: 3}
+    clip: {fileID: 8300000, guid: df63052073dac4cea93fe63531d1c9e1, type: 3}
     volume: 0.6
-    pitch: 0.5
+    pitch: 1
     loop: 0
     source: {fileID: 0}
 --- !u!81 &7486914320241720481
