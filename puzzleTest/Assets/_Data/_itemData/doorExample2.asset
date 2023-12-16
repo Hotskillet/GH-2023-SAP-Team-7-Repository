@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: doorExample2
   m_EditorClassIdentifier: 
   iType: 2
-  comment: this is an example of a door
+  comments: []
   sprite: {fileID: 2109718511, guid: be553e1b0e8726e4194640d4eb39e6a3, type: 3}
   canInteractWith:
-  - keyExample2
+  - keyExample

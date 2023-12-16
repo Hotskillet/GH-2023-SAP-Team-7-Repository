@@ -17,4 +17,6 @@ MonoBehaviour:
   - this is an example of a key
   - this is an example of a key
   sprite: {fileID: -1089713613, guid: be553e1b0e8726e4194640d4eb39e6a3, type: 3}
-  canInteractWith: []
+  canInteractWith:
+  - doorExample
+  - doorExample2
