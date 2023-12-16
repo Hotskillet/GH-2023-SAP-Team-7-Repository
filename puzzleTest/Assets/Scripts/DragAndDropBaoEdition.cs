@@ -23,8 +23,13 @@ public class DragAndDropBaoEdition : MonoBehaviour {
     public Vector2 currentMousePosition;
     public Vector2 diffMousePosition;
 
+    // copy and pasting mel things now...
+    public bool cursorControlled;
+    public int state;
 
-
+    public bool held;
+    public bool justReleased;
+    public bool inside;
 
     // multiplies only the z value to 0
     // because then its only x and y
@@ -44,6 +49,10 @@ public class DragAndDropBaoEdition : MonoBehaviour {
 
         // set the scale here for idk
         initialScale = transform.localScale;
+
+        // mel things.. (pleawse work)
+        cursorControlled = false;
+        state = 0;
     }
 
     
@@ -51,6 +60,20 @@ public class DragAndDropBaoEdition : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
+        // inside AND held...
+        if (inside && held){
+            if (cursorControlled){
+                state = 2;
+            }else{
+                state = 1;
+            }
+
+        // NOT held
+        }else if (!held){
+            state = 0;
+        }
+
+        
         // constantly update the mouseDiff
         updateMousePosition();
 
@@ -63,13 +86,25 @@ public class DragAndDropBaoEdition : MonoBehaviour {
     
     void OnMouseOver() {
 
+        inside = true;
         Debug.Log("Ping!");
         transform.localScale = Vector3.Scale(initialScale, hoverScaler);
+
+        //mel things pllease help me understand
+        if (Input.GetMouseButton(0)) // if left button clicked
+        {
+            held = true;
+            justReleased = false;
+        }else if (held){
+            justReleased = true;
+            held = false;
+        }
     }
     
 
     // make it reutrn to original size
     void OnMouseExit() {
+        inside = false;
         transform.localScale = initialScale;
     }
 
