@@ -102,10 +102,16 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: CreditsMusic
-    clip: {fileID: 8300000, guid: df63052073dac4cea93fe63531d1c9e1, type: 3}
+    clip: {fileID: 8300000, guid: cb3ce8ba829424d9a8e0f5ecb80efd58, type: 3}
     volume: 0.6
     pitch: 1
     loop: 0
+    source: {fileID: 0}
+  - name: Identity
+    clip: {fileID: 8300000, guid: f3beeae202ea747e4a70c131f5e697d8, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!81 &7486914320241720481
 AudioListener:
