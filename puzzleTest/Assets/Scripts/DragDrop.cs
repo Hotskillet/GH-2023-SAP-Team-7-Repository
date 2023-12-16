@@ -31,6 +31,7 @@ public class DragDrop : MonoBehaviour
         state = 0;
         held = false;
         justReleased = false;
+        // what is cursor controlled
         cursorControlled = false;
         cam = Camera.main;
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -74,12 +75,16 @@ public class DragDrop : MonoBehaviour
             Allows object to follow mouse even if mouse moves outside of it (as long as left-click
             is still being held down)
         */
+
+        // inside AND held...
         if (inside && held){
             if (cursorControlled){
                 state = 2;
             }else{
                 state = 1;
             }
+
+        // NOT held
         }else if (!held){
             state = 0;
         }
