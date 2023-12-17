@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 406429341519761971}
   - component: {fileID: 3756382268918987218}
   - component: {fileID: 4360064042252653742}
+  - component: {fileID: -3897315637310708321}
   m_Layer: 5
   m_Name: connectionCollider
   m_TagString: Untagged
@@ -116,6 +117,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9fd7c93df1f71749bc90a1088241aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxConnect: PiecesConnect
+  sfxDisconnect: PiecesDisconnect
+  connectionDist: {x: 0, y: 0, z: 0}
+  connected: 0
+--- !u!114 &-3897315637310708321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6269467294869250478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba3d3f5cd9a49840aa25fab0d34a6b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sfxConnect: PiecesConnect
